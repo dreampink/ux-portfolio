@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import DesignThinkingDiagram from '../components/DesignThinkingDiagram'
 
 export default function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+
   const cases = [
     { slug: 'payments', title: 'Streamlined Payments' },
     { slug: 'onboarding', title: 'Onboarding Revamp' },
@@ -16,54 +20,121 @@ export default function App() {
     { name: 'Contact', href: '#contact' },
   ]
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setMobileMenuOpen(false)
+  }
+
+  // Track active section for navigation highlighting
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'projects', 'contact']
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const { offsetTop, offsetHeight } = element
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-white text-zinc-900">
+    <div className="min-h-screen bg-transparent text-zinc-900">
       
       {/* Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-zinc-200/50 shadow-sm">
+      <nav className="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/20 shadow-lg">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo/Brand */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-lg">UX</span>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-xl">E</span>
               </div>
               <div>
                 <h2 className="text-xl font-bold tracking-tight text-zinc-900">Ebe Etiobhio</h2>
-                <p className="text-xs text-zinc-500 font-medium">UX/UI Designer</p>
+                <p className="text-sm text-zinc-500 font-medium">UX/UI Designer</p>
               </div>
             </div>
             
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-all duration-200"
-                >
-                  {item.name}
-                </a>
-              ))}
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => {
+                const sectionId = item.href.replace('#', '')
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(sectionId)}
+                    className={`text-sm font-medium transition-colors duration-200 bg-transparent border-none outline-none shadow-none ${
+                      activeSection === sectionId
+                        ? 'text-pink-600'
+                        : 'text-zinc-600 hover:text-pink-600'
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                )
+              })}
             </div>
             
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button className="p-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-colors duration-200">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-3 text-zinc-600 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition-all duration-200 group"
+              >
+                <div className="w-6 h-6 flex flex-col justify-center items-center">
+                  <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                  <span className={`block w-5 h-0.5 bg-current transition-all duration-300 mt-1 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                  <span className={`block w-5 h-0.5 bg-current transition-all duration-300 mt-1 ${mobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+                </div>
               </button>
             </div>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white/20 backdrop-blur-md border-t border-white/20 shadow-xl">
+            <div className="px-6 py-6 space-y-6">
+              {navItems.map((item) => {
+                const sectionId = item.href.replace('#', '')
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(sectionId)}
+                    className={`block w-full text-left text-base font-medium transition-colors duration-200 bg-transparent border-none outline-none shadow-none ${
+                      activeSection === sectionId
+                        ? 'text-pink-600'
+                        : 'text-zinc-600 hover:text-pink-600'
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
       </nav>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16">
-        {/* Home Section */}
-        <section id="home" className="mb-20 md:mb-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
+        {/* Hero Section */}
+        <section id="home" className="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
               {/* Left Column - Content */}
               <div className="text-center lg:text-left">
                 {/* Hero Badge */}
@@ -73,7 +144,7 @@ export default function App() {
                 </div>
 
                 {/* Main Headline */}
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 mb-4 sm:mb-6">
                   Crafting Digital
                   <span className="block bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 bg-clip-text text-transparent">
                     Experiences
@@ -81,47 +152,47 @@ export default function App() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed mb-8 max-w-2xl">
+                <p className="text-lg sm:text-xl md:text-2xl text-zinc-600 leading-relaxed mb-6 sm:mb-8 max-w-2xl">
                   I design user-centered solutions that bridge the gap between business goals and human needs, 
                   creating products that people love to use.
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
-                  <a
-                    href="#projects"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-2xl hover:from-pink-600 hover:to-rose-600 transform hover:-translate-y-1 transition-all duration-200 shadow-lg hover:shadow-xl"
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center mb-8 sm:mb-12">
+                  <button
+                    onClick={() => scrollToSection('projects')}
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl sm:rounded-2xl hover:from-pink-600 hover:to-rose-600 transform hover:-translate-y-1 transition-all duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base"
                   >
                     <span className="text-white">View My Work</span>
                     <svg className="ml-2 w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </a>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-zinc-200 text-zinc-900 font-semibold rounded-2xl hover:bg-zinc-50 transition-all duration-200"
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-zinc-200 text-zinc-900 font-semibold rounded-xl sm:rounded-2xl hover:bg-zinc-50 transition-all duration-200 text-sm sm:text-base"
                   >
                     Get In Touch
-                  </a>
+                  </button>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-2xl">
                   <div className="text-center lg:text-left">
-                    <div className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2">5+</div>
-                    <div className="text-sm text-zinc-600 font-medium">Years Experience</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">5+</div>
+                    <div className="text-xs sm:text-sm text-zinc-600 font-medium">Years Experience</div>
                   </div>
                   <div className="text-center lg:text-left">
-                    <div className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2">50+</div>
-                    <div className="text-sm text-zinc-600 font-medium">Projects Delivered</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">50+</div>
+                    <div className="text-xs sm:text-sm text-zinc-600 font-medium">Projects Delivered</div>
                   </div>
                   <div className="text-center lg:text-left">
-                    <div className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2">15+</div>
-                    <div className="text-sm text-zinc-600 font-medium">Happy Clients</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">15+</div>
+                    <div className="text-xs sm:text-sm text-zinc-600 font-medium">Happy Clients</div>
                   </div>
                   <div className="text-center lg:text-left">
-                    <div className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2">100%</div>
-                    <div className="text-sm text-zinc-600 font-medium">User-Focused</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">100%</div>
+                    <div className="text-xs sm:text-sm text-zinc-600 font-medium">User-Focused</div>
                   </div>
                 </div>
               </div>
@@ -163,7 +234,7 @@ export default function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="mb-20 md:mb-32">
+        <section id="about" className="mb-24 md:mb-32">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-zinc-900">About Me</h2>
@@ -172,22 +243,8 @@ export default function App() {
                 I specialize in user research, interface design, and design systems that drive business results.
               </p>
             </div>
-            
-            {/* Design Thinking Process */}
-            <div className="mb-16">
-              <div className="text-center mb-12">
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-zinc-900">
-                  How I Think as a Designer
-                </h3>
-                <p className="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-                  My design process is rooted in human-centered design thinking, where empathy drives every decision 
-                  and iteration leads to better solutions. Here's how I approach complex problems:
-                </p>
-              </div>
-              <DesignThinkingDiagram />
-            </div>
 
-            {/* Skills Section */}
+            {/* Skills Section - Moved up for better flow */}
             <div className="grid md:grid-cols-2 gap-12 mb-16">
               <div>
                 <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">What I Bring to Your Team</h3>
@@ -333,11 +390,25 @@ export default function App() {
 
               </div>
             </div>
+
+            {/* Design Thinking Process - Moved after skills for better flow */}
+            <div className="mt-16">
+              <div className="text-center mb-12">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-zinc-900">
+                  How I Think as a Designer
+                </h3>
+                <p className="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+                  My design process is rooted in human-centered design thinking, where empathy drives every decision 
+                  and iteration leads to better solutions. Here's how I approach complex problems:
+                </p>
+              </div>
+              <DesignThinkingDiagram />
+            </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="mb-20 md:mb-32">
+        <section id="projects" className="mb-24 md:mb-32">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-zinc-900">Featured Projects</h2>
             <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
@@ -350,6 +421,7 @@ export default function App() {
               <Link
                 key={c.slug}
                 to={`/case/${c.slug}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="group block rounded-3xl border border-zinc-200 bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 {/* Project Image */}
@@ -450,7 +522,7 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="mb-20 md:mb-32">
+        <section id="contact" className="mb-16">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-zinc-900">Let's Work Together</h2>

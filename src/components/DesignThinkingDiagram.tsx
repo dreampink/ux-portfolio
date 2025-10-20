@@ -58,12 +58,12 @@ export default function DesignThinkingDiagram() {
       {/* Process Flow */}
       <div className="relative">
         {/* Main flow container */}
-        <div className="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-6">
           {/* Stages */}
           {DESIGN_STAGES.map((stage, index) => (
             <motion.div
               key={stage.key}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -93,7 +93,7 @@ export default function DesignThinkingDiagram() {
               </motion.button>
               
               {/* Arrow (except for last item) */}
-              {index < DESIGN_STAGES.length - 1 && (
+              {index < DESIGN_STAGES.length - 1 ? (
                 <div className="hidden lg:block mt-4">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -106,6 +106,8 @@ export default function DesignThinkingDiagram() {
                     </svg>
                   </motion.div>
                 </div>
+              ) : (
+                <div className="hidden lg:block mt-4 h-8"></div>
               )}
             </motion.div>
           ))}

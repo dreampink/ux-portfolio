@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ProcessDiagram from '../components/ProcessDiagram'
-import { getCaseStudyBySlug } from '../data/caseStudies'
+import { getCaseStudyBySlug, caseStudies } from '../data/caseStudies'
 
 export default function CaseStudy() {
   const { slug = '' } = useParams()
@@ -9,12 +9,17 @@ export default function CaseStudy() {
   
   const caseStudy = getCaseStudyBySlug(slug)
   
+  // Get current case study index and navigation
+  const currentIndex = caseStudies.findIndex(study => study.slug === slug)
+  const prevCaseStudy = currentIndex > 0 ? caseStudies[currentIndex - 1] : null
+  const nextCaseStudy = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
+  
   if (!caseStudy) {
     return (
       <div className="min-h-screen bg-white text-zinc-900 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-4">Case Study Not Found</h1>
-          <Link to="/" className="text-blue-600 hover:underline">← Back to all case studies</Link>
+          <Link to="/#projects" className="text-blue-600 hover:underline">← Back to all case studies</Link>
         </div>
       </div>
     )
@@ -24,9 +29,9 @@ export default function CaseStudy() {
     <div className="min-h-screen bg-white text-zinc-900">
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 space-y-10">
         <nav className="text-sm">
-          <Link to="/" className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 transition-colors">
+          <Link to="/#projects" className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 transition-colors">
             <span>←</span>
-            <span>Back to all case studies</span>
+            <span>Home</span>
           </Link>
         </nav>
 
@@ -67,6 +72,8 @@ export default function CaseStudy() {
           active={activeStage} 
           onStageChange={setActiveStage}
           caseStudyData={caseStudy.stages}
+          prevCaseStudy={prevCaseStudy}
+          nextCaseStudy={nextCaseStudy}
         />
       </div>
     </div>
