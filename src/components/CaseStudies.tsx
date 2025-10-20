@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion, MotionConfig } from "framer-motion";
 import {
   ChevronRight,
@@ -78,6 +78,7 @@ const COPY: Record<StageKey, { title: string; summary: string }> = {
 export default function NonlinearProcessPortfolio() {
   const [active, setActive] = useState<StageKey>(STAGES[0].key);
   const reduceMotion = useReducedMotion();
+  const contentRef = useRef<HTMLElement>(null);
 
   // Keyboard navigation J/K / Arrow Up-Down
   useEffect(() => {
@@ -96,21 +97,29 @@ export default function NonlinearProcessPortfolio() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active]);
 
+  const handleStageChange = (stageKey: StageKey) => {
+    setActive(stageKey);
+    // Scroll to top of content when stage changes
+    if (contentRef.current) {
+      contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <MotionConfig reducedMotion={reduceMotion ? "always" : "never"}>
-      <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="w-full h-screen grid grid-cols-1 lg:grid-cols-12 gap-12">
         <aside className="lg:col-span-3">
-          <div className="sticky top-6 lg:top-10 space-y-8">
+          <div className="sticky top-0 h-screen overflow-y-auto space-y-8 py-6 lg:py-10">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Process</h2>
-            <IndexNav active={active} setActive={setActive} />
+            <IndexNav active={active} setActive={handleStageChange} />
           </div>
         </aside>
 
-        <section className="lg:col-span-9 space-y-10 h-auto lg:h-screen lg:overflow-y-auto pr-0 lg:pr-2">
+        <section ref={contentRef} className="lg:col-span-9 space-y-10 h-screen overflow-y-auto pr-0 lg:pr-2 py-6 lg:py-10">
           {/* Phase definitions above the diagram */}
           <PhaseDescriptions active={active} />
           {/* Loop diagram (compact) */}
-          <LoopView active={active} setActive={setActive} />
+          <LoopView active={active} setActive={handleStageChange} />
           {/* Per-stage content back in */}
           <StagePanels active={active} />
         </section>
@@ -127,7 +136,7 @@ function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: Stag
           key={s.key}
           onClick={() => setActive(s.key)}
           className={`group text-left py-3.5 px-5 rounded-2xl transition-colors ${
-            active === s.key ? "bg-zinc-900 text-black" : "hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            active === s.key ? "bg-zinc-900 text-black" : "hover:bg-zinc-100"
           }`}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,20 +157,26 @@ function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: Stag
 function PhaseDescriptions({ active }: { active: StageKey }) {
   const activePhase: PhaseKey = STAGE_PHASE[active];
   return (
-    <div className="grid sm:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+    <div className="grid sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
       {(Object.keys(PHASES) as PhaseKey[]).map((key) => {
         const highlighted = key === activePhase;
         return (
           <div
             key={key}
-            className={`p-4 rounded-2xl border transition-colors ${
-              highlighted
-                ? "border-zinc-900 bg-zinc-900 text-white dark:border-white/80"
-                : "border-zinc-200 dark:border-zinc-800"
-            }`}
+            className="transition-colors"
           >
-            <div className="text-base font-semibold mb-1">{PHASES[key].name}</div>
-            <div className={`text-[13px] leading-relaxed ${highlighted ? "text-white/80" : "text-zinc-600"}`}>
+            <div className={`text-lg font-bold mb-2 transition-colors ${
+              highlighted 
+                ? "text-blue-600" 
+                : "text-zinc-400"
+            }`}>
+              {PHASES[key].name}
+            </div>
+            <div className={`text-sm leading-relaxed ${
+              highlighted 
+                ? "text-zinc-700 font-medium" 
+                : "text-zinc-500"
+            }`}>
               {PHASES[key].hint}
             </div>
           </div>
@@ -178,7 +193,7 @@ function StagePanels({ active }: { active: StageKey }) {
         s.key === active ? (
           <motion.div
             key={s.key}
-            className="rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 bg-white/60 dark:bg-zinc-900/40"
+            className="rounded-3xl border border-zinc-200 p-6 md:p-10 bg-white/60"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
@@ -204,26 +219,103 @@ function StagePanelContent({ stage }: { stage: StageKey }) {
           <Icon className="h-6 w-6" />
           <h3 className="text-2xl font-semibold tracking-tight">{data.title}</h3>
         </div>
-        <p className="text-[15px] md:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed md:leading-7 max-w-prose">
+        <p className="text-[15px] md:text-base text-zinc-700 leading-relaxed md:leading-7 max-w-prose">
           {data.summary}
         </p>
 
-        <div className="rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-700 p-5 text-zinc-500">
+        <div className="rounded-2xl border border-dashed border-zinc-300 p-5 text-zinc-500">
           <p className="text-sm md:text-base text-center italic">Add your stage content here (text, images, embeds).</p>
         </div>
         <div className="text-xs md:text-sm text-zinc-500">
           <span className="font-medium">Phase:</span> {phase.name} — {phase.hint}
         </div>
+        
+        {/* Additional content sections for scroll testing */}
+        <div className="space-y-6">
+          <h4 className="text-lg font-semibold text-zinc-800">Key Insights</h4>
+          <div className="space-y-3">
+            <div className="p-4 bg-zinc-50 rounded-lg">
+              <p className="text-sm text-zinc-700">This is a sample insight that demonstrates the scroll functionality. You can add multiple insights here to test the scrolling behavior.</p>
+            </div>
+            <div className="p-4 bg-zinc-50 rounded-lg">
+              <p className="text-sm text-zinc-700">Another insight that shows how content flows in the scrollable area. This helps visualize the layout when you have more content.</p>
+            </div>
+            <div className="p-4 bg-zinc-50 rounded-lg">
+              <p className="text-sm text-zinc-700">A third insight to further demonstrate the scrolling capability and content organization within the stage panels.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold text-zinc-800">Methodology</h4>
+          <p className="text-sm text-zinc-600 leading-relaxed">
+            This section demonstrates how additional content can be added to test the scroll functionality. 
+            You can include research methods, user interviews, data analysis techniques, and other relevant information here.
+          </p>
+          <ul className="space-y-2 text-sm text-zinc-600">
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-zinc-400 rounded-full mt-2 flex-shrink-0"></span>
+              <span>User interviews with 15 participants</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-zinc-400 rounded-full mt-2 flex-shrink-0"></span>
+              <span>Competitive analysis of 8 similar products</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-zinc-400 rounded-full mt-2 flex-shrink-0"></span>
+              <span>Usability testing with 3 rounds of iterations</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold text-zinc-800">Challenges & Solutions</h4>
+          <div className="space-y-3">
+            <div className="p-4 border-l-4 border-red-200 bg-red-50">
+              <h5 className="font-medium text-red-800 mb-2">Challenge</h5>
+              <p className="text-sm text-red-700">Users were dropping off during the checkout process due to complex form validation.</p>
+            </div>
+            <div className="p-4 border-l-4 border-green-200 bg-green-50">
+              <h5 className="font-medium text-green-800 mb-2">Solution</h5>
+              <p className="text-sm text-green-700">Implemented progressive disclosure and real-time validation feedback to guide users through the process.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold text-zinc-800">Results & Metrics</h4>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 bg-blue-50 rounded-lg text-center">
+              <div className="text-2xl font-bold text-blue-600">23%</div>
+              <div className="text-sm text-blue-800">Reduction in drop-off</div>
+            </div>
+            <div className="p-4 bg-green-50 rounded-lg text-center">
+              <div className="text-2xl font-bold text-green-600">4.2s</div>
+              <div className="text-sm text-green-800">Average completion time</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold text-zinc-800">Next Steps</h4>
+          <div className="space-y-2 text-sm text-zinc-600">
+            <p>• Conduct follow-up user testing to validate improvements</p>
+            <p>• Implement A/B testing for different validation approaches</p>
+            <p>• Monitor conversion metrics over the next quarter</p>
+            <p>• Gather additional feedback from customer support team</p>
+          </div>
+        </div>
       </div>
     
       <div className="lg:col-span-7 xl:col-span-8">
-        <div className="aspect-[16/9] rounded-3xl border border-dashed border-zinc-300 dark:border-zinc-700 grid place-items-center text-zinc-500">
+        <div className="aspect-[16/9] rounded-3xl border border-dashed border-zinc-300 grid place-items-center text-zinc-500">
           <p>Drop mockups/video/gallery here.</p>
         </div>
       </div>
     </div>
   );
 }
+
 
 function LoopView({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
   const width = 420;
@@ -268,7 +360,7 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
     <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[360px] md:h-[420px]">
       <motion.path
         d={d}
-        className="fill-none stroke-zinc-300 dark:stroke-zinc-700"
+        className="fill-none stroke-zinc-300"
         strokeWidth={1.6}
         strokeDasharray={pathLength}
         initial={{ strokeDashoffset: pathLength, opacity: 0.75 }}
@@ -288,8 +380,8 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
               r={isActive ? 20 : 14}
               className={
                 isSamePhase
-                  ? "fill-white dark:fill-zinc-900 stroke-zinc-900 dark:stroke-white"
-                  : "fill-white dark:fill-zinc-900 stroke-zinc-300 dark:stroke-zinc-700"
+                  ? "fill-white stroke-zinc-900"
+                  : "fill-white stroke-zinc-300"
               }
               strokeWidth={1.2}
               initial={{ opacity: 0, scale: 0.9 }}
