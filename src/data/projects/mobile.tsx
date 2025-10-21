@@ -1,7 +1,7 @@
 
 export const mobileProject = {
   slug: 'mobile',
-  title: 'Mobile IA Refresh',
+  title: 'Tesco',
   client: 'E-commerce Platform',
   date: '2023',
   role: 'UX Designer',

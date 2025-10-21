@@ -5,9 +5,9 @@ import Footer from '../components/Footer'
 export default function App() {
   const cases = [
     { slug: 'payments', title: 'Sports Direct' },
-    { slug: 'onboarding', title: 'Onboarding Revamp' },
+    { slug: 'onboarding', title: 'Cancer Research UK' },
     { slug: 'polishpad', title: 'Polish Pad' },
-    { slug: 'mobile', title: 'Mobile IA Refresh' },
+    { slug: 'mobile', title: 'Tesco' },
   ]
 
 
@@ -280,7 +280,7 @@ export default function App() {
             {/* Chrome Browser Window */}
             <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
               {/* Chrome Header */}
-              <div className="bg-gradient-to-r from-pink-50 via-pink-100 to-pink-200">
+              <div className="bg-gradient-to-r from-gray-50 via-gray-100 to-gray-200">
                 <div className="px-6 py-4">
                   <div className="flex items-center justify-between">
                     {/* Left side - macOS Controls and Figma Tab */}
@@ -319,7 +319,7 @@ export default function App() {
               {/* Figma Canvas - Connected to tab */}
               <div className="bg-slate-50 p-8 -mt-px">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Let's Work Together</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Let's Work Together</h2>
                   <p className="text-slate-600 text-lg">Ready to create something amazing? I'd love to hear about your project.</p>
                 </div>
                 

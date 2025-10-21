@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface AnimatedImageBlocksProps {
@@ -19,34 +19,33 @@ interface AnimatedImageBlocksProps {
 
 export default function AnimatedImageBlocks({ imageSrc, blocks }: AnimatedImageBlocksProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [visibleBlocks, setVisibleBlocks] = useState<Set<string>>(new Set());
 
   // Animation variants
   const animationVariants = {
     slideInLeft: {
       initial: { x: -100, opacity: 0 },
       animate: { x: 0, opacity: 1 },
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     },
     slideInRight: {
       initial: { x: 100, opacity: 0 },
       animate: { x: 0, opacity: 1 },
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     },
     fadeInUp: {
       initial: { y: 50, opacity: 0 },
       animate: { y: 0, opacity: 1 },
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     },
     scaleIn: {
       initial: { scale: 0.8, opacity: 0 },
       animate: { scale: 1, opacity: 1 },
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     },
     rotateIn: {
       initial: { rotate: -10, opacity: 0 },
       animate: { rotate: 0, opacity: 1 },
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     }
   };
 
@@ -61,12 +60,12 @@ export default function AnimatedImageBlocks({ imageSrc, blocks }: AnimatedImageB
         />
         
         {/* Animated Blocks Overlay */}
-        {blocks.map((block, index) => {
+        {blocks.map((block) => {
           const BlockComponent = () => {
             const ref = useRef<HTMLDivElement>(null);
             const isInView = useInView(ref, { 
-              threshold: 0.3,
-              rootMargin: "-50px 0px"
+              amount: 0.3,
+              margin: "-50px 0px"
             });
 
             const animation = block.animation || 'fadeInUp';

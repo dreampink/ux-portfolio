@@ -1,7 +1,7 @@
 
 export const onboardingProject = {
   slug: 'onboarding',
-  title: 'Onboarding Revamp',
+  title: 'Cancer Research UK',
   client: 'SaaS Platform',
   date: '2024',
   role: 'Senior UX Designer',
