@@ -202,15 +202,12 @@ export default function App() {
                 <div className="relative">
                   {/* Profile Image Container */}
                   <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
-                    {/* Placeholder for profile image */}
-                    <div className="w-full h-full bg-gradient-to-br from-pink-100 to-rose-100 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-32 h-32 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mb-4 mx-auto">
-                          <span className="text-6xl text-white font-bold">EE</span>
-                        </div>
-                        <p className="text-zinc-600 text-sm">Add your photo here</p>
-                      </div>
-                    </div>
+                    {/* Profile Image */}
+                    <img 
+                      src="/src/assets/profile-photo.png" 
+                      alt="Ebe Akinfisoye - UX Designer" 
+                      className="w-full h-full object-cover object-center"
+                    />
                     
                     {/* Decorative elements */}
                     <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-pink-300 to-rose-400 rounded-full opacity-20 blur-xl"></div>
