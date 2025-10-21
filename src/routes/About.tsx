@@ -21,30 +21,31 @@ const About = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-zinc-900">About Me</h2>
-              <div className="flex items-center justify-center space-x-6 max-w-4xl mx-auto">
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg flex-shrink-0">
-                  <img
-                    src="/src/assets/profile-photo.png"
-                    alt="Ebe Etiobhio"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback to gradient if image not found
-                      e.currentTarget.style.display = 'none';
-                      const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                      if (nextElement) {
-                        nextElement.style.display = 'block';
-                      }
-                    }}
-                  />
-                  <div className="w-full h-full bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
-                    <span className="text-white font-bold text-2xl">E</span>
-                  </div>
+              
+              {/* Profile Image - Right under About Me */}
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg mx-auto mb-8">
+                <img
+                  src="/src/assets/young-me.JPG"
+                  alt="Ebe Etiobhio"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient if image not found
+                    e.currentTarget.style.display = 'none';
+                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (nextElement) {
+                      nextElement.style.display = 'block';
+                    }
+                  }}
+                />
+                <div className="w-full h-full bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
+                  <span className="text-white font-bold text-3xl">E</span>
                 </div>
-                <p className="text-xl text-zinc-600 leading-relaxed text-left">
-                  I'm a UX/UI designer passionate about creating meaningful digital experiences. 
-                  I specialise in user research, interface design, and design systems that drive business results.
-                </p>
               </div>
+              
+              <p className="text-xl text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+                I'm a UX/UI designer passionate about creating meaningful digital experiences. 
+                I specialise in user research, interface design, and design systems that drive business results.
+              </p>
             </div>
 
             {/* Top Section - What I Bring to Your Team & Experience */}
@@ -421,6 +422,41 @@ const About = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Conclusion Section */}
+            <section className="mb-16">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="bg-white rounded-3xl p-8 md:p-12 border border-zinc-200 shadow-lg">
+                  <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-6">
+                    Thank You for Considering My Application
+                  </h3>
+                  <p className="text-lg text-zinc-700 leading-relaxed mb-6 max-w-3xl mx-auto">
+                    I'm excited about the opportunity to bring my unique combination of design expertise and technical skills to your team. 
+                    My passion for creating user-centered solutions, combined with my ability to bridge the gap between design and development, 
+                    makes me a valuable asset for any UX/UI role.
+                  </p>
+                  <p className="text-lg text-zinc-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+                    I'm ready to contribute to meaningful projects that make a real difference in users' lives. 
+                    Let's create something amazing together!
+                  </p>
+                  <a 
+                    href="mailto:madebyebe@gmail.com"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-pink-600 text-white font-semibold rounded-2xl hover:bg-pink-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+                    style={{ color: 'white' }}
+                  >
+                    <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span style={{ color: 'white' }}>Get In Touch</span>
+                  </a>
                 </div>
               </div>
             </section>
