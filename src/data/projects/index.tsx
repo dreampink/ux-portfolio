@@ -1,13 +1,13 @@
 import { paymentsProject } from './payments';
 import { onboardingProject } from './onboarding';
-import { insightsProject } from './insights';
+import { polishpadProject } from './polishpad';
 import { mobileProject } from './mobile';
 
 export const projects = [
   paymentsProject,
   onboardingProject,
-  insightsProject,
+  polishpadProject,
   mobileProject
 ];
 
-export { paymentsProject, onboardingProject, insightsProject, mobileProject };
+export { paymentsProject, onboardingProject, polishpadProject, mobileProject };

@@ -1,10 +1,10 @@
 
-export const insightsProject = {
-  slug: 'insights',
-  title: 'Insights Dashboard',
-  client: 'Analytics Company',
-  date: '2023',
-  role: 'UX/UI Designer',
+export const polishpadProject = {
+  slug: 'polishpad',
+  title: 'Polish Pad',
+  client: 'Polish Pad',
+  date: '2025',
+  role: 'Design Tech Lead',
   headerImage: '/src/assets/project-3.jpg',
   description: 'Designed a comprehensive analytics dashboard that increased user engagement by 55% and reduced time-to-insight by 40%.',
   
@@ -112,6 +112,63 @@ export const insightsProject = {
               <li>• One-click report generation</li>
               <li>• Real-time data updates</li>
             </ul>
+          </div>
+        </div>
+      )
+    },
+    
+    design: {
+      title: 'Design Showcase',
+      content: (
+        <div className="space-y-8">
+          <div className="bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 rounded-2xl p-6">
+            <h4 className="font-semibold text-pink-800 mb-4">Polish Pad Social Media Campaign</h4>
+            <p className="text-pink-700 leading-relaxed mb-6">
+              Interactive showcase of the nail art campaign featuring animated blocks that reveal 
+              key information as users scroll through the design.
+            </p>
+            
+            {/* Animated Image Blocks Component */}
+            <div className="relative">
+              <img 
+                src="/src/assets/project-3.jpg" 
+                alt="Polish Pad Campaign" 
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+              
+              {/* Animated overlay blocks */}
+              <div className="absolute inset-0">
+                {/* Block 1: Behind the Polish Pad */}
+                <div className="absolute top-4 left-4 w-80 h-32 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/20 animate-fadeInUp">
+                  <h5 className="font-bold text-gray-900 mb-2">Behind the Polish Pad</h5>
+                  <p className="text-sm text-gray-700">Brand introduction and community showcase</p>
+                </div>
+                
+                {/* Block 2: Business Mistakes */}
+                <div className="absolute top-4 right-4 w-80 h-32 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/20 animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+                  <h5 className="font-bold text-gray-900 mb-2">Business Mistakes to Avoid</h5>
+                  <p className="text-sm text-gray-700">Financial guidance for entrepreneurs</p>
+                </div>
+                
+                {/* Block 3: London Services */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-32 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/20 animate-scaleIn" style={{animationDelay: '0.4s'}}>
+                  <h5 className="font-bold text-gray-900 mb-2">London Nail Art Services</h5>
+                  <p className="text-sm text-gray-700">Premium nail art designs and services</p>
+                </div>
+                
+                {/* Block 4: Income Tax Info */}
+                <div className="absolute bottom-4 left-4 w-80 h-32 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/20 animate-slideInLeft" style={{animationDelay: '0.6s'}}>
+                  <h5 className="font-bold text-gray-900 mb-2">Income Tax 2021/2022</h5>
+                  <p className="text-sm text-gray-700">Tax guidance for self-employed individuals</p>
+                </div>
+                
+                {/* Block 5: Essex Services */}
+                <div className="absolute bottom-4 right-4 w-80 h-32 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/20 animate-slideInRight" style={{animationDelay: '0.8s'}}>
+                  <h5 className="font-bold text-gray-900 mb-2">Essex Nail Art Services</h5>
+                  <p className="text-sm text-gray-700">Local nail art services and designs</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )

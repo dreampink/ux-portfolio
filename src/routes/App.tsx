@@ -4,9 +4,9 @@ import Footer from '../components/Footer'
 
 export default function App() {
   const cases = [
-    { slug: 'payments', title: 'Streamlined Payments' },
+    { slug: 'payments', title: 'Sports Direct' },
     { slug: 'onboarding', title: 'Onboarding Revamp' },
-    { slug: 'insights', title: 'Insights Dashboard' },
+    { slug: 'polishpad', title: 'Polish Pad' },
     { slug: 'mobile', title: 'Mobile IA Refresh' },
   ]
 
@@ -49,7 +49,7 @@ export default function App() {
                 {/* Main Headline */}
                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 mb-4 sm:mb-6 animate-fadeInUp text-glow" style={{animationDelay: '0.4s'}}>
                   Crafting
-                  <span className="block gradient-text animate-gradient-shift text-glow">
+                  <span className="block bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
                     Digital Experiences
                   </span>
                 </h1>
@@ -196,14 +196,14 @@ export default function App() {
                     <div className="mb-4">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-pink-600">Case Study</span>
-                        <div className="flex items-center text-zinc-400 group-hover:text-pink-600 transition-colors">
+                        <div className="flex items-center text-zinc-400 transition-colors">
                           <span className="text-sm mr-1">View</span>
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                           </svg>
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold text-zinc-900 group-hover:text-pink-600 transition-colors mb-3">
+                      <h3 className="text-xl font-bold text-zinc-900 transition-colors mb-3">
                         {c.title}
                       </h3>
                       <p className="text-sm text-zinc-600 leading-relaxed">
@@ -293,7 +293,7 @@ export default function App() {
                       </div>
                       
                       {/* Figma Tab */}
-                      <div className="bg-white rounded-t-lg px-4 py-2 border border-slate-200 border-b-0 flex items-center space-x-2">
+                      <div className="bg-white rounded-t-lg px-4 py-2 border border-slate-200 border-b-0 flex items-center space-x-2 mt-4">
                         <div className="w-4 h-4 bg-white rounded flex items-center justify-center">
                           <img 
                             src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/figma.svg" 

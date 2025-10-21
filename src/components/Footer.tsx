@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   const cases = [
-    { slug: 'payments', title: 'Streamlined Payments' },
+    { slug: 'payments', title: 'Sports Direct' },
     { slug: 'onboarding', title: 'Onboarding Revamp' },
-    { slug: 'insights', title: 'Insights Dashboard' },
+    { slug: 'polishpad', title: 'Polish Pad' },
     { slug: 'mobile', title: 'Mobile IA Refresh' },
   ]
 

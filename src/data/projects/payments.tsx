@@ -1,7 +1,7 @@
 
 export const paymentsProject = {
   slug: 'payments',
-  title: 'Streamlined Payments',
+  title: 'Sports Direct',
   client: 'FinTech Startup',
   date: '2024',
   role: 'Lead UX Designer',
