@@ -5,7 +5,7 @@ export const polishpadProject = {
   client: 'Polish Pad',
   date: '2025',
   role: 'Design Tech Lead',
-  headerImage: '/src/assets/project-3.jpg',
+  headerImage: '/project-3.jpg',
   description: 'Designed a comprehensive analytics dashboard that increased user engagement by 55% and reduced time-to-insight by 40%.',
   
   // Process stages content
@@ -131,7 +131,7 @@ export const polishpadProject = {
             {/* Animated Image Blocks Component */}
             <div className="relative">
               <img 
-                src="/src/assets/project-3.jpg" 
+                src="/project-3.jpg" 
                 alt="Polish Pad Campaign" 
                 className="w-full h-auto rounded-xl shadow-lg"
               />

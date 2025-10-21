@@ -5,7 +5,7 @@ export const onboardingProject = {
   client: 'SaaS Platform',
   date: '2024',
   role: 'Senior UX Designer',
-  headerImage: '/src/assets/project-2.jpg',
+  headerImage: '/project-2.jpg',
   description: 'Completely redesigned the user onboarding experience, increasing activation rates by 42% and reducing time-to-value by 60%.',
   
   // Process stages content

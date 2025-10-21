@@ -5,7 +5,7 @@ export const paymentsProject = {
   client: 'FinTech Startup',
   date: '2024',
   role: 'Lead UX Designer',
-  headerImage: '/src/assets/project-1.jpg',
+  headerImage: '/project-1.jpg',
   description: 'Redesigned the payment flow for a fintech application, reducing drop-off rates by 35% and increasing conversion by 28%.',
   
   // Process stages content

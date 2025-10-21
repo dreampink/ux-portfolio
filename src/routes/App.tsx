@@ -107,7 +107,7 @@ export default function App() {
                   <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
                     {/* Profile Image */}
                     <img 
-                      src="/src/assets/profile-photo.png" 
+                      src="/profile-photo.png" 
                       alt="Ebe Akinfisoye - UX Designer" 
                       className="w-full h-full object-cover object-center"
                     />
@@ -159,7 +159,7 @@ export default function App() {
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src={`/src/assets/project-${index + 1}.jpg`}
+                      src={`/project-${index + 1}.jpg`}
                       alt={c.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {

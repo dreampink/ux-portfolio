@@ -24,7 +24,7 @@ const About = () => {
               {/* Profile Image - Right under About Me */}
               <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg mx-auto mb-8">
                 <img
-                  src="/src/assets/young-me.JPG"
+                  src="/young-me.JPG"
                   alt="Ebe Etiobhio"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -266,7 +266,7 @@ const About = () => {
                         >
                           <div className={`w-12 h-16 sm:w-16 sm:h-20 rounded-lg shadow-lg transform group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
                             <img
-                              src={`/src/assets/book-covers/${book.title.toLowerCase().replace(/[,\s]+/g, '-').replace(/[^\w'-]/g, '')}.jpg`}
+                              src={`/book-covers/${book.title.toLowerCase().replace(/[,\s]+/g, '-').replace(/[^\w'-]/g, '')}.jpg`}
                               alt={`${book.title} by ${book.author}`}
                               className="w-full h-full object-cover"
                               onError={(e) => {

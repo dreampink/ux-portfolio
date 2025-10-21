@@ -5,7 +5,7 @@ export const mobileProject = {
   client: 'E-commerce Platform',
   date: '2023',
   role: 'UX Designer',
-  headerImage: '/src/assets/project-4.jpg',
+  headerImage: '/project-4.jpg',
   description: 'Redesigned the mobile information architecture, improving task completion rates by 48% and reducing bounce rate by 32%.',
   
   // Process stages content
