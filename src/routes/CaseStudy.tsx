@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ProcessDiagram from '../components/ProcessDiagram'
+import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
 import { getCaseStudyBySlug, caseStudies } from '../data/caseStudies'
 
 export default function CaseStudy() {
@@ -27,13 +29,8 @@ export default function CaseStudy() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-900">
+      <Navigation />
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 space-y-10">
-        <nav className="text-sm">
-          <Link to="/#projects" className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 transition-colors">
-            <span>←</span>
-            <span>Home</span>
-          </Link>
-        </nav>
 
         {/* Header Image */}
         {caseStudy.headerImage && (
@@ -76,6 +73,7 @@ export default function CaseStudy() {
           nextCaseStudy={nextCaseStudy}
         />
       </div>
+      <Footer />
     </div>
   )
 }

@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './routes/App.tsx'
+import About from './routes/About.tsx'
 import CaseStudy from './routes/CaseStudy'
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
+  { path: '/about', element: <About /> },
   { path: '/case/:slug', element: <CaseStudy /> },
 ])
 

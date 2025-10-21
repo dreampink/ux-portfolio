@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Design thinking stages
 const DESIGN_STAGES = [
   {
-    key: 'empathize',
-    label: 'Empathize',
+    key: 'empathise',
+    label: 'Empathise',
     description: 'Understanding user needs and pain points through research and observation',
     icon: '👥',
     color: 'from-pink-500 to-rose-500',
