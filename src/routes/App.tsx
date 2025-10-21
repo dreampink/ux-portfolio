@@ -10,11 +10,6 @@ export default function App() {
     { slug: 'mobile', title: 'Mobile IA Refresh' },
   ]
 
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '/about' },
-  ]
 
   // Smooth scroll to section
   const scrollToSection = (sectionId: string) => {
@@ -279,48 +274,50 @@ export default function App() {
           </div>
         </section>
 
-        {/* Contact Section - Figma Style */}
+        {/* Contact Section - Chrome Interface with Figma */}
         <section id="contact" className="mb-16">
           <div className="max-w-6xl mx-auto">
-            {/* Figma Browser Window */}
+            {/* Chrome Browser Window */}
             <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-              {/* Figma Header */}
-              <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
-                <div className="flex items-center justify-between">
-                  {/* Left side - macOS Controls and Figma Logo */}
-                  <div className="flex items-center space-x-4">
-                    {/* macOS Controls */}
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+              {/* Chrome Header */}
+              <div className="bg-gradient-to-r from-pink-50 via-pink-100 to-pink-200">
+                <div className="px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    {/* Left side - macOS Controls and Figma Tab */}
+                    <div className="flex items-center space-x-4">
+                      {/* macOS Controls */}
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                      
+                      {/* Figma Tab */}
+                      <div className="bg-white rounded-t-lg px-4 py-2 border border-slate-200 border-b-0 flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-white rounded flex items-center justify-center">
+                          <img 
+                            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/figma.svg" 
+                            alt="Figma" 
+                            className="w-3 h-3"
+                          />
+                        </div>
+                        <span className="text-slate-600 font-medium text-sm">Figma</span>
+                      </div>
                     </div>
                     
-                    {/* Figma Logo and Title */}
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-white rounded flex items-center justify-center border border-slate-200">
-                        <img 
-                          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/figma.svg" 
-                          alt="Figma" 
-                          className="w-4 h-4"
-                        />
+                    {/* Right side - Chrome-style menu */}
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">E</span>
                       </div>
-                      <span className="text-slate-600 font-medium text-sm">Figma</span>
+                      <span className="text-slate-600 text-sm">Ebe Etiobhio</span>
                     </div>
-                  </div>
-                  
-                  {/* Right side - User Profile */}
-                  <div className="flex items-center space-x-2">
-                    <div className="w-6 h-6 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">E</span>
-                    </div>
-                    <span className="text-slate-600 text-sm">Ebe Etiobhio</span>
                   </div>
                 </div>
               </div>
               
-              {/* Figma Canvas */}
-              <div className="bg-slate-50 p-8">
+              {/* Figma Canvas - Connected to tab */}
+              <div className="bg-slate-50 p-8 -mt-px">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Let's Work Together</h2>
                   <p className="text-slate-600 text-lg">Ready to create something amazing? I'd love to hear about your project.</p>

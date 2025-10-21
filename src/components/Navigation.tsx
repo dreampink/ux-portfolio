@@ -12,14 +12,6 @@ const Navigation = () => {
     { name: 'About', href: '/about' },
   ]
 
-  // Smooth scroll to section
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setMobileMenuOpen(false)
-  }
 
   // Handle hash navigation when component mounts
   useEffect(() => {

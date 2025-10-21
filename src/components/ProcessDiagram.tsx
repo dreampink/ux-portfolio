@@ -157,14 +157,8 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
           </section>
         </div>
 
-        {/* Mobile: Compact process diagram + content */}
+        {/* Mobile: Content only (no process diagram) */}
         <div className="lg:hidden">
-          {/* Mobile Process Diagram */}
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold tracking-tight text-zinc-900 mb-4">Process</h2>
-            <MobileProcessDiagram active={active} setActive={handleStageChange} />
-          </div>
-          
           {/* Mobile Content */}
           <StagePanels active={active} caseStudyData={caseStudyData} />
         </div>
@@ -173,125 +167,6 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
   );
 }
 
-function MobileProcessDiagram({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
-  const width = 300;
-  const height = 250;
-  const cx = width / 2;
-  const cy = height / 2;
-  const a = 200;
-
-  const activePhase: PhaseKey = STAGE_PHASE[active];
-
-  const samples = 260;
-  const points = useMemo(() => {
-    const arr: Array<{ x: number; y: number }> = [];
-    for (let i = 0; i <= samples; i++) {
-      const t = (i / samples) * Math.PI * 2;
-      const x = cx + a * Math.sin(t);
-      const y = cy + (a * 0.62) * Math.sin(t) * Math.cos(t);
-      arr.push({ x, y });
-    }
-    return arr;
-  }, [a, cx, cy]);
-
-  const d = useMemo(
-    () => points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(" "),
-    [points]
-  );
-
-  const nodes = useMemo(
-    () =>
-      STAGES.map((s, i) => {
-        const t = (i / STAGES.length) * Math.PI * 2;
-        const x = cx + a * Math.sin(t);
-        const y = cy + (a * 0.62) * Math.sin(t) * Math.cos(t);
-        return { key: s.key, label: s.label, x, y, index: i } as const;
-      }),
-    [a, cx, cy]
-  );
-
-  const pathLength = 1200;
-
-  return (
-    <div className="w-full mx-auto relative">
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[200px] sm:h-[225px] md:h-[250px]">
-        <motion.path
-          d={d}
-          className="fill-none stroke-zinc-300"
-          strokeWidth={3}
-          strokeDasharray={pathLength}
-          initial={{ strokeDashoffset: pathLength, opacity: 0.75 }}
-          animate={{ strokeDashoffset: 0, opacity: 1 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-        />
-
-        {nodes.map((n) => {
-          const s = STAGES[n.index];
-          const isActive = n.key === active;
-          const isSamePhase = STAGE_PHASE[n.key] === activePhase;
-          return (
-            <g key={n.key} onClick={() => setActive(n.key)} className="cursor-pointer" aria-label={s.label}>
-              <motion.circle
-                cx={n.x}
-                cy={n.y}
-                r={isActive ? 30 : 20}
-                className={
-                  isActive
-                    ? "fill-pink-500 stroke-pink-600"
-                    : isSamePhase
-                    ? "fill-pink-100 stroke-pink-400"
-                    : "fill-white stroke-zinc-300"
-                }
-                strokeWidth={isActive ? 3.5 : 2.5}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.22, delay: 0.05 * n.index }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              />
-              <text 
-                x={n.x} 
-                y={n.y + 5} 
-                fontSize="14" 
-                textAnchor="middle" 
-                className={`pointer-events-none ${
-                  isActive 
-                    ? "fill-white font-bold" 
-                    : isSamePhase 
-                    ? "fill-pink-700 font-semibold" 
-                    : "fill-zinc-600"
-                }`}
-              >
-                {n.index + 1}
-              </text>
-              <foreignObject x={n.x - 200} y={n.y + 35} width={400} height={50}>
-                <div className={`text-center text-[14px] leading-tight ${
-                  isActive 
-                    ? "text-pink-600 font-bold" 
-                    : isSamePhase 
-                    ? "text-pink-500 font-semibold" 
-                    : "text-zinc-500"
-                }`}>
-                  {s.label}
-                </div>
-              </foreignObject>
-            </g>
-          );
-        })}
-
-        <motion.circle
-          cx={cx}
-          cy={cy}
-          r={12}
-          className="fill-zinc-400"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.8 }}
-        />
-      </svg>
-    </div>
-  );
-}
 
 function MobileProcessNav({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
   return (
