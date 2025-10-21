@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ProcessDiagram from '../components/ProcessDiagram'
 import Navigation from '../components/Navigation'
@@ -8,6 +8,7 @@ import { getCaseStudyBySlug, caseStudies } from '../data/caseStudies'
 export default function CaseStudy() {
   const { slug = '' } = useParams()
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
+
   
   const caseStudy = getCaseStudyBySlug(slug)
   
@@ -33,32 +34,15 @@ export default function CaseStudy() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 space-y-10">
 
         {/* Header Image */}
-        <div className="w-full h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden mb-8">
-          {caseStudy.headerImage ? (
+        {caseStudy.headerImage && (
+          <div className="w-full h-32 md:h-40 lg:h-48 rounded-2xl overflow-hidden mb-6">
             <img 
               src={caseStudy.headerImage} 
               alt={caseStudy.title}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                // Fallback to gradient if image not found
-                e.currentTarget.style.display = 'none';
-                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                if (fallback) {
-                  fallback.style.display = 'flex';
-                }
-              }}
             />
-          ) : null}
-          {/* Fallback gradient background */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 ${caseStudy.headerImage ? 'hidden' : 'flex'} items-center justify-center`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 bg-white/90 rounded-3xl flex items-center justify-center shadow-xl">
-                <span className="text-3xl">🎨</span>
-              </div>
-            </div>
           </div>
-        </div>
+        )}
 
         <header className="space-y-3">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">{caseStudy.title}</h1>

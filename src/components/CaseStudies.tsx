@@ -17,7 +17,7 @@ const STAGES = [
   { key: "tension", label: "Tension", icon: Compass },
   { key: "approach", label: "Approach", icon: Lightbulb },
   { key: "design", label: "Design Output", icon: MousePointer2 },
-  { key: "outcome", label: "Outcome / Success", icon: Rocket },
+  { key: "outcome", label: "Outcome", icon: Rocket },
   { key: "learning", label: "Learning", icon: GraduationCap },
 ] as const;
 
@@ -66,7 +66,7 @@ const COPY: Record<StageKey, { title: string; summary: string }> = {
     summary: "Translate intent into prototypes and final designs.",
   },
   outcome: {
-    title: "Outcome / Success",
+    title: "Outcome",
     summary: "Measure impact; compare before/after.",
   },
   learning: {

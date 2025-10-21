@@ -174,8 +174,8 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
 }
 
 function MobileProcessDiagram({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
-  const width = 600;
-  const height = 500;
+  const width = 300;
+  const height = 250;
   const cx = width / 2;
   const cy = height / 2;
   const a = 200;
@@ -213,8 +213,8 @@ function MobileProcessDiagram({ active, setActive }: { active: StageKey; setActi
   const pathLength = 1200;
 
   return (
-    <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[550px] mx-auto rounded-2xl border border-zinc-200 p-4 sm:p-6 bg-white/70 relative">
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[400px] sm:h-[450px] md:h-[500px]">
+    <div className="w-full mx-auto relative">
+      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[200px] sm:h-[225px] md:h-[250px]">
         <motion.path
           d={d}
           className="fill-none stroke-zinc-300"
@@ -264,7 +264,7 @@ function MobileProcessDiagram({ active, setActive }: { active: StageKey; setActi
               >
                 {n.index + 1}
               </text>
-              <foreignObject x={n.x - 100} y={n.y + 35} width={200} height={40}>
+              <foreignObject x={n.x - 200} y={n.y + 35} width={400} height={50}>
                 <div className={`text-center text-[14px] leading-tight ${
                   isActive 
                     ? "text-pink-600 font-bold" 
@@ -450,8 +450,8 @@ function StagePanelContent({ stage, caseStudyData }: { stage: StageKey; caseStud
 }
 
 function LoopView({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
-  const width = 1000;
-  const height = 900;
+  const width = 500;
+  const height = 400;
   const cx = width / 2;
   const cy = height / 2;
   const a = 320;
@@ -489,17 +489,8 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
   const pathLength = 2000;
 
   return (
-    <div className="w-full max-w-[1100px] mx-auto rounded-3xl border border-zinc-200 p-10 md:p-12 bg-white/70 relative">
-      {/* Quote explaining the diagram */}
-      <div className="absolute top-8 left-8 right-8 z-10">
-        <div className="bg-white/90 backdrop-blur-sm rounded-xl px-8 py-5 border border-zinc-200/50/50">
-          <p className="text-lg text-zinc-700 italic text-center">
-            "A nonlinear design process that adapts to each project's unique challenges and constraints"
-          </p>
-        </div>
-      </div>
-      
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[900px] md:h-[1000px]">
+    <div className="w-full mx-auto relative">
+      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[300px] sm:h-[350px] md:h-[400px]">
         <motion.path
           d={d}
           className="fill-none stroke-zinc-300"
@@ -549,7 +540,7 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
               >
                 {n.index + 1}
               </text>
-              <foreignObject x={n.x - 120} y={n.y + 40} width={240} height={50}>
+              <foreignObject x={n.x - 200} y={n.y + 40} width={400} height={60}>
                 <div className={`text-center text-[15px] md:text-[17px] leading-relaxed ${
                   isActive 
                     ? "text-pink-600 font-bold" 
@@ -573,6 +564,13 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
           transition={{ duration: 2.2, repeat: Infinity }}
         />
       </svg>
+      
+      {/* Quote below the diagram */}
+      <div className="mt-6 text-center">
+        <p className="text-sm text-zinc-500 italic">
+          "A nonlinear design process that adapts to each project's unique challenges and constraints"
+        </p>
+      </div>
     </div>
   );
 }

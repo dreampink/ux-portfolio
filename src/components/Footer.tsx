@@ -87,7 +87,7 @@ const Footer = () => {
         
         <div className="border-t border-zinc-200 mt-8 pt-8 text-center">
           <p className="text-sm text-zinc-500">
-            © 2025 Ebe Etiobhio. All rights reserved. Built with React & Tailwind CSS.
+            © 2025 Ebe Etiobhio. All rights reserved. Built by Ebe with React & Tailwind CSS.
           </p>
         </div>
       </div>
