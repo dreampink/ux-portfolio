@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ProcessDiagram from '../components/ProcessDiagram'
 import Navigation from '../components/Navigation'
@@ -46,7 +46,7 @@ export default function CaseStudy() {
 
         <header className="space-y-3">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">{caseStudy.title}</h1>
-          {caseStudy.intro && <p className="text-zinc-600 max-w-prose">{caseStudy.intro}</p>}
+          {caseStudy.description && <p className="text-zinc-600 max-w-prose">{caseStudy.description}</p>}
         </header>
 
         {/* Project metadata */}

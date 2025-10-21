@@ -12,7 +12,9 @@ export interface CaseStudyData {
   stages: {
     [key: string]: {
       title: string;
-      content: React.ReactNode;
+      summary: string;
+      content?: React.ReactNode;
+      media?: React.ReactNode;
     };
   };
 }
@@ -29,22 +31,27 @@ export const caseStudies: CaseStudyData[] = projects.map(project => ({
   stages: {
     tension: {
       title: project.stages.tension.title,
+      summary: project.stages.tension.title,
       content: project.stages.tension.content
     },
     approach: {
       title: project.stages.approach.title,
+      summary: project.stages.approach.title,
       content: project.stages.approach.content
     },
     problem: {
       title: project.stages.problem.title,
+      summary: project.stages.problem.title,
       content: project.stages.problem.content
     },
-    solution: {
+    design: {
       title: project.stages.solution.title,
+      summary: project.stages.solution.title,
       content: project.stages.solution.content
     },
-    results: {
+    outcome: {
       title: project.stages.results.title,
+      summary: project.stages.results.title,
       content: project.stages.results.content
     }
   }
