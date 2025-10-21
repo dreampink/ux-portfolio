@@ -1,6 +1,6 @@
 
-export const paymentsProject = {
-  slug: 'payments',
+export const sportProject = {
+  slug: 'sport-direct',
   title: 'Sports Direct',
   client: 'FinTech Startup',
   date: '2024',

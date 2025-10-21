@@ -1,6 +1,6 @@
 
-export const mobileProject = {
-  slug: 'mobile',
+export const tescoProject = {
+  slug: 'tesco',
   title: 'Tesco',
   client: 'E-commerce Platform',
   date: '2023',

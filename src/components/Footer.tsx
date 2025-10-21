@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   const cases = [
-    { slug: 'payments', title: 'Sports Direct' },
-    { slug: 'onboarding', title: 'Cancer Research UK' },
+    { slug: 'sport-direct', title: 'Sports Direct' },
+    { slug: 'cancer-research-uk', title: 'Cancer Research UK' },
     { slug: 'polishpad', title: 'Polish Pad' },
-    { slug: 'mobile', title: 'Tesco' },
+    { slug: 'tesco', title: 'Tesco' },
   ]
 
   const navItems = [

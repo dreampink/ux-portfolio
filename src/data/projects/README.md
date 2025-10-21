@@ -105,10 +105,10 @@ After creating your project file, add it to `index.tsx`:
 import { newProject } from './new-project';
 
 export const projects = [
-  paymentsProject,
-  onboardingProject,
+  sportProject,
+  cancerResearchUKProject,
   insightsProject,
-  mobileProject,
+  tescoProject,
   newProject  // Add your new project here
 ];
 ```

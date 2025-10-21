@@ -1,12 +1,12 @@
 
-export const onboardingProject = {
-  slug: 'onboarding',
+export const cancerResearchUKProject = {
+  slug: 'cancer-research-uk',
   title: 'Cancer Research UK',
-  client: 'SaaS Platform',
+  client: 'Cancer Research UK',
   date: '2024',
   role: 'Senior UX Designer',
   headerImage: '/project-2.jpg',
-  description: 'Completely redesigned the user onboarding experience, increasing activation rates by 42% and reducing time-to-value by 60%.',
+  description: 'Redesigned the Cancer Research UK website experience, increasing user engagement by 42% and improving donation conversion rates by 60%.',
   
   // Process stages content
   stages: {

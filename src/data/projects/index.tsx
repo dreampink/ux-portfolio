@@ -1,13 +1,13 @@
-import { paymentsProject } from './payments';
-import { onboardingProject } from './onboarding';
+import { sportProject } from './sport';
+import { cancerResearchUKProject } from './cancer-research-uk';
 import { polishpadProject } from './polishpad';
-import { mobileProject } from './mobile';
+import { tescoProject } from './tesco';
 
 export const projects = [
-  paymentsProject,
-  onboardingProject,
+  sportProject,
+  cancerResearchUKProject,
   polishpadProject,
-  mobileProject
+  tescoProject
 ];
 
-export { paymentsProject, onboardingProject, polishpadProject, mobileProject };
+export { sportProject, cancerResearchUKProject, polishpadProject, tescoProject };
