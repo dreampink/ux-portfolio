@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useMemo, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, MotionConfig } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -68,6 +68,7 @@ interface ProcessDiagramProps {
 export default function ProcessDiagram({ active, onStageChange, caseStudyData, prevCaseStudy, nextCaseStudy }: ProcessDiagramProps) {
   const reduceMotion = useReducedMotion();
   const contentRef = useRef<HTMLElement>(null);
+  const [showQuickNav, setShowQuickNav] = useState(false);
 
   // Keyboard navigation J/K / Arrow Up-Down
   useEffect(() => {
@@ -86,29 +87,49 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
     return () => window.removeEventListener("keydown", onKey);
   }, [active, onStageChange]);
 
+  // Scroll detection for mobile quick navigation - show after scrolling past role section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth < 1024) { // Only on mobile
+        // Look for the role section (project metadata section)
+        const roleSection = document.querySelector('section[class*="py-8"][class*="border-t"]');
+        if (roleSection) {
+          const rect = roleSection.getBoundingClientRect();
+          // Show quick nav when user has scrolled past the role section
+          setShowQuickNav(rect.bottom < 0);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleStageChange = (stageKey: StageKey) => {
     onStageChange(stageKey);
     // Scroll to top of content when stage changes
     if (contentRef.current) {
       contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    // On mobile, also scroll to top of the process section
+    if (window.innerWidth < 1024) {
+      setTimeout(() => {
+        const processSection = document.querySelector('[data-process-section]');
+        if (processSection) {
+          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   };
 
   return (
     <MotionConfig reducedMotion={reduceMotion ? "always" : "never"}>
       <div className="w-full">
-        {/* Mobile: Combined Navigation */}
+        {/* Mobile: Case Study Navigation Only */}
         <div className="lg:hidden mb-8">
-          {/* Case Study Navigation */}
-          <div className="mb-6">
-            <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
-          </div>
-          
-          {/* Process Navigation - Compact Horizontal */}
-          <div>
-            <h2 className="text-xl font-semibold tracking-tight text-zinc-900 mb-4">Process</h2>
-            <MobileProcessNav active={active} setActive={handleStageChange} />
-          </div>
+          <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
         </div>
 
         {/* Desktop: Full layout with sidebar */}
@@ -158,9 +179,100 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
         </div>
 
         {/* Mobile: Content only (no process diagram) */}
-        <div className="lg:hidden">
+        <div className="lg:hidden" data-process-section>
           {/* Mobile Content */}
-          <StagePanels active={active} caseStudyData={caseStudyData} />
+          <div className="pb-20 pt-20">
+            <StagePanels active={active} caseStudyData={caseStudyData} />
+          </div>
+          
+          {/* Mobile Quick Navigation - Bottom of page - Only show when scrolling to process section */}
+          {showQuickNav && (
+            <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-zinc-200 shadow-lg lg:hidden">
+            <div className="px-4 py-3">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-zinc-900">Process Navigation</span>
+                <div className="text-xs text-zinc-500 bg-zinc-100 px-2 py-1 rounded-full">
+                  {STAGES.findIndex(s => s.key === active) + 1} of {STAGES.length}
+                </div>
+              </div>
+              
+              {/* Quick Navigation Arrows */}
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => {
+                    const currentIndex = STAGES.findIndex(s => s.key === active);
+                    if (currentIndex > 0) {
+                      handleStageChange(STAGES[currentIndex - 1].key);
+                      // Scroll to beginning of process section
+                      setTimeout(() => {
+                        const processSection = document.querySelector('[data-process-section]');
+                        if (processSection) {
+                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 100);
+                    }
+                  }}
+                  disabled={STAGES.findIndex(s => s.key === active) === 0}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-100 hover:bg-pink-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                >
+                  <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <span className="text-sm font-medium text-pink-700">Previous</span>
+                </button>
+                
+                <span className="text-sm text-zinc-600 font-medium px-4">
+                  {STAGES.find(s => s.key === active)?.label}
+                </span>
+                
+                <button
+                  onClick={() => {
+                    const currentIndex = STAGES.findIndex(s => s.key === active);
+                    if (currentIndex < STAGES.length - 1) {
+                      handleStageChange(STAGES[currentIndex + 1].key);
+                      // Scroll to beginning of process section
+                      setTimeout(() => {
+                        const processSection = document.querySelector('[data-process-section]');
+                        if (processSection) {
+                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 100);
+                    }
+                  }}
+                  disabled={STAGES.findIndex(s => s.key === active) === STAGES.length - 1}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-100 hover:bg-pink-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                >
+                  <span className="text-sm font-medium text-pink-700">Next</span>
+                  <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Progress Dots */}
+              <div className="flex justify-center gap-1 mt-3">
+                {STAGES.map((stage) => (
+                  <button
+                    key={stage.key}
+                    onClick={() => {
+                      handleStageChange(stage.key);
+                      // Scroll to beginning of process section
+                      setTimeout(() => {
+                        const processSection = document.querySelector('[data-process-section]');
+                        if (processSection) {
+                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 100);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      stage.key === active ? 'bg-pink-500' : 'bg-zinc-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          )}
         </div>
       </div>
     </MotionConfig>
@@ -168,33 +280,6 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
 }
 
 
-function MobileProcessNav({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
-  return (
-    <nav aria-label="Process index" className="flex flex-wrap gap-2 sm:gap-3">
-      {STAGES.map((s, i) => (
-        <motion.button
-          key={s.key}
-          onClick={() => setActive(s.key)}
-          className={`group flex items-center gap-1 sm:gap-2 py-2 px-2 sm:py-3 sm:px-4 rounded-lg sm:rounded-xl border-2 transition-all duration-200 shadow-sm hover:shadow-md text-xs sm:text-sm ${
-            active === s.key 
-              ? "bg-pink-500 border-pink-500 text-white shadow-lg" 
-              : "bg-white border-zinc-300 hover:border-pink-400 hover:bg-pink-50 text-zinc-700 hover:text-pink-700"
-          }`}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.2, delay: i * 0.05 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <s.icon className="h-3 w-3 sm:h-4 sm:w-4" />
-          <span className="font-medium text-xs sm:text-sm whitespace-nowrap">
-            {s.label}
-          </span>
-        </motion.button>
-      ))}
-    </nav>
-  );
-}
 
 function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: StageKey) => void }) {
   return (
@@ -202,10 +287,19 @@ function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: Stag
       {STAGES.map((s, i) => (
         <motion.button
           key={s.key}
-          onClick={() => setActive(s.key)}
+          onClick={() => {
+            setActive(s.key);
+            // Scroll to top of content section on desktop
+            setTimeout(() => {
+              const contentSection = document.querySelector('section[class*="lg:col-span-9"]');
+              if (contentSection) {
+                contentSection.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }, 100);
+          }}
           className={`group text-left py-4 px-6 rounded-2xl border-2 transition-all duration-200 shadow-sm hover:shadow-md ${
-            active === s.key 
-              ? "bg-pink-500 border-pink-500 text-white shadow-lg" 
+            active === s.key
+              ? "bg-pink-500 border-pink-500 text-white shadow-lg"
               : "bg-white border-zinc-300 hover:border-pink-400 hover:bg-pink-50 text-zinc-900 hover:text-pink-700"
           }`}
           initial={{ opacity: 0, y: 6 }}
