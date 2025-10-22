@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 // Celebration Animation Component
-function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLButtonElement> }) {
+function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLButtonElement | null> }) {
   const [buttonPosition, setButtonPosition] = React.useState({ x: 0, y: 0 });
 
   React.useEffect(() => {
@@ -23,11 +23,13 @@ function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLBu
         x: rect.left + rect.width / 2,
         y: rect.top + rect.height / 2
       });
+    } else {
+      setButtonPosition({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
     }
   }, [buttonRef]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
+    <div className="fixed inset-0 pointer-events-none z-[9999]">
       <div 
         className="absolute"
         style={{
@@ -37,10 +39,10 @@ function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLBu
         }}
       >
         {/* Confetti particles */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full"
+            className="absolute w-3 h-3 rounded-full shadow-lg"
             style={{
               backgroundColor: ['#f472b6', '#fb7185', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'][i % 6],
               left: 0,
@@ -53,8 +55,8 @@ function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLBu
               rotate: 0 
             }}
             animate={{ 
-              x: (Math.random() - 0.5) * 300,
-              y: (Math.random() - 0.5) * 300,
+              x: (Math.random() - 0.5) * 400,
+              y: (Math.random() - 0.5) * 400,
               scale: [0, 1, 0],
               rotate: 360
             }}
@@ -68,14 +70,14 @@ function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLBu
         
         {/* Celebration text */}
         <motion.div
-          className="absolute -top-16 left-1/2 transform -translate-x-1/2 text-center"
+          className="absolute -top-20 left-1/2 transform -translate-x-1/2 text-center bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <div className="text-2xl font-bold text-pink-600 mb-2">🎉</div>
-          <div className="text-sm font-semibold text-pink-600">Congratulations!</div>
-          <div className="text-xs text-zinc-600">You've completed the design process!</div>
+          <div className="text-3xl font-bold text-pink-600 mb-2">🎉</div>
+          <div className="text-lg font-bold text-pink-600">Congratulations!</div>
+          <div className="text-sm text-zinc-700">You've completed the design process!</div>
         </motion.div>
       </div>
     </div>
@@ -135,13 +137,13 @@ interface ProcessDiagramProps {
   } | null;
   verticalLayout?: boolean;
   isCaseStudy?: boolean;
-  learningButtonRef?: React.RefObject<HTMLButtonElement>;
+  learningButtonRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
 export default function ProcessDiagram({ active, onStageChange, caseStudyData, prevCaseStudy, nextCaseStudy, verticalLayout = false, isCaseStudy = false, learningButtonRef: externalLearningButtonRef }: ProcessDiagramProps) {
   const reduceMotion = useReducedMotion();
   const contentRef = useRef<HTMLElement>(null);
-  const internalLearningButtonRef = useRef<HTMLButtonElement>(null);
+  const internalLearningButtonRef = useRef<HTMLButtonElement | null>(null);
   const learningButtonRef = externalLearningButtonRef || internalLearningButtonRef;
   const [showQuickNav, setShowQuickNav] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);

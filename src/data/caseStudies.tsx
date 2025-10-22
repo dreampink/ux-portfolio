@@ -30,29 +30,29 @@ export const caseStudies: CaseStudyData[] = projects.map(project => ({
   headerImage: project.headerImage,
   stages: {
     tension: {
-      title: project.stages.tension.title,
-      summary: project.stages.tension.title,
-      content: project.stages.tension.content
+      title: 'Tension',
+      summary: 'Identifying key conflicts and challenges',
+      content: project.stages.tension?.content
     },
     approach: {
-      title: project.stages.approach.title,
-      summary: project.stages.approach.title,
-      content: project.stages.approach.content
+      title: 'Approach',
+      summary: 'Developing solutions and strategies',
+      content: project.stages.approach?.content
     },
     problem: {
-      title: project.stages.problem.title,
-      summary: project.stages.problem.title,
-      content: project.stages.problem.content
+      title: 'Problem',
+      summary: 'Understanding the core challenges',
+      content: project.stages.problem?.content
     },
     design: {
-      title: project.stages.solution.title,
-      summary: project.stages.solution.title,
-      content: project.stages.solution.content
+      title: 'Design Output',
+      summary: 'Creating the experience',
+      content: project.stages.solution?.content
     },
     outcome: {
-      title: project.stages.results.title,
-      summary: project.stages.results.title,
-      content: project.stages.results.content
+      title: 'Outcome',
+      summary: 'Measuring success and results',
+      content: project.stages.results?.content
     }
   }
 }));
