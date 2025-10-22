@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+import ProcessDiagram from '../components/ProcessDiagram'
 
 export default function App() {
+  const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
+  
   const cases = [
     { slug: 'sport-direct', title: 'Sports Direct' },
     { slug: 'cancer-research-uk', title: 'Cancer Research UK' },
@@ -271,6 +275,26 @@ export default function App() {
                 </div>
             </Link>
             ))}
+          </div>
+        </section>
+
+        {/* Process Flow Section - Hidden on mobile */}
+        <section id="process" className="mb-16 md:mb-20 hidden lg:block">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Title */}
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-zinc-900">Design Process</h2>
+              <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
+                Explore my systematic approach to solving complex design challenges through research, iteration, and user-centered solutions.
+              </p>
+            </div>
+            
+            {/* Interactive Process Diagram */}
+            <ProcessDiagram 
+              active={activeStage} 
+              onStageChange={setActiveStage}
+              verticalLayout={true}
+            />
           </div>
         </section>
 

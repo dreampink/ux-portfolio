@@ -12,13 +12,83 @@ import {
   MousePointer2,
 } from "lucide-react";
 
+// Celebration Animation Component
+function CelebrationAnimation({ buttonRef }: { buttonRef: React.RefObject<HTMLButtonElement> }) {
+  const [buttonPosition, setButtonPosition] = React.useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setButtonPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      });
+    }
+  }, [buttonRef]);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-50">
+      <div 
+        className="absolute"
+        style={{
+          left: buttonPosition.x,
+          top: buttonPosition.y,
+          transform: 'translate(-50%, -50%)'
+        }}
+      >
+        {/* Confetti particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full"
+            style={{
+              backgroundColor: ['#f472b6', '#fb7185', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'][i % 6],
+              left: 0,
+              top: 0,
+            }}
+            initial={{ 
+              x: 0, 
+              y: 0, 
+              scale: 0,
+              rotate: 0 
+            }}
+            animate={{ 
+              x: (Math.random() - 0.5) * 300,
+              y: (Math.random() - 0.5) * 300,
+              scale: [0, 1, 0],
+              rotate: 360
+            }}
+            transition={{ 
+              duration: 2,
+              delay: i * 0.05,
+              ease: "easeOut"
+            }}
+          />
+        ))}
+        
+        {/* Celebration text */}
+        <motion.div
+          className="absolute -top-16 left-1/2 transform -translate-x-1/2 text-center"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <div className="text-2xl font-bold text-pink-600 mb-2">🎉</div>
+          <div className="text-sm font-semibold text-pink-600">Congratulations!</div>
+          <div className="text-xs text-zinc-600">You've completed the design process!</div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 const STAGES = [
   { key: "problem", label: "Problem", icon: CircleDashed },
   { key: "research", label: "Research", icon: Beaker },
   { key: "tension", label: "Tension", icon: Compass },
   { key: "approach", label: "Approach", icon: Lightbulb },
   { key: "design", label: "Design Output", icon: MousePointer2 },
-  { key: "outcome", label: "Outcome / Success", icon: Rocket },
+  { key: "outcome", label: "Outcome", icon: Rocket },
   { key: "learning", label: "Learning", icon: GraduationCap },
 ] as const;
 
@@ -63,12 +133,18 @@ interface ProcessDiagramProps {
     slug: string;
     title: string;
   } | null;
+  verticalLayout?: boolean;
+  isCaseStudy?: boolean;
+  learningButtonRef?: React.RefObject<HTMLButtonElement>;
 }
 
-export default function ProcessDiagram({ active, onStageChange, caseStudyData, prevCaseStudy, nextCaseStudy }: ProcessDiagramProps) {
+export default function ProcessDiagram({ active, onStageChange, caseStudyData, prevCaseStudy, nextCaseStudy, verticalLayout = false, isCaseStudy = false, learningButtonRef: externalLearningButtonRef }: ProcessDiagramProps) {
   const reduceMotion = useReducedMotion();
   const contentRef = useRef<HTMLElement>(null);
+  const internalLearningButtonRef = useRef<HTMLButtonElement>(null);
+  const learningButtonRef = externalLearningButtonRef || internalLearningButtonRef;
   const [showQuickNav, setShowQuickNav] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   // Keyboard navigation J/K / Arrow Up-Down
   useEffect(() => {
@@ -109,16 +185,70 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
 
   const handleStageChange = (stageKey: StageKey) => {
     onStageChange(stageKey);
-    // Scroll to top of content when stage changes
-    if (contentRef.current) {
-      contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    // On mobile, also scroll to top of the process section
-    if (window.innerWidth < 1024) {
+    
+    // Trigger celebration when reaching the learning stage
+    if (stageKey === 'learning' && isCaseStudy) {
+      setShowCelebration(true);
+      // Hide celebration after 3 seconds
       setTimeout(() => {
-        const processSection = document.querySelector('[data-process-section]');
-        if (processSection) {
-          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setShowCelebration(false);
+      }, 3000);
+    }
+    
+    // Only scroll on case study pages, not on landing page (verticalLayout)
+    if (!verticalLayout) {
+      // Scroll to top of the content container when stage changes
+      setTimeout(() => {
+        // For mobile, try to find the specific stage content first
+        if (window.innerWidth < 1024) {
+          // Look for the stage content within the process section
+          const processSection = document.querySelector('[data-process-section]');
+          if (processSection) {
+            // Find the active stage content - look for the div with padding that contains the stage content
+            const stageContent = processSection.querySelector('div[class*="p-4"][class*="pt-16"], div[class*="p-8"]');
+            if (stageContent) {
+              const rect = stageContent.getBoundingClientRect();
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const elementTop = rect.top + scrollTop;
+              
+              // Scroll to the stage content with some padding
+              const targetPosition = elementTop - 20;
+              
+              window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: 'smooth'
+              });
+              return;
+            }
+          }
+        }
+        
+        // Fallback: Try multiple selectors to find the content container
+        let contentContainer = document.querySelector('.bg-white.rounded-3xl.border.border-zinc-200.shadow-sm.overflow-hidden');
+        
+        // If not found, try a more general selector
+        if (!contentContainer) {
+          contentContainer = document.querySelector('[data-process-section]');
+        }
+        
+        // If still not found, try to find any content section
+        if (!contentContainer) {
+          contentContainer = document.querySelector('section');
+        }
+        
+        if (contentContainer) {
+          // Scroll to the content container with some padding to ensure title is visible
+          const rect = contentContainer.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const elementTop = rect.top + scrollTop;
+          
+          // Scroll to just above the container to show the title
+          const targetPosition = elementTop - 20; // 20px above for mobile
+          
+          window.scrollTo({
+            top: Math.max(0, targetPosition), // Ensure we don't scroll above the page
+            behavior: 'smooth'
+          });
         }
       }, 100);
     }
@@ -127,62 +257,144 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
   return (
     <MotionConfig reducedMotion={reduceMotion ? "always" : "never"}>
       <div className="w-full">
+        {/* Celebration Animation */}
+        {showCelebration && <CelebrationAnimation buttonRef={learningButtonRef} />}
         {/* Mobile: Case Study Navigation Only */}
         <div className="lg:hidden mb-8">
-          <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
-        </div>
+            <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
+          </div>
+          
+        {/* Desktop: Layout based on verticalLayout prop */}
+        <div className="hidden lg:block">
+          {verticalLayout ? (
+            /* Vertical Layout for How I Think page */
+                <div className="grid lg:grid-cols-12 gap-6">
+                  <aside className="lg:col-span-4">
+                    <div className="sticky top-8 space-y-4 py-2">
+                      {/* Compact Process Header */}
+                      <div className="space-y-3">
+                        <div>
+                          <h2 className="text-lg font-bold tracking-tight text-zinc-900 mb-1">Design Process</h2>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            A nonlinear approach that adapts to each project's unique challenges and constraints.
+                          </p>
+                        </div>
 
-        {/* Desktop: Full layout with sidebar */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-12 h-screen">
-          <aside className="lg:col-span-3">
-            <div className="sticky top-0 h-screen overflow-y-auto scrollbar-hide space-y-8 py-6 lg:py-10">
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">Process</h2>
-              <IndexNav active={active} setActive={handleStageChange} />
-              
-              {/* Case Study Navigation */}
-              <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
+                        {/* Compact Navigation */}
+                        <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-3 border border-pink-100">
+                          <h3 className="text-sm font-semibold text-zinc-900 mb-2">Process Stages</h3>
+                          <div className="space-y-1.5">
+                            {STAGES.map((stage) => {
+                              const isActive = active === stage.key;
+                              return (
+                                <button
+                                  key={stage.key}
+                                  onClick={() => handleStageChange(stage.key)}
+                                  className={`w-full text-left p-2 rounded-md border transition-all duration-200 ${
+                                    isActive
+                                      ? "bg-pink-500 border-pink-500 text-white shadow-md"
+                                      : "bg-white border-zinc-200 hover:border-pink-300 hover:bg-pink-50 text-zinc-600 hover:text-pink-600"
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <stage.icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-zinc-500'}`} />
+          <div>
+                                      <div className="font-medium text-xs">{stage.label}</div>
+                                      <div className={`text-xs ${isActive ? 'text-pink-100' : 'text-zinc-500'}`}>
+                                        {stage.key === 'problem' && 'Understanding the core challenges'}
+                                        {stage.key === 'research' && 'Gathering insights and data'}
+                                        {stage.key === 'tension' && 'Identifying key conflicts'}
+                                        {stage.key === 'approach' && 'Developing solutions'}
+                                        {stage.key === 'design' && 'Creating the experience'}
+                                        {stage.key === 'outcome' && 'Measuring success'}
+                                        {stage.key === 'learning' && 'Continuous improvement'}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+          </div>
+        </div>
             </div>
           </aside>
 
-          <section ref={contentRef} className="lg:col-span-9 space-y-10 h-screen overflow-y-auto scrollbar-hide pr-0 lg:pr-2 py-6 lg:py-10">
-            {/* Phase definitions above the diagram */}
+                  <section ref={contentRef} className="lg:col-span-8 space-y-6 py-2">
+                    {/* Compact Phase Descriptions */}
+                    <div className="bg-white rounded-xl border border-zinc-200 p-4 shadow-sm">
+                    <PhaseDescriptions active={active} />
+                    </div>
+                    
+                    {/* Compact Loop Diagram */}
+                    <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-xl p-4 border border-zinc-200">
+                      <div className="text-center mb-2">
+                        <h3 className="text-sm font-semibold text-zinc-900 mb-1">Process Flow</h3>
+                        <p className="text-xs text-zinc-600">Interactive diagram showing the nonlinear design process</p>
+                      </div>
+                      <div className="scale-80 origin-center">
+                        <LoopView active={active} setActive={handleStageChange} />
+                      </div>
+                    </div>
+                    
+                    {/* Compact Content Section */}
+                    <div className="bg-white rounded-2xl border border-zinc-200 shadow-sm overflow-hidden">
+                    </div>
+                  </section>
+                </div>
+          ) : (
+            /* Horizontal Layout for case studies */
+            <>
+              {/* Horizontal Process Navigation - only show if not case study */}
+              {!isCaseStudy && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-3xl p-6 border border-pink-100">
+                    <div className="text-center mb-6">
+                      <h2 className="text-2xl font-bold tracking-tight text-zinc-900 mb-2">Design Process</h2>
+                      <p className="text-zinc-600">
+                        A nonlinear approach that adapts to each project's unique challenges and constraints.
+                      </p>
+                    </div>
+                    <IndexNav active={active} setActive={handleStageChange} />
+                  </div>
+                </div>
+              )}
+
+              <section ref={contentRef} className="space-y-12">
+                {/* Enhanced Phase Descriptions - only show if not case study */}
+                {!isCaseStudy && (
+                  <div className="bg-white rounded-3xl border border-zinc-200 p-8 shadow-sm">
             <PhaseDescriptions active={active} />
-            {/* Loop diagram (compact) */}
+                  </div>
+                )}
+                
+                {/* Enhanced Loop Diagram - only show if not case study */}
+                {!isCaseStudy && (
+                  <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-3xl p-8 border border-zinc-200">
+                    <div className="text-center mb-6">
+                      <h3 className="text-xl font-semibold text-zinc-900 mb-2">Process Flow</h3>
+                      <p className="text-zinc-600">Interactive diagram showing the nonlinear design process</p>
+                    </div>
             <LoopView active={active} setActive={handleStageChange} />
-            
-            {/* Scroll indicator */}
-            <div className="flex justify-center py-4">
-              <motion.div
-                className="flex flex-col items-center gap-2 text-zinc-400"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <span className="text-sm font-medium">Scroll for more content</span>
-                <motion.div
-                  className="w-6 h-6 border-2 border-zinc-400 rounded-full flex items-center justify-center"
-                  animate={{ y: [0, 4, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <motion.div
-                    className="w-1 h-1 bg-zinc-400 rounded-full"
-                    animate={{ y: [0, 2, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                </motion.div>
-              </motion.div>
+                  </div>
+                )}
+                
+                {/* Enhanced Content Section */}
+                <div className="bg-white rounded-3xl border border-zinc-200 shadow-sm overflow-hidden">
+                  {isCaseStudy ? (
+                    <StagePanels active={active} caseStudyData={caseStudyData} isCaseStudy={isCaseStudy} />
+                  ) : null}
             </div>
-            
-            {/* Per-stage content back in */}
-            <StagePanels active={active} caseStudyData={caseStudyData} />
           </section>
+            </>
+          )}
         </div>
 
         {/* Mobile: Content only (no process diagram) */}
         <div className="lg:hidden" data-process-section>
           {/* Mobile Content */}
-          <div className="pb-20 pt-20">
-            <StagePanels active={active} caseStudyData={caseStudyData} />
+          <div className="pb-10 pt-10">
+            <StagePanels active={active} caseStudyData={caseStudyData} isCaseStudy={isCaseStudy} />
           </div>
           
           {/* Mobile Quick Navigation - Bottom of page - Only show when scrolling to process section */}
@@ -203,13 +415,6 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
                     const currentIndex = STAGES.findIndex(s => s.key === active);
                     if (currentIndex > 0) {
                       handleStageChange(STAGES[currentIndex - 1].key);
-                      // Scroll to beginning of process section
-                      setTimeout(() => {
-                        const processSection = document.querySelector('[data-process-section]');
-                        if (processSection) {
-                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }, 100);
                     }
                   }}
                   disabled={STAGES.findIndex(s => s.key === active) === 0}
@@ -230,13 +435,6 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
                     const currentIndex = STAGES.findIndex(s => s.key === active);
                     if (currentIndex < STAGES.length - 1) {
                       handleStageChange(STAGES[currentIndex + 1].key);
-                      // Scroll to beginning of process section
-                      setTimeout(() => {
-                        const processSection = document.querySelector('[data-process-section]');
-                        if (processSection) {
-                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }, 100);
                     }
                   }}
                   disabled={STAGES.findIndex(s => s.key === active) === STAGES.length - 1}
@@ -254,15 +452,9 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
                 {STAGES.map((stage) => (
                   <button
                     key={stage.key}
+                    ref={stage.key === 'learning' ? learningButtonRef : undefined}
                     onClick={() => {
                       handleStageChange(stage.key);
-                      // Scroll to beginning of process section
-                      setTimeout(() => {
-                        const processSection = document.querySelector('[data-process-section]');
-                        if (processSection) {
-                          processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }, 100);
                     }}
                     className={`w-2 h-2 rounded-full transition-colors ${
                       stage.key === active ? 'bg-pink-500' : 'bg-zinc-300'
@@ -298,8 +490,8 @@ function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: Stag
             }, 100);
           }}
           className={`group text-left py-4 px-6 rounded-2xl border-2 transition-all duration-200 shadow-sm hover:shadow-md ${
-            active === s.key
-              ? "bg-pink-500 border-pink-500 text-white shadow-lg"
+            active === s.key 
+              ? "bg-pink-500 border-pink-500 text-white shadow-lg" 
               : "bg-white border-zinc-300 hover:border-pink-400 hover:bg-pink-50 text-zinc-900 hover:text-pink-700"
           }`}
           initial={{ opacity: 0, y: 6 }}
@@ -350,19 +542,18 @@ function PhaseDescriptions({ active }: { active: StageKey }) {
   );
 }
 
-function StagePanels({ active, caseStudyData }: { active: StageKey; caseStudyData?: any }) {
+function StagePanels({ active, caseStudyData, isCaseStudy = false }: { active: StageKey; caseStudyData?: any; isCaseStudy?: boolean }) {
   return (
     <AnimatePresence mode="wait">
       {STAGES.map((s) =>
         s.key === active ? (
             <motion.div
               key={s.key}
-              className="rounded-3xl border border-zinc-200 p-6 md:p-10 bg-white/60"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
           >
-            <StagePanelContent stage={s.key} caseStudyData={caseStudyData} />
+            <StagePanelContent stage={s.key} caseStudyData={caseStudyData} isCaseStudy={isCaseStudy} />
           </motion.div>
         ) : null
       )}
@@ -370,49 +561,111 @@ function StagePanels({ active, caseStudyData }: { active: StageKey; caseStudyDat
   );
 }
 
-function StagePanelContent({ stage, caseStudyData }: { stage: StageKey; caseStudyData?: any }) {
-  const stageData = caseStudyData?.[stage] || {
-    title: STAGES.find((s) => s.key === stage)?.label || "Stage",
-    summary: "Add your stage content here.",
-  };
+function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stage: StageKey; caseStudyData?: any; isCaseStudy?: boolean }) {
+  const stageData = caseStudyData?.[stage] || {};
+  const title = stageData.title || STAGES.find((s) => s.key === stage)?.label || "Stage";
+  const summary = stageData.summary || "Add your stage content here.";
   
   const Icon = STAGES.find((s) => s.key === stage)?.icon ?? ChevronRight;
   const phaseKey = STAGE_PHASE[stage];
   const phase = PHASES[phaseKey];
   
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14">
-      {/* Left: Free-form content header + slot */}
-      <div className="lg:col-span-5 xl:col-span-4 space-y-6">
-        <div className="flex items-center gap-3">
-          <Icon className="h-6 w-6" />
-          <h3 className="text-2xl font-semibold tracking-tight">{stageData.title}</h3>
+    <div className={`${isCaseStudy ? 'p-4 sm:p-6 lg:p-8 pt-28' : 'p-8'}`}>
+      {/* Enhanced Header - Always show for case studies, hidden on mobile for landing page */}
+      <div className={`mb-6 lg:mb-8 ${isCaseStudy ? 'block' : 'hidden lg:block'}`}>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center">
+            <Icon className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">{title}</h3>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-sm font-medium text-pink-600 bg-pink-50 px-3 py-1 rounded-full">
+                {phase.name}
+              </span>
+              <span className="text-sm text-zinc-500">—</span>
+              <span className="text-sm text-zinc-600">{phase.hint}</span>
+            </div>
+          </div>
         </div>
-        <p className="text-[15px] md:text-base text-zinc-700 leading-relaxed md:leading-7 max-w-prose">
-          {stageData.summary}
+        
+        <p className="text-base sm:text-lg text-zinc-700 leading-relaxed max-w-4xl">
+          {summary}
         </p>
+      </div>
 
-        {/* Custom content from case study data */}
+      {/* Mobile Header - Simplified - Only show for landing page, not case studies */}
+      <div className={`mb-6 lg:hidden ${isCaseStudy ? 'hidden' : 'block'}`}>
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
+            <Icon className="h-4 w-4 text-white" />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-zinc-900">{title}</h3>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-xs font-medium text-pink-600 bg-pink-50 px-2 py-1 rounded-full">
+                {phase.name}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <p className="text-sm text-zinc-700 leading-relaxed">
+          {summary}
+        </p>
+      </div>
+
+      {/* Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {/* Left: Content */}
+        <div className="space-y-4 lg:space-y-6">
         {stageData.content && (
-          <div className="space-y-4">
+            <div className="space-y-4 lg:space-y-6">
             {stageData.content}
           </div>
         )}
 
-        <div className="text-xs md:text-sm text-zinc-500">
-          <span className="font-medium">Phase:</span> {phase.name} — {phase.hint}
+          {/* Key Insights - Improved mobile styling */}
+          <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-zinc-200">
+            <h4 className="font-semibold text-zinc-900 mb-3 text-sm lg:text-base">Key Insights</h4>
+            <ul className="space-y-2 text-xs lg:text-sm text-zinc-600">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                <span>This stage focuses on understanding the core challenges</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                <span>Research-driven approach ensures data-backed decisions</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                <span>Iterative process allows for continuous improvement</span>
+              </li>
+            </ul>
         </div>
       </div>
       
-      {/* Right: optional media well */}
-      <div className="lg:col-span-7 xl:col-span-8">
+        {/* Right: Media */}
+        <div className="space-y-4 lg:space-y-6">
         {stageData.media ? (
-          stageData.media
-        ) : (
-          <div className="aspect-[16/9] rounded-3xl border border-dashed border-zinc-300 grid place-items-center text-zinc-500">
-            <p>Drop mockups/video/gallery here.</p>
+            <div className="space-y-4">
+              {stageData.media}
+            </div>
+          ) : (
+            <div className="aspect-[4/3] rounded-xl lg:rounded-2xl border-2 border-dashed border-zinc-300 grid place-items-center text-zinc-500 bg-gradient-to-br from-zinc-50 to-zinc-100">
+              <div className="text-center px-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-zinc-200 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <p className="text-xs lg:text-sm font-medium">Media Content</p>
+                <p className="text-xs text-zinc-400 mt-1">Mockups, wireframes, or videos</p>
+              </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );
@@ -534,12 +787,6 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
         />
       </svg>
       
-      {/* Quote below the diagram */}
-      <div className="mt-6 text-center">
-        <p className="text-sm text-zinc-500 italic">
-          "A nonlinear design process that adapts to each project's unique challenges and constraints"
-        </p>
-      </div>
     </div>
   );
 }

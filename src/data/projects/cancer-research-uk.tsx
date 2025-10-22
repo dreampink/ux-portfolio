@@ -11,7 +11,6 @@ export const cancerResearchUKProject = {
   // Process stages content
   stages: {
     tension: {
-      title: 'The Tension',
       content: (
         <div className="space-y-6">
           <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
@@ -36,7 +35,6 @@ export const cancerResearchUKProject = {
     },
     
     approach: {
-      title: 'The Approach',
       content: (
         <div className="space-y-6">
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
@@ -63,7 +61,6 @@ export const cancerResearchUKProject = {
     },
     
     problem: {
-      title: 'The Problem',
       content: (
         <div className="space-y-6">
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
@@ -89,7 +86,6 @@ export const cancerResearchUKProject = {
     },
     
     solution: {
-      title: 'The Solution',
       content: (
         <div className="space-y-6">
           <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
@@ -118,7 +114,6 @@ export const cancerResearchUKProject = {
     },
     
     results: {
-      title: 'The Results',
       content: (
         <div className="space-y-6">
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">

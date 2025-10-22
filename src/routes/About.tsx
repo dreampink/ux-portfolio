@@ -16,47 +16,60 @@ const About = () => {
       {/* Main Content */}
       <main>
         {/* About Section */}
-        <section id="about" className="pt-16 mb-24 md:mb-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-zinc-900">About Me</h2>
+        <section id="about" className="pt-16 mb-16 md:mb-24 lg:mb-32">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="mb-12 md:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-8 md:mb-12 text-zinc-900 text-center">About Me</h2>
               
-              {/* Profile Image - Right under About Me */}
-              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg mx-auto mb-8">
-                <img
-                  src="/young-me.JPG"
-                  alt="Ebe Etiobhio"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to gradient if image not found
-                    e.currentTarget.style.display = 'none';
-                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                    if (nextElement) {
-                      nextElement.style.display = 'block';
-                    }
-                  }}
-                />
-                <div className="w-full h-full bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
-                  <span className="text-white font-bold text-3xl">E</span>
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                {/* Left Column - Profile Image */}
+                <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+                  <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl lg:shadow-2xl border-4 border-pink-200">
+                    <img
+                      src="/profile-about.png"
+                      alt="Ebe Etiobhio"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to gradient if image not found
+                        e.currentTarget.style.display = 'none';
+                        const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (nextElement) {
+                          nextElement.style.display = 'block';
+                        }
+                      }}
+                    />
+                    <div className="w-full h-full bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
+                      <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl">E</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right Column - Text Content */}
+                <div className="order-1 lg:order-2">
+                  <p className="text-base sm:text-lg md:text-xl text-zinc-600 leading-relaxed">
+                    I'm a UX/UI designer passionate about creating meaningful digital experiences. 
+                    I specialise in user research, interface design, and design systems that drive business results.
+                    <br /><br />
+                    I believe design is not just about making things look beautiful—it's about understanding human behavior, solving real problems, and creating meaningful connections between people and technology.
+                    <br /><br />
+                    My approach combines analytical thinking with creative intuition, always grounded in user research and psychological principles. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave.
+                    <br /><br />
+                    I see design as a conversation between the user and the product, where every interaction tells a story and every element serves a purpose in creating a seamless, delightful experience.
+                  </p>
                 </div>
               </div>
-              
-              <p className="text-xl text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-                I'm a UX/UI designer passionate about creating meaningful digital experiences. 
-                I specialise in user research, interface design, and design systems that drive business results.
-              </p>
             </div>
 
             {/* Top Section - What I Bring to Your Team & Experience */}
-            <div className="grid md:grid-cols-2 gap-12 mb-16">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-16">
               {/* Left Column - What I Bring to Your Team */}
               <div>
-                <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">What I Bring to Your Team</h3>
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-4 md:mb-6 text-zinc-900">What I Bring to Your Team</h3>
                 
                 {/* Primary Expertise */}
-                <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-zinc-800 mb-4">Primary Expertise</h4>
-                  <div className="space-y-4">
+                <div className="mb-6 md:mb-8">
+                  <h4 className="text-base sm:text-lg font-semibold text-zinc-800 mb-3 md:mb-4">Primary Expertise</h4>
+                  <div className="space-y-3 md:space-y-4">
                     {[
                       { 
                         skill: 'User Research & Strategy', 
@@ -77,10 +90,10 @@ const About = () => {
                         tools: 'Figma, Storybook, Zeroheight'
                       }
                     ].map((item, index) => (
-                      <div key={index} className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100">
-                        <div className="flex items-start justify-between mb-3">
-                          <h5 className="font-semibold text-zinc-900">{item.skill}</h5>
-                          <span className={`px-3 py-1 text-xs font-medium rounded-full ${
+                      <div key={index} className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-pink-100">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
+                          <h5 className="font-semibold text-zinc-900 text-sm sm:text-base">{item.skill}</h5>
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full self-start ${
                             item.expertise === 'Advanced' 
                               ? 'bg-green-100 text-green-700' 
                               : 'bg-pink-100 text-pink-700'
@@ -88,8 +101,8 @@ const About = () => {
                             {item.expertise}
                           </span>
                         </div>
-                        <p className="text-sm text-zinc-600 mb-3">{item.impact}</p>
-                        <div className="flex flex-wrap gap-2">
+                        <p className="text-xs sm:text-sm text-zinc-600 mb-3">{item.impact}</p>
+                        <div className="flex flex-wrap gap-1 md:gap-2">
                           {item.tools.split(', ').map((tool, toolIndex) => (
                             <span key={toolIndex} className="px-2 py-1 bg-white/60 text-xs font-medium text-zinc-700 rounded-full">
                               {tool}
@@ -103,8 +116,8 @@ const About = () => {
 
                 {/* Technical Skills */}
                 <div>
-                  <h4 className="text-lg font-semibold text-zinc-800 mb-4">Design & Development Tools</h4>
-                  <div className="grid grid-cols-2 gap-3">
+                  <h4 className="text-base sm:text-lg font-semibold text-zinc-800 mb-3 md:mb-4">Design & Development Tools</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                     {[
                       // Expert Level
                       { name: "Figma", level: "Expert" },
@@ -122,8 +135,8 @@ const About = () => {
                       { name: "Illustrator", level: "Intermediate" },
                       { name: "Maze", level: "Intermediate" }
                     ].map((skill, index) => (
-                      <div key={index} className="flex items-center justify-between p-2 bg-white rounded-lg border border-zinc-200">
-                        <span className="text-xs font-medium text-zinc-900">
+                      <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
+                        <span className="text-xs sm:text-sm font-medium text-zinc-900">
                           {skill.name}
                         </span>
                         <span className={`text-xs px-2 py-1 rounded-full ${
@@ -141,7 +154,7 @@ const About = () => {
 
               {/* Right Column - Experience & Achievements */}
               <div>
-                <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">Experience & Achievements</h3>
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-4 md:mb-6 text-zinc-900">Experience & Achievements</h3>
                 <div className="relative">
                   {/* Timeline line */}
                   <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-pink-200 via-pink-300 to-pink-200"></div>
@@ -169,27 +182,25 @@ const About = () => {
                       achievements: ['First Class Honours', 'Specialized in Human Computer Interaction', 'Strong foundation in both design and development']
                     }
                   ].map((exp, index) => (
-                    <div key={index} className="relative flex items-start space-x-6 pb-8 last:pb-0">
+                    <div key={index} className="relative flex items-start space-x-4 md:space-x-6 pb-6 md:pb-8 last:pb-0">
                       {/* Timeline dot */}
-                      <div className="relative z-10 flex-shrink-0 w-8 h-8 bg-pink-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      <div className="relative z-10 flex-shrink-0 w-6 h-6 md:w-8 md:h-8 bg-pink-500 rounded-full border-2 md:border-4 border-white shadow-lg flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
                       </div>
                       
                       {/* Content */}
-                      <div className="flex-1 bg-white rounded-2xl p-6 border border-zinc-200 shadow-sm">
-                        <div className="flex items-start justify-between mb-3">
-                          <div>
-                            <h5 className="font-semibold text-zinc-900 text-lg">{exp.title}</h5>
-                            <p className="text-sm text-zinc-600 font-medium">{exp.company}</p>
-                            <p className="text-sm text-pink-600 font-medium">{exp.period}</p>
-                          </div>
+                      <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-4 md:p-6 border border-zinc-200 shadow-sm">
+                        <div className="mb-3">
+                          <h5 className="font-semibold text-zinc-900 text-sm sm:text-base md:text-lg">{exp.title}</h5>
+                          <p className="text-xs sm:text-sm text-zinc-600 font-medium">{exp.company}</p>
+                          <p className="text-xs sm:text-sm text-pink-600 font-medium">{exp.period}</p>
                         </div>
-                        <p className="text-sm text-zinc-600 mb-4 leading-relaxed">{exp.description}</p>
+                        <p className="text-xs sm:text-sm text-zinc-600 mb-3 md:mb-4 leading-relaxed">{exp.description}</p>
                         <div className="space-y-2">
                           {exp.achievements.map((achievement, idx) => (
-                            <div key={idx} className="flex items-start space-x-3">
-                              <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-sm text-zinc-600">{achievement}</span>
+                            <div key={idx} className="flex items-start space-x-2 md:space-x-3">
+                              <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-pink-500 rounded-full mt-1.5 md:mt-2 flex-shrink-0"></div>
+                              <span className="text-xs sm:text-sm text-zinc-600">{achievement}</span>
                             </div>
                           ))}
                         </div>

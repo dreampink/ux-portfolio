@@ -1,4 +1,6 @@
 
+import polishpadUser1 from '../../assets/polishpad-user1.jpg'
+
 export const polishpadProject = {
   slug: 'polishpad',
   title: 'Polish Pad',
@@ -11,7 +13,6 @@ export const polishpadProject = {
   // Process stages content
   stages: {
     tension: {
-      title: 'The Tension',
       content: (
         <div className="space-y-6">
           <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
@@ -36,7 +37,6 @@ export const polishpadProject = {
     },
     
     approach: {
-      title: 'The Approach',
       content: (
         <div className="space-y-6">
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
@@ -63,7 +63,6 @@ export const polishpadProject = {
     },
     
     problem: {
-      title: 'The Problem',
       content: (
         <div className="space-y-6">
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
@@ -89,7 +88,6 @@ export const polishpadProject = {
     },
     
     solution: {
-      title: 'The Solution',
       content: (
         <div className="space-y-6">
           <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
@@ -102,6 +100,12 @@ export const polishpadProject = {
               <li>• Contextual help and tooltips</li>
             </ul>
           </div>
+
+          <img 
+                src={polishpadUser1} 
+                alt="Polish Pad User Interface Design" 
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
           
           <div className="bg-teal-50 border border-teal-200 rounded-2xl p-6">
             <h4 className="font-semibold text-teal-800 mb-3">Key Features</h4>
@@ -170,12 +174,28 @@ export const polishpadProject = {
               </div>
             </div>
           </div>
+          
+          {/* User Interface Design */}
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-2xl p-6">
+            <h4 className="font-semibold text-purple-800 mb-4">User Interface Design</h4>
+            <p className="text-purple-700 leading-relaxed mb-6">
+              Clean and intuitive interface design for the Polish Pad application, focusing on 
+              user experience and visual appeal.
+            </p>
+            
+            <div className="relative">
+              <img 
+                src={polishpadUser1} 
+                alt="Polish Pad User Interface Design" 
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+            </div>
+          </div>
         </div>
       )
     },
     
     results: {
-      title: 'The Results',
       content: (
         <div className="space-y-6">
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
