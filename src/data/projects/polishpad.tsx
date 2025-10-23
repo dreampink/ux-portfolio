@@ -1,6 +1,7 @@
 
 import polishpadUser1 from '../../assets/polishpad-user1.jpg'
 
+
 export const polishpadProject = {
   slug: 'polishpad',
   title: 'Polish Pad',

@@ -9,7 +9,7 @@ export default function CaseStudy() {
   const { slug = '' } = useParams()
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
   const [showStickyNav, setShowStickyNav] = useState(false)
-  const learningButtonRef = useRef<HTMLButtonElement | null>(null)
+  const learningButtonRef = useRef<HTMLButtonElement>(null)
 
   const caseStudy = getCaseStudyBySlug(slug)
 

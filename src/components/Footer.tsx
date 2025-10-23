@@ -9,8 +9,8 @@ const Footer = () => {
   ]
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Home', href: '/#home' },
+    { name: 'Projects', href: '/#projects' },
     { name: 'About', href: '/about' },
   ]
 
@@ -55,6 +55,12 @@ const Footer = () => {
                 <Link
                   key={project.slug}
                   to={`/case/${project.slug}`}
+                  onClick={() => {
+                    // Scroll to top after navigation
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }, 100)
+                  }}
                   className="block text-sm text-zinc-600 hover:text-pink-600 transition-colors"
                 >
                   {project.title}
