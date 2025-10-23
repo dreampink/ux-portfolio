@@ -5,6 +5,8 @@ export const sportProject = {
   client: 'FinTech Startup',
   date: '2024',
   role: 'Lead UX Designer',
+  tools: 'Figma, Principle, Maze, Google Analytics',
+  impact: '35% reduction in drop-off rates, 28% increase in conversion',
   headerImage: '/project-1.jpg',
   description: 'Redesigned the payment flow for a fintech application, reducing drop-off rates by 35% and increasing conversion by 28%.',
   

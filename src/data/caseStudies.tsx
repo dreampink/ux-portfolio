@@ -8,6 +8,8 @@ export interface CaseStudyData {
   client?: string;
   date?: string;
   role?: string;
+  tools?: string;
+  impact?: string;
   headerImage?: string;
   stages: {
     [key: string]: {
@@ -27,6 +29,8 @@ export const caseStudies: CaseStudyData[] = projects.map(project => ({
   client: project.client,
   date: project.date,
   role: project.role,
+  tools: project.tools,
+  impact: project.impact,
   headerImage: project.headerImage,
   stages: {
     tension: {

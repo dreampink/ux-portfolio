@@ -10,7 +10,7 @@ export default function CaseStudy() {
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
   const [showStickyNav, setShowStickyNav] = useState(false)
   const learningButtonRef = useRef<HTMLButtonElement>(null)
-
+  
   const caseStudy = getCaseStudyBySlug(slug)
 
       // Scroll detection for sticky process navigation - desktop only
@@ -23,14 +23,15 @@ export default function CaseStudy() {
             if (titleElement) {
               const rect = titleElement.getBoundingClientRect()
               // Show sticky nav when user scrolls past the title
-              // Trigger when the bottom of title reaches the top of viewport
-              setShowStickyNav(rect.bottom <= 0)
+              // Trigger when the middle of title reaches the top of viewport (earlier trigger)
+              setShowStickyNav(rect.top + (rect.height / 2) <= 0)
             } else {
               // Fallback to header if title not found
               const headerSection = document.querySelector('header')
               if (headerSection) {
                 const rect = headerSection.getBoundingClientRect()
-                setShowStickyNav(rect.bottom <= 0)
+                // Trigger when the middle of header reaches the top of viewport (earlier trigger)
+                setShowStickyNav(rect.top + (rect.height / 2) <= 0)
               }
             }
           } else {
@@ -157,94 +158,99 @@ export default function CaseStudy() {
             </div>
           )}
 
-      <div className={`max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 space-y-10 ${showStickyNav ? 'pt-36' : 'pt-20'}`}>
+      <div className={`w-full max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 py-6 xs:py-8 sm:py-10 md:py-14 space-y-6 xs:space-y-8 sm:space-y-10 ${showStickyNav ? 'pt-16 xs:pt-20 sm:pt-24' : 'pt-10 xs:pt-12 sm:pt-16'}`}>
 
         {/* Enhanced Header Section */}
         <div className="relative">
           {/* Header Image with Overlay */}
-          {caseStudy.headerImage && (
+        {caseStudy.headerImage && (
             <div className="w-full h-48 md:h-64 lg:h-80 rounded-3xl overflow-hidden mb-8 relative">
-              <img 
-                src={caseStudy.headerImage} 
-                alt={caseStudy.title}
-                className="w-full h-full object-cover"
-              />
+            <img 
+              src={caseStudy.headerImage} 
+              alt={caseStudy.title}
+              className="w-full h-full object-cover"
+            />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            </div>
-          )}
+          </div>
+        )}
 
           {/* Enhanced Header Content */}
-          <header className="space-y-4">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
+          <header className="space-y-3 sm:space-y-4">
+            <div className="w-full">
+              <div className="w-full text-center sm:text-left">
+                <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent leading-tight">
                   {caseStudy.title}
                 </h1>
                 {caseStudy.description && (
-                  <p className="text-lg md:text-xl text-zinc-600 max-w-4xl mt-4 leading-relaxed">
+                  <p className="text-sm xs:text-base sm:text-lg md:text-xl text-zinc-600 max-w-4xl mx-auto sm:mx-0 mt-2 xs:mt-3 sm:mt-4 leading-relaxed">
                     {caseStudy.description}
                   </p>
                 )}
               </div>
-              
             </div>
-          </header>
+        </header>
         </div>
 
 
         {/* Project metadata */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-12 py-8 border-t border-zinc-200">
-          <div className="text-center">
-            <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">Client</h3>
-            <p className="text-zinc-900 font-medium">{caseStudy.client || 'Client Name'}</p>
+        <section className="w-full grid grid-cols-1 md:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 md:gap-8 py-4 xs:py-6 sm:py-8 border-t border-zinc-200">
+          <div className="text-center px-2">
+            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Client</h3>
+            <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.client || 'Client Name'}</p>
           </div>
-          <div className="text-center">
-            <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">Date</h3>
-            <p className="text-zinc-900 font-medium">{caseStudy.date || '2024'}</p>
+          <div className="text-center px-2">
+            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Date</h3>
+            <p className="text-sm xs:text-base text-zinc-900 font-medium">{caseStudy.date || '2024'}</p>
           </div>
-          <div className="text-center">
-            <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">My Role</h3>
-            <p className="text-zinc-900 font-medium">{caseStudy.role || 'UX Designer'}</p>
+          <div className="text-center px-2">
+            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">My Role</h3>
+            <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.role || 'UX Designer'}</p>
+          </div>
+          <div className="text-center px-2">
+            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Tools</h3>
+            <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.tools || 'Design Tools'}</p>
+          </div>
+          <div className="text-center px-2">
+            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Impact</h3>
+            <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.impact || 'Project Impact'}</p>
           </div>
         </section>
 
 
         {/* The nonlinear process diagram + phase descriptions */}
-            <ProcessDiagram 
-              active={activeStage} 
-              onStageChange={setActiveStage}
-              caseStudyData={caseStudy.stages}
-              prevCaseStudy={prevCaseStudy}
-              nextCaseStudy={nextCaseStudy}
+        <ProcessDiagram 
+          active={activeStage} 
+          onStageChange={setActiveStage}
+          caseStudyData={caseStudy.stages}
               isCaseStudy={true}
               learningButtonRef={learningButtonRef}
             />
 
         {/* Case Studies Navigation - Bottom */}
-        <section className="hidden lg:block py-12 border-t border-zinc-200">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div>
-              <h3 className="text-2xl font-bold text-zinc-900 mb-2">Explore More Case Studies</h3>
-              <p className="text-zinc-600">Discover other design projects and methodologies</p>
+        <section className="w-full py-4 xs:py-6 sm:py-8 md:py-12 border-t border-zinc-200">
+          <div className="w-full flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-3 xs:gap-4 sm:gap-6">
+            <div className="w-full lg:w-auto text-center lg:text-left">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-zinc-900 mb-1 xs:mb-2">Explore More Case Studies</h3>
+              <p className="text-xs xs:text-sm sm:text-base text-zinc-600">Discover other design projects and methodologies</p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-2 xs:gap-3 sm:gap-4">
               {/* Previous Case Study */}
               {prevCaseStudy && (
                 <Link
                   to={`/case/${prevCaseStudy.slug}`}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="group bg-gradient-to-br from-zinc-50 to-zinc-100 hover:from-pink-50 hover:to-pink-100 rounded-2xl p-6 border border-zinc-200 hover:border-pink-200 transition-all duration-200 min-w-[280px]"
+                  className="group w-full bg-gradient-to-br from-zinc-50 to-zinc-100 hover:from-pink-50 hover:to-pink-100 rounded-2xl p-4 xs:p-6 border border-zinc-200 hover:border-pink-200 transition-all duration-200 sm:min-w-[280px]"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-zinc-200 group-hover:bg-pink-200 flex items-center justify-center transition-colors">
-                      <svg className="w-5 h-5 text-zinc-600 group-hover:text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-3 xs:gap-4">
+                    <div className="w-8 h-8 xs:w-10 xs:h-10 rounded-xl bg-zinc-200 group-hover:bg-pink-200 flex items-center justify-center transition-colors flex-shrink-0">
+                      <svg className="w-4 h-4 xs:w-5 xs:h-5 text-zinc-600 group-hover:text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                       </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-zinc-500 font-medium mb-1">Previous Project</p>
-                      <p className="text-base font-semibold text-zinc-900 group-hover:text-pink-700 truncate">
+                      <p className="text-xs xs:text-sm text-zinc-500 font-medium mb-1">Previous Project</p>
+                      <p className="text-sm xs:text-base font-semibold text-zinc-900 group-hover:text-pink-700 truncate">
                         {prevCaseStudy.title}
                       </p>
                     </div>
@@ -257,17 +263,17 @@ export default function CaseStudy() {
                 <Link
                   to={`/case/${nextCaseStudy.slug}`}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="group bg-gradient-to-br from-zinc-50 to-zinc-100 hover:from-pink-50 hover:to-pink-100 rounded-2xl p-6 border border-zinc-200 hover:border-pink-200 transition-all duration-200 min-w-[280px]"
+                  className="group w-full bg-gradient-to-br from-zinc-50 to-zinc-100 hover:from-pink-50 hover:to-pink-100 rounded-2xl p-4 xs:p-6 border border-zinc-200 hover:border-pink-200 transition-all duration-200 sm:min-w-[280px]"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-zinc-200 group-hover:bg-pink-200 flex items-center justify-center transition-colors">
-                      <svg className="w-5 h-5 text-zinc-600 group-hover:text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-3 xs:gap-4">
+                    <div className="w-8 h-8 xs:w-10 xs:h-10 rounded-xl bg-zinc-200 group-hover:bg-pink-200 flex items-center justify-center transition-colors flex-shrink-0">
+                      <svg className="w-4 h-4 xs:w-5 xs:h-5 text-zinc-600 group-hover:text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-zinc-500 font-medium mb-1">Next Project</p>
-                      <p className="text-base font-semibold text-zinc-900 group-hover:text-pink-700 truncate">
+                      <p className="text-xs xs:text-sm text-zinc-500 font-medium mb-1">Next Project</p>
+                      <p className="text-sm xs:text-base font-semibold text-zinc-900 group-hover:text-pink-700 truncate">
                         {nextCaseStudy.title}
                       </p>
                     </div>

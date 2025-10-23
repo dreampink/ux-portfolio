@@ -8,6 +8,8 @@ export const polishpadProject = {
   client: 'Polish Pad',
   date: '2025',
   role: 'Design Tech Lead',
+  tools: 'Figma, React, TypeScript, Tailwind CSS',
+  impact: '55% increase in user engagement, 40% reduction in time-to-insight',
   headerImage: '/project-3.jpg',
   description: 'Designed a comprehensive analytics dashboard that increased user engagement by 55% and reduced time-to-insight by 40%.',
   

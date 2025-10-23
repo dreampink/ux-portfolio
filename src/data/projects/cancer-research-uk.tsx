@@ -5,6 +5,8 @@ export const cancerResearchUKProject = {
   client: 'Cancer Research UK',
   date: '2024',
   role: 'Senior UX Designer',
+  tools: 'Figma, Sketch, Adobe XD, Miro, Hotjar',
+  impact: '42% increase in user engagement, 60% improvement in donation conversion rates',
   headerImage: '/project-2.jpg',
   description: 'Redesigned the Cancer Research UK website experience, increasing user engagement by 42% and improving donation conversion rates by 60%.',
   

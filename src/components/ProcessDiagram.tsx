@@ -1,6 +1,5 @@
 import React, { useMemo, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, MotionConfig } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ChevronRight,
   CircleDashed,
@@ -124,20 +123,12 @@ interface ProcessDiagramProps {
       media?: React.ReactNode;
     };
   };
-  prevCaseStudy?: {
-    slug: string;
-    title: string;
-  } | null;
-  nextCaseStudy?: {
-    slug: string;
-    title: string;
-  } | null;
   verticalLayout?: boolean;
   isCaseStudy?: boolean;
   learningButtonRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
-export default function ProcessDiagram({ active, onStageChange, caseStudyData, prevCaseStudy, nextCaseStudy, verticalLayout = false, isCaseStudy = false, learningButtonRef: externalLearningButtonRef }: ProcessDiagramProps) {
+export default function ProcessDiagram({ active, onStageChange, caseStudyData, verticalLayout = false, isCaseStudy = false, learningButtonRef: externalLearningButtonRef }: ProcessDiagramProps) {
   const reduceMotion = useReducedMotion();
   const contentRef = useRef<HTMLElement>(null);
   const internalLearningButtonRef = useRef<HTMLButtonElement>(null);
@@ -183,6 +174,7 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
   }, []);
 
   const handleStageChange = (stageKey: StageKey) => {
+    console.log('handleStageChange called with:', stageKey);
     onStageChange(stageKey);
     
     // Trigger celebration when reaching the learning stage
@@ -258,10 +250,6 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
       <div className="w-full">
         {/* Celebration Animation */}
         {showCelebration && <CelebrationAnimation buttonRef={learningButtonRef} />}
-        {/* Mobile: Case Study Navigation Only */}
-        <div className="lg:hidden mb-8">
-            <CaseStudyNavigation prevCaseStudy={prevCaseStudy || null} nextCaseStudy={nextCaseStudy || null} />
-          </div>
           
         {/* Desktop: Layout based on verticalLayout prop */}
         <div className="hidden lg:block">
@@ -391,8 +379,43 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
 
         {/* Mobile: Content only (no process diagram) */}
         <div className="lg:hidden" data-process-section>
+          {/* Mobile Scroll Indicator */}
+          {isCaseStudy && (
+            <div className="flex flex-col items-center justify-center pt-8 px-4">
+              <div className="text-center mb-8">
+                <h3 className="text-xl font-bold text-zinc-900 mb-3 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Explore the Process</h3>
+                <p className="text-base text-zinc-600 font-medium">Scroll down to discover the design journey</p>
+              </div>
+              
+              {/* Enhanced Animated Scroll Indicator */}
+              <div className="flex flex-col items-center space-y-4">
+                <div className="relative">
+                  <div className="w-8 h-12 border-2 border-zinc-300 rounded-full flex justify-center bg-zinc-50 shadow-lg">
+                    <div className="w-2 h-4 bg-zinc-400 rounded-full mt-2 animate-bounce shadow-sm"></div>
+                  </div>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 w-8 h-12 border-2 border-zinc-200 rounded-full animate-pulse opacity-50"></div>
+                </div>
+                
+                {/* Enhanced pulsing dots */}
+                <div className="flex space-x-2">
+                  <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full animate-pulse shadow-sm"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full animate-pulse shadow-sm" style={{animationDelay: '0.3s'}}></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full animate-pulse shadow-sm" style={{animationDelay: '0.6s'}}></div>
+                </div>
+                
+                {/* Arrow pointing down */}
+                <div className="animate-bounce">
+                  <svg className="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
+              </div>
+          </div>
+          )}
+          
           {/* Mobile Content */}
-          <div className="pb-10 pt-10">
+          <div className="pb-10">
             <StagePanels active={active} caseStudyData={caseStudyData} isCaseStudy={isCaseStudy} />
           </div>
           
@@ -432,8 +455,11 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, p
                 <button
                   onClick={() => {
                     const currentIndex = STAGES.findIndex(s => s.key === active);
+                    console.log('Next button clicked - currentIndex:', currentIndex, 'STAGES.length:', STAGES.length);
                     if (currentIndex < STAGES.length - 1) {
-                      handleStageChange(STAGES[currentIndex + 1].key);
+                      const nextStage = STAGES[currentIndex + 1];
+                      console.log('Moving to next stage:', nextStage.key);
+                      handleStageChange(nextStage.key);
                     }
                   }}
                   disabled={STAGES.findIndex(s => s.key === active) === STAGES.length - 1}
@@ -789,64 +815,3 @@ function LoopView({ active, setActive }: { active: StageKey; setActive: (k: Stag
   );
 }
 
-function CaseStudyNavigation({ 
-  prevCaseStudy, 
-  nextCaseStudy 
-}: { 
-  prevCaseStudy: { slug: string; title: string } | null;
-  nextCaseStudy: { slug: string; title: string } | null;
-}) {
-  return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-zinc-900">Case Studies</h3>
-      
-      <div className="space-y-3">
-        {/* Previous Case Study */}
-        {prevCaseStudy && (
-          <Link
-            to={`/case/${prevCaseStudy.slug}`}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group block p-4 rounded-xl border border-zinc-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-green-100 flex items-center justify-center transition-colors">
-                <svg className="w-4 h-4 text-zinc-600 group-hover:text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-zinc-500 font-medium mb-1">Previous</p>
-                <p className="text-sm font-medium text-zinc-900 group-hover:text-green-700 truncate">
-                  {prevCaseStudy.title}
-                </p>
-              </div>
-            </div>
-          </Link>
-        )}
-
-        {/* Next Case Study */}
-        {nextCaseStudy && (
-          <Link
-            to={`/case/${nextCaseStudy.slug}`}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group block p-4 rounded-xl border border-zinc-200 hover:border-yellow-300 hover:bg-yellow-50 transition-all duration-200"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-yellow-100 flex items-center justify-center transition-colors">
-                <svg className="w-4 h-4 text-zinc-600 group-hover:text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-zinc-500 font-medium mb-1">Next</p>
-                <p className="text-sm font-medium text-zinc-900 group-hover:text-yellow-700 truncate">
-                  {nextCaseStudy.title}
-                </p>
-              </div>
-            </div>
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-}

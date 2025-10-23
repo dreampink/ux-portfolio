@@ -7,8 +7,17 @@
 - **`src/data/caseStudies.tsx`** - Converts projects to case study format
 - **`src/data/projects/index.tsx`** - Exports all projects
 
-## 🏗️ Case Study Structure
+## 📋 Project Metadata Fields
 
+Each case study now includes **5 metadata fields**:
+
+1. **Client** - Who the project was for
+2. **Date** - When the project was completed
+3. **Role** - Your role in the project
+4. **Tools** - Technologies and tools used
+5. **Impact** - Key results and metrics achieved
+
+## 🏗️ Case Study Structure
 Each case study has **7 main sections** that correspond to the design process:
 
 ### 1. **Problem** (Tension)
@@ -53,7 +62,24 @@ Each case study has **7 main sections** that correspond to the design process:
 src/data/projects/[project-name].tsx
 ```
 
-### Step 2: Find the Section You Want to Edit
+### Step 2: Edit Project Metadata (Optional)
+Update the project information at the top of the file:
+
+```typescript
+export const yourProject = {
+  slug: 'your-project',
+  title: 'Your Project',
+  client: 'Client Name',
+  date: '2024',
+  role: 'Your Role',
+  tools: 'Figma, React, TypeScript, etc.',
+  impact: 'Key results and metrics',
+  description: 'Project description...',
+  // ... rest of the project
+}
+```
+
+### Step 3: Find the Section You Want to Edit
 Look for the `stages` object and find the specific stage:
 
 ```typescript
