@@ -378,9 +378,9 @@ const About = () => {
                     },
                     {
                       title: 'Frontend Engineer (UI UX Focus)',
-                      company: 'AND Digital',
+                      company: 'AND Digital (Cancer Research UK, Sports Direct, Tesco & More)',
                       period: 'Jun 2021 - Aug 2024',
-                      description: 'Delivered UX-driven design and development for clients including Frasers Group, Lloyds Bank, M&S, and Cancer Research UK',
+                      description: 'Delivered UX-driven design and development for clients including Tesco, Frasers Group, Lloyds Bank, M&S, and Cancer Research UK',
                        achievements: [
                          "Partnered with UX researchers to uncover behavioural insights and user motivations",
                          "Designed and implemented dynamic interfaces serving 3M+ monthly users, focused on clarity, trust, and conversion psychology",
