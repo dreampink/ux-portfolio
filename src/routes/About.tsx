@@ -335,7 +335,7 @@ const About = () => {
                     {
                       title: 'Product Design Lead',
                       company: 'Polish Pad',
-                      period: 'Jan 2025 - Present',
+                      period: 'Jun 2020, Jun 2021, Jan 2025 - Present',
                       description: 'PolishPad connects clients with local nail technicians through a delightful booking experience.',
                       achievements: [
                         "Defined product vision and design strategy rooted in user psychology and behaviour",
