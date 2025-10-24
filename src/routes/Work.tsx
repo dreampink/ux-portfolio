@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import App from './App'
 
-const Projects = () => {
+const Work = () => {
   useEffect(() => {
     // Scroll to projects section when component mounts
     setTimeout(() => {
@@ -15,4 +15,4 @@ const Projects = () => {
   return <App />
 }
 
-export default Projects
+export default Work
