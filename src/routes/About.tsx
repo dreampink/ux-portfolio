@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import DesignThinkingDiagram from '../components/DesignThinkingDiagram';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -205,6 +204,124 @@ const About = () => {
                   </div>
 
                 </div>
+
+                {/* Team Benefits Section */}
+                <div className="mt-8">
+                  <h4 className="text-lg font-bold tracking-tight mb-4 text-zinc-900">How This Benefits Your Team</h4>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">🎯</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Better Communication</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            I speak both design and development languages, reducing miscommunication and ensuring designs are technically feasible from day one.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">⚡</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Faster Prototyping</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            I can build interactive prototypes quickly, allowing for rapid iteration and user testing without waiting for developer resources.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">💰</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Cost Efficiency</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            Reduce project costs by eliminating the need for separate design and development handoffs, and catch technical issues early.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">🔄</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Seamless Handoffs</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            Deliver pixel-perfect designs with detailed technical specifications, reducing back-and-forth between teams.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* How I Think as a Designer Section */}
+                <div className="mt-8">
+                  <h4 className="text-lg font-bold tracking-tight mb-4 text-zinc-900">How I Think as a Designer</h4>
+                  
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Empathise",
+                        description: "Understanding users deeply through research, interviews, and observation to uncover real needs and pain points.",
+                        icon: "💝",
+                        color: "from-pink-50 to-rose-50",
+                        borderColor: "border-pink-200"
+                      },
+                      {
+                        title: "Define",
+                        description: "Synthesizing research insights to define the core problem and create a clear problem statement.",
+                        icon: "🎯",
+                        color: "from-blue-50 to-indigo-50",
+                        borderColor: "border-blue-200"
+                      },
+                      {
+                        title: "Ideate",
+                        description: "Generating creative solutions through brainstorming, sketching, and collaborative ideation sessions.",
+                        icon: "💡",
+                        color: "from-yellow-50 to-amber-50",
+                        borderColor: "border-yellow-200"
+                      },
+                      {
+                        title: "Prototype",
+                        description: "Creating tangible representations through wireframes, mockups, and interactive prototypes.",
+                        icon: "🛠️",
+                        color: "from-purple-50 to-violet-50",
+                        borderColor: "border-purple-200"
+                      },
+                      {
+                        title: "Test",
+                        description: "Validating solutions through user testing, gathering feedback, and iterating based on real user behavior.",
+                        icon: "🧪",
+                        color: "from-green-50 to-emerald-50",
+                        borderColor: "border-green-200"
+                      }
+                    ].map((step, index) => (
+                      <div key={index} className={`bg-gradient-to-r ${step.color} rounded-lg border ${step.borderColor} p-3`}>
+                        <div className="flex items-start gap-2">
+                          <div className="text-lg flex-shrink-0">{step.icon}</div>
+                          <div className="flex-1">
+                            <h5 className="font-semibold text-zinc-900 mb-1 text-xs">{step.title}</h5>
+                            <p className="text-xs text-zinc-600 leading-relaxed">{step.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Right Column - Experience & Achievements */}
@@ -219,29 +336,70 @@ const About = () => {
                       title: 'Product Design Lead',
                       company: 'Polish Pad',
                       period: 'Jan 2025 - Present',
-                      description: 'Leading design initiatives for enterprise products, managing a team of 3 designers, and establishing design processes that improved team efficiency by 45%.',
-                      achievements: ['Led redesign of core product increasing user engagement by 85%', 'Established design system used by 50+ developers', 'Mentored 5 junior designers']
+                      description: 'PolishPad connects clients with local nail technicians through a delightful booking experience.',
+                      achievements: [
+                        "Defined product vision and design strategy rooted in user psychology and behaviour",
+                        "Conducted empathy interviews and usability studies to understand user trust, intent, and emotional barriers to booking",
+                        "Redesigned booking journeys to reduce cognitive friction and improve perceived control",
+                        "Built an inclusive design system ensuring accessibility and emotional coherence across the product",
+                        "Partnered closely with engineers to bridge design and implementation through shared design tokens and documentation",
+                        "Increased booking completion rates and trust metrics",
+                        "Established a design culture that values accessibility, inclusivity, and behavioural insight",
+                        "Helped PolishPad achieve Microsoft for Startups validation and cloud sponsorship"
+                      ]
+                    },
+                    {
+                      title: 'Javascript Developer',
+                      company: 'Farlo (Offical London Theatre)',
+                      period: 'Aug 2024 - Jan 2025',
+                      description: 'Collaborated with UX/UI designers on Official London Theatre’s digital platform, translating Figma concepts into user-realistic experiences.',
+                       achievements: [
+                         "Worked closely with designers to validate human-centred design decisions through prototyping and behavioural feedback",
+                         "Adjusted visual hierarchy and motion patterns to match user attention and scanning behaviour",
+                         "Built accessible, performant interfaces that turned design concepts into emotionally consistent interactions",
+                         "Accessibility scores improved dramatically (Lighthouse 76→96 desktop)",
+                         "Reduced bounce rate by 18% and increased user satisfaction through smoother, intuitive interactions"
+                       ]
                     },
                     {
                       title: 'Senior UX/UI Designer',
                       company: 'Marchcroft',
                       period: 'Aug 2024 - Oct 2024',
-                      description: 'Designed user experiences for mobile and web applications, conducted user research, and collaborated with cross-functional teams.',
-                      achievements: ['Designed mobile app with 4.8/5 App Store rating', 'Conducted 50+ user interviews', 'Improved conversion rates by 60%']
+                      description: 'Designed and developed responsive, accessible user interfaces for a next-generation financial platform.',
+                      achievements: [
+                        "Translated complex financial data and Figma prototypes into intuitive, emotionally clear interfaces",
+                        "Applied behavioural heuristics to simplify information density and build user confidence in critical flows",
+                        "Created cohesive design systems ensuring visual consistency and trust-driven design (WCAG 2.1 AA)",
+                        "Partnered with engineering teams to align UX with AWS infrastructure, maintaining both usability and performance",
+                        "Integrated AI-powered UX features like personalised recommendations and automated workflows to improve engagement",
+                        "Delivered interfaces that balanced regulatory complexity with clarity and ease",
+                        "Strengthened user trust through visual transparency and predictable interactions"
+                      ]
                     },
                     {
                       title: 'Frontend Engineer (UI UX Focus)',
                       company: 'AND Digital',
                       period: 'Jun 2021 - Aug 2024',
-                      description: 'Designed user experiences for mobile and web applications, conducted user research, and collaborated with cross-functional teams.',
-                      achievements: ['Designed mobile app with 4.8/5 App Store rating', 'Conducted 50+ user interviews', 'Improved conversion rates by 60%']
+                      description: 'Delivered UX-driven design and development for clients including Frasers Group, Lloyds Bank, M&S, and Cancer Research UK',
+                       achievements: [
+                         "Partnered with UX researchers to uncover behavioural insights and user motivations",
+                         "Designed and implemented dynamic interfaces serving 3M+ monthly users, focused on clarity, trust, and conversion psychology",
+                         "Built component systems supporting brand consistency, accessibility, and rapid experimentation",
+                         "Acted as a design–engineering liaison, translating design intent into buildable solutions with technical teams",
+                         "Achieved 100% accessibility on multiple platforms",
+                         "Improved user engagement and retention through iterative, insight-driven design",
+                         "Reduced design-to-development handoff time by introducing shared systems and documentation"
+                       ]
                     },
                     {
-                      title: 'Product Designer',
-                      company: 'Polish Pad',
-                      period: 'Jun 2020 - Jun 2021',
-                      description: 'Designed user experiences for mobile and web applications, conducted user research, and collaborated with cross-functional teams.',
-                      achievements: ['Designed mobile app with 4.8/5 App Store rating', 'Conducted 50+ user interviews', 'Improved conversion rates by 60%']
+                      title: 'Design & Development Intern',
+                      company: 'Fintex Ltd',
+                      period: 'Sept 2020 - Jun 2021',
+                      description: 'Contributed to the design and user flow of a job-search platform.',
+                       achievements: [
+                         "Designed user journeys to reduce friction and increase clarity for jobseekers",
+                         "Supported front-end implementation and validated UX during testing"
+                       ]
                     },
                     {
                       title: 'Computer Science Graduate',
@@ -280,174 +438,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Team Benefits - Full Width */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">How This Benefits Your Team</h3>
-              
-              <div className="w-full bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-6 sm:p-8">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-4">
-                    <span className="text-2xl">🚀</span>
-                  </div>
-                  <p className="text-base sm:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
-                    My unique combination of design and development skills brings multiple advantages to your team and projects.
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">🎯</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Better Communication</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          I speak both design and development languages, reducing miscommunication
-                          and ensuring designs are technically feasible from day one.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">⚡</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Faster Prototyping</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          I can build interactive prototypes quickly, allowing for rapid iteration
-                          and user testing without waiting for developer resources.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">💰</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Cost Efficiency</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          Reduce project costs by eliminating the need for separate design and development handoffs,
-                          and catch technical issues early in the design process.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">🔄</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Seamless Handoffs</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          Deliver pixel-perfect designs with detailed technical specifications,
-                          reducing back-and-forth between design and development teams.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">🎨</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Design System Expertise</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          Create and maintain scalable design systems that work across all platforms,
-                          ensuring consistency and reducing development time.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/80 rounded-xl p-6 border border-emerald-200 shadow-sm">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">📊</span>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-zinc-900 mb-2 text-sm">Data-Driven Decisions</h5>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          Combine user research insights with technical feasibility to make informed
-                          design decisions that balance user needs with development constraints.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Design Thinking Process - Full Width */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">How I Think as a Designer</h3>
-              
-              {/* Desktop: Animated Diagram */}
-              <div className="hidden lg:block bg-white rounded-2xl border border-zinc-200 p-8 shadow-sm">
-                <DesignThinkingDiagram />
-              </div>
-              
-              {/* Mobile: Static Design Process Steps */}
-              <div className="lg:hidden space-y-4">
-                {[
-                  {
-                    title: "Empathise",
-                    description: "I start by understanding users deeply through research, interviews, and observation to uncover real needs and pain points.",
-                    icon: "💝",
-                    color: "from-pink-50 to-rose-50",
-                    borderColor: "border-pink-200"
-                  },
-                  {
-                    title: "Define",
-                    description: "I synthesize research insights to define the core problem and create a clear problem statement that guides the design process.",
-                    icon: "🎯",
-                    color: "from-blue-50 to-indigo-50",
-                    borderColor: "border-blue-200"
-                  },
-                  {
-                    title: "Ideate",
-                    description: "I generate creative solutions through brainstorming, sketching, and collaborative ideation sessions to explore multiple possibilities.",
-                    icon: "💡",
-                    color: "from-yellow-50 to-amber-50",
-                    borderColor: "border-yellow-200"
-                  },
-                  {
-                    title: "Prototype",
-                    description: "I create tangible representations of ideas through wireframes, mockups, and interactive prototypes to test concepts quickly.",
-                    icon: "🛠️",
-                    color: "from-purple-50 to-violet-50",
-                    borderColor: "border-purple-200"
-                  },
-                  {
-                    title: "Test",
-                    description: "I validate solutions through user testing, gather feedback, and iterate based on real user behavior and insights.",
-                    icon: "🧪",
-                    color: "from-green-50 to-emerald-50",
-                    borderColor: "border-green-200"
-                  }
-                ].map((step, index) => (
-                  <div key={index} className={`bg-gradient-to-r ${step.color} rounded-xl border ${step.borderColor} p-4`}>
-                    <div className="flex items-start gap-3">
-                      <div className="text-2xl flex-shrink-0">{step.icon}</div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-zinc-900 mb-2 text-sm">{step.title}</h4>
-                        <p className="text-xs text-zinc-600 leading-relaxed">{step.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Understanding Human Behavior - Full Width */}
             <div className="mb-16">
