@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
   const location = useLocation()
 
   const navItems = [
@@ -26,30 +25,6 @@ const Navigation = () => {
     }
   }, [location.pathname, location.hash])
 
-  // Track active section for navigation highlighting
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'projects']
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
-    }
-
-    // Only add scroll listener on homepage
-    if (location.pathname === '/') {
-      window.addEventListener('scroll', handleScroll)
-      return () => window.removeEventListener('scroll', handleScroll)
-    }
-  }, [location.pathname])
 
   return (
     <nav className="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/20 shadow-lg">
