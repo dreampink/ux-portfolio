@@ -5,9 +5,13 @@ import './index.css'
 import App from './routes/App.tsx'
 import About from './routes/About.tsx'
 import CaseStudy from './routes/CaseStudy'
+import Home from './routes/Home.tsx'
+import Projects from './routes/Projects.tsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
+  { path: '/home', element: <Home /> },
+  { path: '/projects', element: <Projects /> },
   { path: '/about', element: <About /> },
   { path: '/case/:slug', element: <CaseStudy /> },
 ])

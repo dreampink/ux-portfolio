@@ -60,7 +60,7 @@ export default function CaseStudy() {
       <div className="min-h-screen bg-white text-zinc-900 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-4">Case Study Not Found</h1>
-          <Link to="/#projects" className="text-blue-600 hover:underline">← Back to all case studies</Link>
+          <Link to="/projects" className="text-blue-600 hover:underline">← Back to all case studies</Link>
         </div>
       </div>
     )
@@ -77,9 +77,9 @@ export default function CaseStudy() {
               <div className="max-w-7xl mx-auto px-6 py-4">
                 {/* Breadcrumbs */}
                 <div className="flex items-center gap-2 text-xs text-zinc-500 mb-3">
-                  <Link to="/#home" className="hover:text-pink-600 transition-colors">Home</Link>
+                  <Link to="/home" className="hover:text-pink-600 transition-colors">Home</Link>
                   <span>/</span>
-                  <Link to="/#projects" className="hover:text-pink-600 transition-colors">Projects</Link>
+                  <Link to="/projects" className="hover:text-pink-600 transition-colors">Projects</Link>
                   <span>/</span>
                   <span className="text-zinc-900 font-medium">{caseStudy.title}</span>
                   <span>/</span>

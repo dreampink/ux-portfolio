@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
@@ -6,6 +6,7 @@ import ProcessDiagram from '../components/ProcessDiagram'
 
 export default function App() {
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
+  const [showScrollUpIndicator, setShowScrollUpIndicator] = useState(false)
   
   const cases = [
     { slug: 'sport-direct', title: 'Sports Direct' },
@@ -23,9 +24,62 @@ export default function App() {
     }
   }
 
+  // Scroll detection for showing scroll-up indicator
+  useEffect(() => {
+    const handleScroll = () => {
+      const processSection = document.getElementById('process')
+      const contactSection = document.getElementById('contact')
+      
+      if (processSection && contactSection) {
+        const processRect = processSection.getBoundingClientRect()
+        const contactRect = contactSection.getBoundingClientRect()
+        
+        // Show indicator only when user has scrolled past the projects section
+        // and is actually in the process or contact sections
+        const isInProcess = processRect.top <= 100 && processRect.bottom >= 100
+        const isInContact = contactRect.top <= 100 && contactRect.bottom >= 100
+        
+        setShowScrollUpIndicator(isInProcess || isInContact)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-transparent text-zinc-900">
       <Navigation />
+      
+      {/* Scroll Up Indicator */}
+      {showScrollUpIndicator && (
+        <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
+          <button
+            onClick={() => scrollToSection('projects')}
+            className="group flex flex-col items-center space-y-3 bg-white/90 backdrop-blur-sm border border-pink-200 rounded-2xl px-4 py-6 shadow-lg hover:shadow-xl hover:bg-pink-50 hover:border-pink-300 transition-all duration-300 hover:scale-105 relative overflow-hidden"
+          >
+            {/* Animated arrow pointing up */}
+            <div className="relative">
+              <svg 
+                className="w-6 h-6 text-pink-500 group-hover:text-pink-600 animate-bounce transition-colors duration-300" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+              {/* Pulsing ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-pink-300 animate-ping opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+            </div>
+            
+            {/* Text */}
+            <div className="text-center">
+              <div className="text-xs font-semibold text-pink-600 group-hover:text-pink-700 mb-1 transition-colors duration-300">Click here</div>
+              <div className="text-xs text-zinc-600 group-hover:text-zinc-700 transition-colors duration-300">to see my work</div>
+            </div>
+          </button>
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
         {/* Hero Section */}

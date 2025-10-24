@@ -7,8 +7,8 @@ const Navigation = () => {
   const location = useLocation()
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Home', href: '/home' },
+    { name: 'Projects', href: '/projects' },
     { name: 'About', href: '/about' },
   ]
 
@@ -69,36 +69,19 @@ const Navigation = () => {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
-              if (item.href.startsWith('/')) {
-                // External link - highlight if current page
-                const isActive = location.pathname === item.href
-                return (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`text-sm font-medium transition-colors duration-200 ${
-                      isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              } else {
-                // Internal section link - navigate to home page with section
-                const sectionId = item.href.replace('#', '')
-                const isActive = location.pathname === '/' && activeSection === sectionId
-                return (
-                  <Link
-                    key={item.name}
-                    to={`/#${sectionId}`}
-                    className={`text-sm font-medium transition-colors duration-200 ${
-                      isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              }
+              // All items are now external links
+              const isActive = location.pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             })}
           </div>
           
@@ -122,38 +105,20 @@ const Navigation = () => {
           <div className="md:hidden bg-white/20 backdrop-blur-md border-t border-white/20 shadow-xl">
             <div className="px-6 py-6 space-y-6">
               {navItems.map((item) => {
-                if (item.href.startsWith('/')) {
-                  // External link - highlight if current page
-                  const isActive = location.pathname === item.href
-                  return (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block w-full text-left text-base font-medium transition-colors duration-200 ${
-                        isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )
-                } else {
-                  // Internal section link - navigate to home page with section
-                  const sectionId = item.href.replace('#', '')
-                  const isActive = location.pathname === '/' && activeSection === sectionId
-                  return (
-                    <Link
-                      key={item.name}
-                      to={`/#${sectionId}`}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block w-full text-left text-base font-medium transition-colors duration-200 ${
-                        isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )
-                }
+                // All items are now external links
+                const isActive = location.pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block w-full text-left text-base font-medium transition-colors duration-200 ${
+                      isActive ? 'text-pink-600' : 'text-zinc-600 hover:text-pink-600'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
               })}
             </div>
           </div>
