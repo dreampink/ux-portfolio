@@ -9,11 +9,11 @@ export default function App() {
   const [showScrollUpIndicator, setShowScrollUpIndicator] = useState(false)
   
   const cases = [
-    { slug: 'sport-direct', title: 'Sports Direct' },
-    { slug: 'cancer-research-uk', title: 'Cancer Research UK' },
-    { slug: 'tesco', title: 'Tesco' },
-    { slug: 'marchcroft', title: 'Marchcroft' },
-    { slug: 'polishpad', title: 'Polish Pad' },
+    { slug: 'sport-direct', title: 'Sports Direct', image: '/project-1.jpg' },
+    { slug: 'cancer-research-uk', title: 'Cancer Research UK', image: '/project-2.jpg' },
+    { slug: 'tesco', title: 'Tesco', image: '/project-3.jpg' },
+    { slug: 'marchcroft', title: 'Marchcroft', image: '/project-4.jpg' },
+    { slug: 'polishpad', title: 'Polish Pad', image: '/project-5.jpg' },
   ]
 
 
@@ -252,7 +252,7 @@ export default function App() {
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src={`/project-${index + 1}.jpg`}
+                      src={c.image}
                       alt={c.title}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -414,7 +414,7 @@ export default function App() {
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src={`/project-${index + 1}.jpg`}
+                      src={c.image}
                       alt={c.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
