@@ -7,7 +7,7 @@ export const tescoProject = {
   role: 'UX Designer',
   tools: 'Figma, InVision, UserTesting, Mixpanel',
   impact: '48% improvement in task completion rates, 32% reduction in bounce rate',
-  headerImage: '/project-4.jpg',
+  headerImage: '/project-3.jpg',
   description: 'Redesigned the mobile information architecture, improving task completion rates by 48% and reducing bounce rate by 32%.',
   
   // Process stages content
