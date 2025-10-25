@@ -115,7 +115,7 @@ export const polishpadProject = {
             <ul className="text-teal-700 space-y-2">
               <li>• Customizable widget layout</li>
               <li>• AI-powered insight recommendations</li>
-              <li>• Interactive data visualizations</li>
+              <li>• Interactive data visualisations</li>
               <li>• One-click report generation</li>
               <li>• Real-time data updates</li>
             </ul>
@@ -138,7 +138,7 @@ export const polishpadProject = {
             {/* Animated Image Blocks Component */}
             <div className="relative">
               <img 
-                src="/project-3.jpg" 
+                src="/project-5.jpg" 
                 alt="Polish Pad Campaign" 
                 className="w-full h-auto rounded-xl shadow-lg"
               />
