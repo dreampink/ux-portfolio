@@ -37,8 +37,17 @@
   51%, 100% { border-color: currentColor; }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 
 .animate-pulse-glow {

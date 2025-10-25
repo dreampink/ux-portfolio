@@ -23,23 +23,21 @@ const About = () => {
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Left Column - Profile Image */}
                 <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                  <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl lg:shadow-2xl border-4 border-pink-200">
-                    <img
-                      src="/profile-about.png"
-                      alt="Ebe Etiobhio"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        // Fallback to gradient if image not found
-                        e.currentTarget.style.display = 'none';
-                        const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (nextElement) {
-                          nextElement.style.display = 'block';
-                        }
-                      }}
-                    />
-                    <div className="w-full h-full bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
-                      <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl">E</span>
-                    </div>
+                  <img
+                    src="/profile-about.png"
+                  alt="Ebe Etiobhio"
+                    className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient if image not found
+                    e.currentTarget.style.display = 'none';
+                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (nextElement) {
+                      nextElement.style.display = 'block';
+                    }
+                  }}
+                />
+                  <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-pink-400 to-rose-500 hidden flex items-center justify-center">
+                    <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl">E</span>
                   </div>
                 </div>
                 
@@ -538,10 +536,10 @@ const About = () => {
                       </div>
                       <h5 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-4">How Psychology Shapes My Design Process</h5>
                       <p className="text-base sm:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
-                        Every design decision is informed by psychological principles. From reducing cognitive load
-                        through clear information hierarchy to leveraging behavioral economics for better user flows,
-                        I create interfaces that feel intuitive because they align with how humans naturally think and behave.
-                      </p>
+                          Every design decision is informed by psychological principles. From reducing cognitive load
+                          through clear information hierarchy to leveraging behavioral economics for better user flows,
+                          I create interfaces that feel intuitive because they align with how humans naturally think and behave.
+                        </p>
                     </div>
                     
                     <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">

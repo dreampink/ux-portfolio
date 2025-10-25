@@ -13,6 +13,46 @@ export default function CaseStudy() {
   
   const caseStudy = getCaseStudyBySlug(slug)
 
+  // Handle private projects
+  if (slug === 'polishpad') {
+    return (
+      <div className="min-h-screen bg-transparent text-zinc-900">
+        <Navigation />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-8">
+              <svg className="w-12 h-12 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-6">
+              Private Project
+            </h1>
+            <p className="text-xl text-zinc-600 mb-8 max-w-2xl mx-auto">
+              This case study is currently private and not available for public viewing. 
+              Please check out my other featured projects or get in touch to learn more about this work.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/work"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
+              >
+                <span className="text-white">View Other Projects</span>
+              </Link>
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-zinc-200 text-zinc-900 font-semibold rounded-xl hover:bg-zinc-50 transition-all duration-300"
+              >
+                Learn More About Me
+              </Link>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
       // Scroll detection for sticky process navigation - desktop only
       useEffect(() => {
         const handleScroll = () => {

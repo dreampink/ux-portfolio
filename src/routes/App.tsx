@@ -11,8 +11,9 @@ export default function App() {
   const cases = [
     { slug: 'sport-direct', title: 'Sports Direct' },
     { slug: 'cancer-research-uk', title: 'Cancer Research UK' },
-    { slug: 'polishpad', title: 'Polish Pad' },
     { slug: 'tesco', title: 'Tesco' },
+    { slug: 'marchcroft', title: 'Marchcroft' },
+    { slug: 'polishpad', title: 'Polish Pad' },
   ]
 
 
@@ -148,7 +149,7 @@ export default function App() {
                     <div className="text-xs sm:text-sm text-zinc-600 font-medium">Clients Served</div>
                   </div>
                   <div className="text-center lg:text-left">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">5+</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">4+</div>
                     <div className="text-xs sm:text-sm text-zinc-600 font-medium">Years Experience</div>
                   </div>
                   <div className="text-center lg:text-left">
@@ -196,6 +197,41 @@ export default function App() {
           </div>
         </section>
 
+        {/* Industries Marquee */}
+        <section className="mb-16 md:mb-20">
+          <div className="relative overflow-hidden">
+            <div className="flex animate-marquee whitespace-nowrap py-6">
+              <div className="flex items-center space-x-12 text-sm font-medium text-zinc-500 tracking-wide">
+                <span>Financial Services</span>
+                <span>E-commerce</span>
+                <span>Beauty Tech</span>
+                <span>Healthcare</span>
+                <span>Retail</span>
+                <span>Fintech</span>
+                <span>•</span>
+                <span>Accessibility</span>
+                <span>Design Systems</span>
+                <span>Behavioural Design</span>
+                <span>User Research</span>
+                <span>Data Visualisation</span>
+                <span>•</span>
+                <span>Financial Services</span>
+                <span>E-commerce</span>
+                <span>Beauty Tech</span>
+                <span>Healthcare</span>
+                <span>Retail</span>
+                <span>Fintech</span>
+                <span>•</span>
+                <span>Accessibility</span>
+                <span>Design Systems</span>
+                <span>Behavioural Design</span>
+                <span>User Research</span>
+                <span>Data Visualisation</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section id="projects" className="mb-24 md:mb-32">
           <div className="text-center mb-16">
@@ -206,7 +242,168 @@ export default function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {cases.map((c, index) => (
+            {cases.map((c, index) => {
+              const isPolishPad = c.slug === 'polishpad';
+              
+              if (isPolishPad) {
+                return (
+                  <div key={c.slug} className="block bg-white rounded-2xl border border-zinc-200 overflow-hidden shadow-sm opacity-75 cursor-not-allowed">
+                <div className="flex flex-col h-full">
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={`/project-${index + 1}.jpg`}
+                      alt={c.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (fallback) {
+                          fallback.style.display = 'flex';
+                        }
+                      }}
+                    />
+                    {/* Fallback gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 hidden flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-white/90 rounded-2xl flex items-center justify-center shadow-lg">
+                          <span className="text-2xl">🎨</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover overlay - only for clickable projects */}
+                    {!isPolishPad && (
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="flex items-center space-x-2 text-white">
+                          <span className="font-medium">View Case Study</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Privacy overlay for Polish Pad */}
+                    {isPolishPad && (
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div className="flex items-center space-x-2 text-white">
+                          <span className="font-medium">Private Project</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Project Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-pink-600">Case Study</span>
+                        {!isPolishPad && (
+                          <div className="flex items-center text-zinc-400 transition-colors">
+                            <span className="text-sm mr-1">View</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </div>
+                        )}
+                        {isPolishPad && (
+                          <div className="flex items-center text-zinc-400">
+                            <span className="text-sm mr-1">Private</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                      <h3 className="text-xl font-bold text-zinc-900 transition-colors mb-3">
+                        {c.title}
+                      </h3>
+                      <p className="text-sm text-zinc-600 leading-relaxed">
+                        {index === 0 && "Streamlined payment flows resulting in 35% reduction in drop-off rates and 28% increase in conversion, impacting 2M+ users."}
+                        {index === 1 && "Completely revamped onboarding experience with 42% increase in activation rates and 60% reduction in time-to-value."}
+                        {index === 2 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
+                        {index === 3 && "Transformed complex operational data into actionable visual insights, enabling 65% faster decision-making for technical teams."}
+                        {index === 4 && "Confidential Startup Project - methodology and results shared in interview"}
+                      </p>
+                    </div>
+                    
+                    {/* Tools/Tags */}
+                    <div className="mt-auto">
+                      <div className="flex flex-wrap gap-2">
+                        {index === 0 && ['UX Research', 'UI Design', 'Prototyping'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-blue-100 text-blue-700',
+                            'bg-purple-100 text-purple-700',
+                            'bg-indigo-100 text-indigo-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 1 && ['User Testing', 'Wireframing', 'Figma'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-cyan-100 text-cyan-700',
+                            'bg-teal-100 text-teal-700',
+                            'bg-emerald-100 text-emerald-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 2 && ['Mobile UX', 'IA Design', 'Usability'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-amber-100 text-amber-700',
+                            'bg-pink-100 text-pink-700',
+                            'bg-rose-100 text-rose-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 3 && ['Data Visualisation', 'UX Research', 'Dashboard Design'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-violet-100 text-violet-700',
+                            'bg-fuchsia-100 text-fuchsia-700',
+                            'bg-indigo-100 text-indigo-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 4 && ['Confidential', 'Private', 'Interview Only'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-gray-100 text-gray-700',
+                            'bg-slate-100 text-slate-700',
+                            'bg-zinc-100 text-zinc-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  </div>
+                );
+              }
+              
+              return (
               <Link
                 key={c.slug}
                 to={`/case/${c.slug}`}
@@ -267,8 +464,8 @@ export default function App() {
                       <p className="text-sm text-zinc-600 leading-relaxed">
                         {index === 0 && "Streamlined payment flows resulting in 35% reduction in drop-off rates and 28% increase in conversion, impacting 2M+ users."}
                         {index === 1 && "Completely revamped onboarding experience with 42% increase in activation rates and 60% reduction in time-to-value."}
-                        {index === 2 && "Created comprehensive analytics dashboard increasing user engagement by 55% and reducing time-to-insight by 40%."}
-                        {index === 3 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
+                        {index === 2 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
+                        {index === 3 && "Transformed complex operational data into actionable visual insights, enabling 65% faster decision-making for technical teams."}
                       </p>
                     </div>
                     
@@ -299,11 +496,11 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 2 && ['Data Viz', 'Dashboard', 'Analytics'].map((tag, tagIndex) => {
+                        {index === 2 && ['Mobile UX', 'IA Design', 'Usability'].map((tag, tagIndex) => {
                           const tagColors = [
-                            'bg-lime-100 text-lime-700',
-                            'bg-yellow-100 text-yellow-700',
-                            'bg-orange-100 text-orange-700'
+                            'bg-amber-100 text-amber-700',
+                            'bg-pink-100 text-pink-700',
+                            'bg-rose-100 text-rose-700'
                           ];
                           return (
                             <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
@@ -311,11 +508,11 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 3 && ['Mobile UX', 'IA Design', 'Usability'].map((tag, tagIndex) => {
+                        {index === 3 && ['Data Visualisation', 'UX Research', 'Dashboard Design'].map((tag, tagIndex) => {
                           const tagColors = [
-                            'bg-amber-100 text-amber-700',
-                            'bg-pink-100 text-pink-700',
-                            'bg-rose-100 text-rose-700'
+                            'bg-violet-100 text-violet-700',
+                            'bg-fuchsia-100 text-fuchsia-700',
+                            'bg-indigo-100 text-indigo-700'
                           ];
                           return (
                             <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
@@ -328,7 +525,8 @@ export default function App() {
                   </div>
                 </div>
             </Link>
-            ))}
+              );
+            })}
           </div>
         </section>
 
