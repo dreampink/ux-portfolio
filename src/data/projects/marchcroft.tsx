@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const marchcroftProject = {
   slug: 'marchcroft',
   title: 'Marchcroft',
