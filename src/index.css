@@ -475,4 +475,4 @@ button:focus-visible {
 .animate-palette-color-shift {
   animation: palette-color-shift 4s ease-in-out infinite;
 }
-// Trigger redeploy - Sat Oct 25 16:57:39 BST 2025
+/* Trigger redeploy */
