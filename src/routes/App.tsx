@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import ProcessDiagram from '../components/ProcessDiagram'
+import recommeHeader from '../assets/recomme/recomme.png'
 
 export default function App() {
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
@@ -12,6 +13,7 @@ export default function App() {
     { slug: 'sport-direct', title: 'Sports Direct', image: '/project-1.jpg' },
     { slug: 'cancer-research-uk', title: 'Cancer Research UK', image: '/project-2.jpg' },
     { slug: 'tesco', title: 'Tesco', image: '/project-3.jpg' },
+    { slug: 'recomme', title: 'Re–up', image: recommeHeader },
     // { slug: 'marchcroft', title: 'Marchcroft', image: '/project-4.jpg' },
     { slug: 'polishpad', title: 'Polish Pad', image: '/project-5.jpg' },
   ]
@@ -323,7 +325,7 @@ export default function App() {
                         {index === 0 && "Streamlined payment flows resulting in 35% reduction in drop-off rates and 28% increase in conversion, impacting 2M+ users."}
                         {index === 1 && "Completely revamped onboarding experience with 42% increase in activation rates and 60% reduction in time-to-value."}
                         {index === 2 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
-                        {index === 3 && "Transformed complex operational data into actionable visual insights, enabling 65% faster decision-making for technical teams."}
+                        {index === 3 && "Proof of concept for sustainable fashion recycling, validating platform engagement and attracting multiple brands for pilot integration."}
                         {index === 4 && "Confidential Startup Project - methodology and results shared in interview"}
                       </p>
                     </div>
@@ -367,11 +369,11 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 3 && ['Data Visualisation', 'UX Research', 'Dashboard Design'].map((tag, tagIndex) => {
+                        {index === 3 && ['Sustainability', 'UX Research', 'Prototyping'].map((tag, tagIndex) => {
                           const tagColors = [
-                            'bg-violet-100 text-violet-700',
-                            'bg-fuchsia-100 text-fuchsia-700',
-                            'bg-indigo-100 text-indigo-700'
+                            'bg-green-100 text-green-700',
+                            'bg-emerald-100 text-emerald-700',
+                            'bg-teal-100 text-teal-700'
                           ];
                           return (
                             <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>

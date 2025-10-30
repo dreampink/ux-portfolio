@@ -5,7 +5,6 @@ export const marchcroftProject = {
   client: 'Marchcroft Financial Services',
   date: '2024',
   role: 'UX Designer',
-  tools: 'Figma, Miro, User Research, Data Visualisation',
   impact: 'Improved data comprehension and decision-making speed for financial teams',
   headerImage: '/project-4.jpg', // Marchcroft is now at index 3, so uses project-4.jpg
   stages: {

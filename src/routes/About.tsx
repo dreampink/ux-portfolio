@@ -44,14 +44,11 @@ const About = () => {
                 {/* Right Column - Text Content */}
                 <div className="order-1 lg:order-2">
                   <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed">
-                    I'm a UX/UI designer passionate about creating meaningful digital experiences. 
-                    I specialise in user research, interface design, and design systems that drive business results.
+                    I'm a Product Designer blending psychology, design thinking, and technical fluency to create intuitive, human-centered experiences. With 5 years across finance, e-commerce, and beauty tech, I translate behavioural insights into inclusive, scalable designs that balance empathy with business goals.
                     <br /><br />
-                    I believe design is not just about making things look beautiful—it's about understanding human behavior, solving real problems, and creating meaningful connections between people and technology.
+                    My foundation in front-end engineering helps me design solutions that are not just beautiful, but buildable, accessible, and impactful.
                     <br /><br />
                     My approach combines analytical thinking with creative intuition, always grounded in user research and psychological principles. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave.
-                    <br /><br />
-                    I see design as a conversation between the user and the product, where every interaction tells a story and every element serves a purpose in creating a seamless, delightful experience.
                   </p>
                 </div>
               </div>
@@ -69,22 +66,22 @@ const About = () => {
                   <div className="space-y-3 md:space-y-4">
                     {[
                       { 
-                        skill: 'User Research & Strategy', 
+                        skill: 'User Research', 
                         expertise: 'Expert',
-                        impact: 'Led research that increased user satisfaction by 40%',
-                        tools: 'UserTesting, Maze, Hotjar, Figma'
+                        impact: 'Surveys, User Interviews, Usability Testing, Personas, Journey Mapping, Task Flow Analysis, Card Sorting',
+                        tools: 'Miro, Full Story, Google Analytics'
                       },
                       { 
                         skill: 'UI/UX Design', 
                         expertise: 'Expert',
-                        impact: 'Designed interfaces used by 100K+ users',
-                        tools: 'Figma, Adobe Creative Suite, Principle'
+                        impact: 'Sketching, Storyboarding, Information Architecture, Wireframing, Prototyping, Design Systems, UI Design, Interaction Design, Accessibility (WCAG 2.1 AA)',
+                        tools: 'Figma, Adobe Suite, Notion'
                       },
                       { 
-                        skill: 'Design Systems', 
+                        skill: 'Front-End Development', 
                         expertise: 'Advanced',
-                        impact: 'Built scalable design systems for 3 companies',
-                        tools: 'Figma, Storybook, Zeroheight'
+                        impact: 'Building interfaces with React, TypeScript, and Tailwind CSS for scalable, accessible experiences',
+                        tools: 'React.js, TypeScript, HTML5, CSS3, Tailwind CSS, GSAP, Three.js, Framer Motion'
                       }
                     ].map((item, index) => (
                       <div key={index} className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-pink-100">
@@ -121,19 +118,79 @@ const About = () => {
                     {[
                       // Expert Level
                       { name: "Figma", level: "Expert" },
-                      { name: "Sketch", level: "Expert" },
-                      { name: "Adobe XD", level: "Expert" },
-                      { name: "Principle", level: "Expert" },
+                      { name: "Adobe Suite", level: "Expert" },
                       // Advanced Level
-                      { name: "Framer", level: "Advanced" },
-                      { name: "InVision", level: "Advanced" },
-                      { name: "Zeplin", level: "Advanced" },
-                      { name: "Optimizely", level: "Advanced" },
-                      // Intermediate Level
-                      { name: "After Effects", level: "Intermediate" },
-                      { name: "Photoshop", level: "Intermediate" },
-                      { name: "Illustrator", level: "Intermediate" },
-                      { name: "Maze", level: "Intermediate" }
+                      { name: "Full Story", level: "Advanced" },
+                      { name: "Miro", level: "Advanced" },
+                      { name: "Asana", level: "Advanced" },
+                      { name: "Jira", level: "Advanced" },
+                      { name: "Notion", level: "Advanced" }
+                    ].map((skill, index) => (
+                      <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
+                        <span className="text-xs sm:text-sm font-medium text-zinc-900">
+                          {skill.name}
+                        </span>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          skill.level === 'Expert' ? 'bg-pink-100 text-pink-700' : 
+                          skill.level === 'Advanced' ? 'bg-green-100 text-green-700' : 
+                          'bg-zinc-100 text-zinc-600'
+                        }`}>
+                          {skill.level}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* UX Skillset */}
+                <div className="mt-6 md:mt-8">
+                  <h4 className="text-base sm:text-lg font-bold text-zinc-900 mb-3 md:mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></span>
+                    UX Skillset
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                    {[
+                      { name: "UX Design", level: "Expert" },
+                      { name: "UX Research", level: "Expert" },
+                      { name: "Prototyping", level: "Expert" },
+                      { name: "Usability Testing", level: "Expert" },
+                      { name: "Product Management", level: "Advanced" },
+                      { name: "Data Analysis", level: "Advanced" },
+                      { name: "Component Libraries & Design Systems", level: "Expert" },
+                      { name: "Video Editing & Motion Graphics", level: "Advanced" }
+                    ].map((skill, index) => (
+                      <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
+                        <span className="text-xs sm:text-sm font-medium text-zinc-900">
+                          {skill.name}
+                        </span>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          skill.level === 'Expert' ? 'bg-pink-100 text-pink-700' : 
+                          skill.level === 'Advanced' ? 'bg-green-100 text-green-700' : 
+                          'bg-zinc-100 text-zinc-600'
+                        }`}>
+                          {skill.level}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Methodologies */}
+                <div className="mt-6 md:mt-8">
+                  <h4 className="text-base sm:text-lg font-bold text-zinc-900 mb-3 md:mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></span>
+                    Methodologies
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                    {[
+                      { name: "Design Thinking", level: "Expert" },
+                      { name: "Agile & Scrum", level: "Advanced" },
+                      { name: "Lean UX", level: "Advanced" },
+                      { name: "Human-Centered Design", level: "Expert" },
+                      { name: "A/B Testing", level: "Advanced" },
+                      { name: "Customer Journey Mapping", level: "Expert" },
+                      { name: "Interaction Design", level: "Expert" },
+                      { name: "Service Design", level: "Advanced" }
                     ].map((skill, index) => (
                       <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
                         <span className="text-xs sm:text-sm font-medium text-zinc-900">
@@ -171,15 +228,13 @@ const About = () => {
                       { name: "HTML5", level: "Expert", icon: "🌐" },
                       { name: "CSS3", level: "Expert", icon: "🎨" },
                       // Advanced Level
-                      { name: "JavaScript", level: "Advanced", icon: "⚡" },
-                      { name: "React", level: "Advanced", icon: "⚛️" },
-                      { name: "Python", level: "Advanced", icon: "🐍" },
+                      { name: "React.js", level: "Advanced", icon: "⚛️" },
+                      { name: "TypeScript", level: "Advanced", icon: "📘" },
+                      { name: "Tailwind CSS", level: "Advanced", icon: "🎨" },
                       { name: "GSAP", level: "Advanced", icon: "✨" },
-                      { name: "WCAG 2.2", level: "Advanced", icon: "♿" },
+                      { name: "Framer Motion", level: "Advanced", icon: "🎬" },
                       // Intermediate Level
-                      { name: "WebGL", level: "Intermediate", icon: "🎮" },
-                      { name: "Three.js", level: "Intermediate", icon: "🔺" },
-                      { name: "Node.js", level: "Intermediate", icon: "🟢" }
+                      { name: "Three.js", level: "Intermediate", icon: "🔺" }
                     ].map((skill, index) => (
                       <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
                         <div className="flex items-center space-x-2">
@@ -266,60 +321,6 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* How I Think as a Designer Section */}
-                <div className="mt-8">
-                  <h4 className="text-lg font-bold tracking-tight mb-4 text-zinc-900">How I Think as a Designer</h4>
-                  
-                  <div className="space-y-3">
-                    {[
-                      {
-                        title: "Empathise",
-                        description: "Understanding users deeply through research, interviews, and observation to uncover real needs and pain points.",
-                        icon: "💝",
-                        color: "from-pink-50 to-rose-50",
-                        borderColor: "border-pink-200"
-                      },
-                      {
-                        title: "Define",
-                        description: "Synthesizing research insights to define the core problem and create a clear problem statement.",
-                        icon: "🎯",
-                        color: "from-blue-50 to-indigo-50",
-                        borderColor: "border-blue-200"
-                      },
-                      {
-                        title: "Ideate",
-                        description: "Generating creative solutions through brainstorming, sketching, and collaborative ideation sessions.",
-                        icon: "💡",
-                        color: "from-yellow-50 to-amber-50",
-                        borderColor: "border-yellow-200"
-                      },
-                      {
-                        title: "Prototype",
-                        description: "Creating tangible representations through wireframes, mockups, and interactive prototypes.",
-                        icon: "🛠️",
-                        color: "from-purple-50 to-violet-50",
-                        borderColor: "border-purple-200"
-                      },
-                      {
-                        title: "Test",
-                        description: "Validating solutions through user testing, gathering feedback, and iterating based on real user behavior.",
-                        icon: "🧪",
-                        color: "from-green-50 to-emerald-50",
-                        borderColor: "border-green-200"
-                      }
-                    ].map((step, index) => (
-                      <div key={index} className={`bg-gradient-to-r ${step.color} rounded-lg border ${step.borderColor} p-3`}>
-                        <div className="flex items-start gap-2">
-                          <div className="text-lg flex-shrink-0">{step.icon}</div>
-                          <div className="flex-1">
-                            <h5 className="font-semibold text-zinc-900 mb-1 text-xs">{step.title}</h5>
-                            <p className="text-xs text-zinc-600 leading-relaxed">{step.description}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
 
               {/* Right Column - Experience & Achievements */}
@@ -436,6 +437,57 @@ const About = () => {
               </div>
             </div>
 
+            {/* How I Think as a Designer - Full Width */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">How I Think as a Designer</h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {[
+                  {
+                    title: "Empathise",
+                    description: "Understanding users deeply through research, interviews, and observation to uncover real needs and pain points.",
+                    icon: "💝",
+                    color: "from-pink-50 to-rose-50",
+                    borderColor: "border-pink-200"
+                  },
+                  {
+                    title: "Define",
+                    description: "Synthesizing research insights to define the core problem and create a clear problem statement.",
+                    icon: "🎯",
+                    color: "from-blue-50 to-indigo-50",
+                    borderColor: "border-blue-200"
+                  },
+                  {
+                    title: "Ideate",
+                    description: "Generating creative solutions through brainstorming, sketching, and collaborative ideation sessions.",
+                    icon: "💡",
+                    color: "from-yellow-50 to-amber-50",
+                    borderColor: "border-yellow-200"
+                  },
+                  {
+                    title: "Prototype",
+                    description: "Creating tangible representations through wireframes, mockups, and interactive prototypes.",
+                    icon: "🛠️",
+                    color: "from-purple-50 to-violet-50",
+                    borderColor: "border-purple-200"
+                  },
+                  {
+                    title: "Test",
+                    description: "Validating solutions through user testing, gathering feedback, and iterating based on real user behavior.",
+                    icon: "🧪",
+                    color: "from-green-50 to-emerald-50",
+                    borderColor: "border-green-200"
+                  }
+                ].map((step, index) => (
+                  <div key={index} className={`bg-gradient-to-r ${step.color} rounded-xl border ${step.borderColor} p-4`}>
+                    <div className="text-center mb-3">
+                      <div className="text-3xl mb-2">{step.icon}</div>
+                      <h5 className="font-semibold text-zinc-900 mb-2 text-sm">{step.title}</h5>
+                    </div>
+                    <p className="text-xs text-zinc-600 leading-relaxed text-center">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Understanding Human Behavior - Full Width */}
             <div className="mb-16">
