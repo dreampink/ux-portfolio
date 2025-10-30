@@ -10,7 +10,7 @@ export const sportProject = {
   slug: 'sport-direct',
   title: 'Sports Direct App Redesign',
   client: 'Frasers Group (Sports Direct)',
-  date: '2023',
+  date: '2022-2023',
   role: 'Lead UX/UI Designer',
   impact: '+18.86% conversion increase; 6% → 12% revenue share from app',
   headerImage: '/project-1.jpg',
