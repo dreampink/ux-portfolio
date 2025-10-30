@@ -232,6 +232,24 @@ export const polishpadProject = {
           </div>
         </div>
       )
+    },
+
+    learning: {
+      content: (
+        <div className="space-y-6">
+          <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+            <li>
+              Mobile-first design is essential for analytics dashboards as users increasingly access data on-the-go.
+            </li>
+            <li>
+              Personalization significantly increases user engagement — allowing users to customize their dashboard layout drove adoption.
+            </li>
+            <li>
+              Visual hierarchy and progressive disclosure help users navigate complex data without feeling overwhelmed.
+            </li>
+          </ul>
+        </div>
+      )
     }
   }
 };

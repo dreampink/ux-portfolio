@@ -76,7 +76,7 @@ Each stage should include:
 - **Approach**: How did you research and understand the problem?
 - **Problem**: Deep dive into the specific issues
 - **Solution**: What did you design and why?
-- **Results**: Measurable outcomes and impact
+- **Results**: Measurable §s and impact
 
 ### Visual Elements
 Use these Tailwind classes for consistent styling:

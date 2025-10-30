@@ -8,7 +8,7 @@ export const projects = [
   sportProject,
   cancerResearchUKProject,
   tescoProject,
-  marchcroftProject,
+  // marchcroftProject,
   polishpadProject
 ];
 

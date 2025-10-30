@@ -5,7 +5,7 @@ const Footer = () => {
     { slug: 'sport-direct', title: 'Sports Direct' },
     { slug: 'cancer-research-uk', title: 'Cancer Research UK' },
     { slug: 'tesco', title: 'Tesco' },
-    { slug: 'marchcroft', title: 'Marchcroft' },
+    // { slug: 'marchcroft', title: 'Marchcroft' },
     { slug: 'polishpad', title: 'Polish Pad' },
   ]
 

@@ -1,151 +1,241 @@
 
+import sd1 from '../../assets/sports-direct/sd-1.png'
+import sd2 from '../../assets/sports-direct/sd-2.png'
+import sd3 from '../../assets/sports-direct/sd-3.png'
+import sd4 from '../../assets/sports-direct/sd-4.png'
+import sd5mov from '../../assets/sports-direct/sd-5.mov'
+import sd6 from '../../assets/sports-direct/sd-6.png'
+
 export const sportProject = {
   slug: 'sport-direct',
-  title: 'Sports Direct',
-  client: 'FinTech Startup',
-  date: '2024',
-  role: 'Lead UX Designer',
-  tools: 'Figma, Principle, Maze, Google Analytics',
-  impact: '35% reduction in drop-off rates, 28% increase in conversion',
+  title: 'Sports Direct App Redesign',
+  client: 'Frasers Group (Sports Direct)',
+  date: '2023',
+  role: 'Lead UX/UI Designer',
+  impact: '+18.86% conversion increase; 6% → 12% revenue share from app',
   headerImage: '/project-1.jpg',
-  description: 'Redesigned the payment flow for a fintech application, reducing drop-off rates by 35% and increasing conversion by 28%.',
-  
-  // Process stages content
+  description:
+    'Built a personalised app experience to drive greater customer engagement, delivering +18.86% daily average conversion rate and doubling app revenue share.',
+
   stages: {
-    tension: {
-      content: (
-        <div className="space-y-6">
-          <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-red-800 mb-3">The Problem</h4>
-            <p className="text-red-700 leading-relaxed">
-              Users were abandoning the payment process at a 45% rate, with 60% of drop-offs occurring 
-              during the payment method selection step. The existing flow had 8 steps and required 
-              users to re-enter information they had already provided.
-            </p>
-          </div>
-          
-          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-orange-800 mb-3">Business Impact</h4>
-            <ul className="text-orange-700 space-y-2">
-              <li>• Lost revenue: $2.3M annually due to abandoned payments</li>
-              <li>• Customer support tickets increased by 40%</li>
-              <li>• User satisfaction score dropped to 2.1/5</li>
-            </ul>
-          </div>
-        </div>
-      )
-    },
-    
-    approach: {
-      content: (
-        <div className="space-y-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-blue-800 mb-3">Research Methods</h4>
-            <ul className="text-blue-700 space-y-2">
-              <li>• User interviews with 15 payment abandoners</li>
-              <li>• Usability testing with 20 participants</li>
-              <li>• Analytics analysis of payment funnel</li>
-              <li>• Competitive analysis of 8 payment systems</li>
-            </ul>
-          </div>
-          
-          <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-purple-800 mb-3">Key Insights</h4>
-            <ul className="text-purple-700 space-y-2">
-              <li>• Users wanted to save payment methods for future use</li>
-              <li>• Security concerns were the #1 reason for abandonment</li>
-              <li>• Mobile users needed larger touch targets</li>
-              <li>• Progress indication was crucial for completion</li>
-            </ul>
-          </div>
-        </div>
-      )
-    },
-    
     problem: {
       content: (
         <div className="space-y-6">
-          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-gray-800 mb-3">Root Causes</h4>
-            <ul className="text-gray-700 space-y-2">
-              <li>• Too many form fields requiring manual entry</li>
-              <li>• No saved payment method options</li>
-              <li>• Unclear security indicators</li>
-              <li>• Poor mobile experience</li>
-              <li>• No progress indication</li>
-            </ul>
-          </div>
-          
-          <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-yellow-800 mb-3">User Pain Points</h4>
-            <p className="text-yellow-700 leading-relaxed">
-              "I always get nervous entering my card details online. I wish I could just use 
-              my saved payment method like on other sites." - Sarah, 28, Marketing Manager
+          <p>
+            Sports Direct's legacy app had strong brand equity but weak usability. It was cluttered, visually inconsistent, and
+            lacked personalisation, limiting engagement and conversion.
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+            <li>Users expected the app to remember their preferences and deliver content tailored to their interests.</li>
+            <li>Customer feedback indicated frustration with static content and lack of relevance.</li>
+          </ul>
+          <div className="bg-zinc-50 rounded-xl p-4 border border-zinc-200">
+            <p className="text-zinc-700 italic">
+              "I would expect the app to remember my size when I return."
+              <br />"I like to be shown products I'm interested in, it saves time."
             </p>
           </div>
         </div>
+      ),
+      media: (
+        <figure className="space-y-3">
+          <img
+            src={sd1}
+            alt="Heuristic review revealed cluttered layouts, accessibility issues, and redundant navigation elements"
+            className="w-full h-auto rounded-xl border border-zinc-200"
+          />
+          <figcaption className="text-sm text-zinc-600">
+            Heuristic review revealed cluttered layouts, accessibility issues, and redundant navigation elements.
+          </figcaption>
+        </figure>
       )
     },
-    
-    solution: {
+
+    research: {
       content: (
         <div className="space-y-6">
-          <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-green-800 mb-3">Design Solutions</h4>
-            <ul className="text-green-700 space-y-2">
-              <li>• Reduced payment steps from 8 to 3</li>
-              <li>• Added saved payment method selection</li>
-              <li>• Implemented clear security badges</li>
-              <li>• Created mobile-optimized interface</li>
-              <li>• Added progress indicator</li>
+          <p>
+            Discovery combined usability testing, competitor analysis, and desk research to understand user expectations and
+            market positioning.
+          </p>
+          <div className="space-y-3">
+            <h4 className="font-semibold">Key findings:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+              <li>The homepage was overwhelming and visually dense, increasing cognitive load.</li>
+              <li>Touchpoints were too small, failing accessibility standards.</li>
+              <li>The redundant hamburger menu created confusion and duplicated navigation.</li>
+              <li>Personalisation opportunities were underused, content was static, not behaviour-driven.</li>
             </ul>
           </div>
-          
-          <div className="bg-teal-50 border border-teal-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-teal-800 mb-3">Key Features</h4>
-            <ul className="text-teal-700 space-y-2">
-              <li>• One-click payment with saved methods</li>
-              <li>• Real-time form validation</li>
-              <li>• SSL security indicators</li>
-              <li>• Guest checkout option</li>
-              <li>• Mobile-first responsive design</li>
-            </ul>
+          <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+            <p className="text-blue-900 font-medium italic">
+              "80% of respondents indicated they are more likely to do business with a company if it offers personalised
+              experiences." - Epsilon Survey
+            </p>
           </div>
+        </div>
+      ),
+      media: (
+        <figure className="space-y-3">
+          <img
+            src={sd2}
+            alt="Annotated heuristic review identifying key usability and accessibility issues on the existing homepage"
+            className="w-full h-auto rounded-xl border border-zinc-200"
+          />
+          <figcaption className="text-sm text-zinc-600">
+            Annotated heuristic review identifying key usability and accessibility issues on the existing homepage.
+          </figcaption>
+        </figure>
+      )
+    },
+
+    tension: {
+      content: (
+        <div className="space-y-6">
+          <p>The team balanced competing priorities across design, business, and technology.</p>
+          <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+            <li>Visual boldness versus accessibility compliance, creating energetic brand expression while ensuring WCAG standards.</li>
+            <li>Personalisation versus simplicity and control, delivering tailored experiences without overwhelming users.</li>
+            <li>Business commercial needs versus user autonomy, balancing revenue targets with genuine user value.</li>
+            <li>Design-led innovation versus technical feasibility, pushing creative boundaries within existing platform constraints.</li>
+          </ul>
         </div>
       )
     },
-    
+
+    approach: {
+      content: (
+        <div className="space-y-6">
+          <p>Each design lead owned a major part of the redesign. My focus: the homepage experience.</p>
+          <div className="space-y-4">
+            <div className="space-y-3">
+              <h4 className="font-semibold">Phase 1: Fix the fundamentals</h4>
+              <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+                <li>Reduce visual clutter and improve hierarchy.</li>
+                <li>Improve accessibility and touch target sizing.</li>
+                <li>Create a flexible modular framework for A/B testing.</li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="font-semibold">Phase 2: Introducing personalisation</h4>
+              <p>
+                We introduced a data-driven recommendation layer using Optimizely and Amplience integrations, enabling dynamic
+                product recommendations, tailored content blocks, and flexible CMS control.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      media: (
+        <div className="space-y-6">
+          <figure className="space-y-3">
+            <img
+              src={sd3}
+              alt="Early prototypes exploring cleaner, bolder layouts with improved hierarchy and accessibility"
+              className="w-full h-auto rounded-xl border border-zinc-200"
+            />
+            <figcaption className="text-sm text-zinc-600">
+              Early prototypes exploring cleaner, bolder layouts with improved hierarchy and accessibility.
+            </figcaption>
+          </figure>
+          <figure className="space-y-3">
+            <img
+              src={sd4}
+              alt="Mapping logic and content sources for personalised homepage components"
+              className="w-full h-auto rounded-xl border border-zinc-200"
+            />
+            <figcaption className="text-sm text-zinc-600">
+              Mapping logic and content sources for personalised homepage components.
+            </figcaption>
+          </figure>
+        </div>
+      )
+    },
+
+    solution: {
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h4 className="font-semibold">A cleaner, bolder look</h4>
+            <p>
+              Leveraging Sports Direct's brand identity, I redesigned the homepage to be visually bold, tactile, and simplified.
+              We emphasised large, clear imagery and concise CTAs.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+              <li>Simplified visual hierarchy and spacing.</li>
+              <li>Larger, tappable components.</li>
+              <li>Clearer modular structure for experimentation.</li>
+              <li>Accessibility-compliant text and contrast.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold">Experiment: Control through customisation</h4>
+            <p>
+              We designed a customisable Quick Links feature where users could add or reorder shortcuts. Preferences set during
+              onboarding appeared instantly on the homepage, combining business-specified and user-specified links.
+            </p>
+            <p>I collaborated closely with developers to ensure technical feasibility and seamless integration.</p>
+          </div>
+        </div>
+      ),
+      media: (
+        <div className="space-y-6">
+          <figure className="space-y-3">
+            <img
+              src={sd6}
+              alt="Customisable quick links prototype,blending business logic with user control"
+              className="w-full h-auto rounded-xl border border-zinc-200"
+            />
+            <figcaption className="text-sm text-zinc-600">
+              Customisable quick links prototype, blending business logic with user control.
+            </figcaption>
+          </figure>
+          <figure className="space-y-3">
+            <video src={sd5mov} autoPlay loop muted playsInline className="w-full h-auto rounded-xl border border-zinc-200">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption className="text-sm text-zinc-600">
+              Interactive prototype walkthrough demonstrating the Quick Links customisation flow.
+            </figcaption>
+          </figure>
+        </div>
+      )
+    },
+
     results: {
       content: (
         <div className="space-y-6">
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-emerald-800 mb-3">Quantitative Results</h4>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-600">35%</div>
-                <div className="text-sm text-emerald-700">Reduction in drop-off rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-600">28%</div>
-                <div className="text-sm text-emerald-700">Increase in conversion</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-600">4.2/5</div>
-                <div className="text-sm text-emerald-700">User satisfaction score</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-600">$1.8M</div>
-                <div className="text-sm text-emerald-700">Additional revenue</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6">
-            <h4 className="font-semibold text-indigo-800 mb-3">Qualitative Feedback</h4>
-            <p className="text-indigo-700 leading-relaxed italic">
-              "The new payment process is so much easier! I can use my saved card and 
-              complete the purchase in under 30 seconds." - Mike, 34, Business Owner
-            </p>
+          <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+            <li>
+              <span className="font-semibold">+18.86% increase</span> in daily average conversion rate.
+            </li>
+            <li>
+              Revenue mix growth from <span className="font-semibold">6% → 12%</span> for app channels.
+            </li>
+            <li>A flexible homepage framework enabling continuous optimisation by the operations team.</li>
+            <li>
+              Users understood customisable links immediately; those who engaged described the experience as "modern and
+              convenient".
+            </li>
+          </ul>
+        </div>
+      )
+    },
+
+    learning: {
+      content: (
+        <div className="space-y-6">
+          <p>This project reinforced principles of large-scale UX delivery:</p>
+          <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+            <li>Strong collaboration across design, tech, and operations ensures feasibility and adoption.</li>
+            <li>Accessibility and clarity first, the foundation for any innovation.</li>
+            <li>Personalisation ≠ complexity, users value relevance, but also control.</li>
+            <li>Design for evolution, modular frameworks empower teams to iterate and grow.</li>
+          </ul>
+          <div className="bg-zinc-50 rounded-xl p-4 border border-zinc-200">
+            <p className="text-zinc-700 italic">"To find ideas, find problems. To find problems, talk to people."</p>
           </div>
         </div>
       )

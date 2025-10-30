@@ -594,6 +594,35 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
   const Icon = STAGES.find((s) => s.key === stage)?.icon ?? ChevronRight;
   const phaseKey = STAGE_PHASE[stage];
   const phase = PHASES[phaseKey];
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
+  const mediaContainerRef = useRef<HTMLDivElement | null>(null);
+  const hasMedia = Boolean(stageData.media);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setLightboxImage(null);
+      }
+    }
+    if (lightboxImage) {
+      window.addEventListener('keydown', onKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxImage]);
+
+  const handleMediaClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const target = e.target as HTMLElement;
+    if (target && target.tagName === 'IMG') {
+      const img = target as HTMLImageElement;
+      if (img.src) {
+        setLightboxImage({ src: img.src, alt: img.alt || '' });
+      }
+    }
+  };
   
   return (
     <div className={`${isCaseStudy ? 'p-4 sm:p-6 lg:p-8 pt-28' : 'p-8'}`}>
@@ -642,7 +671,7 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
       </div>
 
       {/* Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <div className={`grid grid-cols-1 ${hasMedia ? 'lg:grid-cols-2' : ''} gap-6 lg:gap-8`}>
         {/* Left: Content */}
         <div className="space-y-4 lg:space-y-6">
         {stageData.content && (
@@ -651,45 +680,71 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
           </div>
         )}
 
-          {/* Key Insights - Improved mobile styling */}
-          <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-zinc-200">
-            <h4 className="font-semibold text-zinc-900 mb-3 text-sm lg:text-base">Key Insights</h4>
-            <ul className="space-y-2 text-xs lg:text-sm text-zinc-600">
-              <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
-                <span>This stage focuses on understanding the core challenges</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
-                <span>Research-driven approach ensures data-backed decisions</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
-                <span>Iterative process allows for continuous improvement</span>
-              </li>
-            </ul>
-        </div>
+          {/* Key Insights - Hide on case study pages to avoid duplication */}
+          {!isCaseStudy && (
+            <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-zinc-200">
+              <h4 className="font-semibold text-zinc-900 mb-3 text-sm lg:text-base">Key Insights</h4>
+              <ul className="space-y-2 text-xs lg:text-sm text-zinc-600">
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                  <span>This stage focuses on understanding the core challenges</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                  <span>Research-driven approach ensures data-backed decisions</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"></div>
+                  <span>Iterative process allows for continuous improvement</span>
+                </li>
+              </ul>
+            </div>
+          )}
       </div>
       
         {/* Right: Media */}
-        <div className="space-y-4 lg:space-y-6">
-        {stageData.media ? (
-            <div className="space-y-4">
+        {hasMedia && (
+          <div className="space-y-4 lg:space-y-6">
+            <div className="text-xs text-zinc-500 px-1">Click any image to enlarge</div>
+            <div
+              ref={mediaContainerRef}
+              onClick={handleMediaClick}
+              className="space-y-4 [&_img]:cursor-zoom-in [&_img]:transition-transform [&_img:hover]:scale-[1.01]"
+            >
               {stageData.media}
             </div>
-          ) : (
-            <div className="aspect-[4/3] rounded-xl lg:rounded-2xl border-2 border-dashed border-zinc-300 grid place-items-center text-zinc-500 bg-gradient-to-br from-zinc-50 to-zinc-100">
-              <div className="text-center px-4">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-zinc-200 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+
+            {/* Lightbox Modal */}
+            {lightboxImage && (
+              <div
+                className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4"
+                onClick={() => setLightboxImage(null)}
+                role="dialog"
+                aria-modal="true"
+              >
+                <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    className="absolute top-2 right-2 bg-white rounded-full w-10 h-10 shadow-lg border border-zinc-200 hover:bg-zinc-50 flex items-center justify-center transition-colors z-50"
+                    onClick={() => setLightboxImage(null)}
+                    aria-label="Close"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                  <img
+                    src={lightboxImage.src}
+                    alt={lightboxImage.alt}
+                    className="w-full h-auto rounded-xl shadow-2xl relative z-0"
+                  />
+                  {lightboxImage.alt && (
+                    <div className="mt-3 text-sm text-zinc-200 text-center">{lightboxImage.alt}</div>
+                  )}
                 </div>
-                <p className="text-xs lg:text-sm font-medium">Media Content</p>
               </div>
+            )}
           </div>
         )}
-        </div>
       </div>
     </div>
   );

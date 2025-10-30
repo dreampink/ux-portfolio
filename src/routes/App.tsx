@@ -12,7 +12,7 @@ export default function App() {
     { slug: 'sport-direct', title: 'Sports Direct', image: '/project-1.jpg' },
     { slug: 'cancer-research-uk', title: 'Cancer Research UK', image: '/project-2.jpg' },
     { slug: 'tesco', title: 'Tesco', image: '/project-3.jpg' },
-    { slug: 'marchcroft', title: 'Marchcroft', image: '/project-4.jpg' },
+    // { slug: 'marchcroft', title: 'Marchcroft', image: '/project-4.jpg' },
     { slug: 'polishpad', title: 'Polish Pad', image: '/project-5.jpg' },
   ]
 
@@ -202,12 +202,10 @@ export default function App() {
           <div className="relative overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap py-6">
               <div className="flex items-center space-x-12 text-sm font-medium text-zinc-500 tracking-wide">
-                <span>Financial Services</span>
                 <span>E-commerce</span>
                 <span>Beauty Tech</span>
                 <span>Healthcare</span>
                 <span>Retail</span>
-                <span>Fintech</span>
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
@@ -215,12 +213,10 @@ export default function App() {
                 <span>User Research</span>
                 <span>Data Visualisation</span>
                 <span>•</span>
-                <span>Financial Services</span>
                 <span>E-commerce</span>
                 <span>Beauty Tech</span>
                 <span>Healthcare</span>
-                <span>Retail</span>
-                <span>Fintech</span>
+                <span>Retail</span>       
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
@@ -335,7 +331,7 @@ export default function App() {
                     {/* Tools/Tags */}
                     <div className="mt-auto">
                       <div className="flex flex-wrap gap-2">
-                        {index === 0 && ['UX Research', 'UI Design', 'Prototyping'].map((tag, tagIndex) => {
+                        {index === 0 && ['App Design', 'Personalisation', 'UI Design'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-blue-100 text-blue-700',
                             'bg-purple-100 text-purple-700',
@@ -347,7 +343,7 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 1 && ['User Testing', 'Wireframing', 'Figma'].map((tag, tagIndex) => {
+                        {index === 1 && ['UX Design', 'Design Systems', 'Accessibility'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-cyan-100 text-cyan-700',
                             'bg-teal-100 text-teal-700',
@@ -359,7 +355,7 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 2 && ['Mobile UX', 'IA Design', 'Usability'].map((tag, tagIndex) => {
+                        {index === 2 && ['UX Research', 'Service Design', 'Facilitation'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-amber-100 text-amber-700',
                             'bg-pink-100 text-pink-700',
@@ -472,7 +468,7 @@ export default function App() {
                     {/* Tools/Tags */}
                     <div className="mt-auto">
                       <div className="flex flex-wrap gap-2">
-                        {index === 0 && ['UX Research', 'UI Design', 'Prototyping'].map((tag, tagIndex) => {
+                        {index === 0 && ['App Design', 'Personalisation', 'UI Design'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-blue-100 text-blue-700',
                             'bg-purple-100 text-purple-700',
@@ -484,7 +480,7 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 1 && ['User Testing', 'Wireframing', 'Figma'].map((tag, tagIndex) => {
+                        {index === 1 && ['UX Design', 'Design Systems', 'Accessibility'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-cyan-100 text-cyan-700',
                             'bg-teal-100 text-teal-700',
@@ -496,7 +492,7 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 2 && ['Mobile UX', 'IA Design', 'Usability'].map((tag, tagIndex) => {
+                        {index === 2 && ['UX Research', 'Service Design', 'Facilitation'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-amber-100 text-amber-700',
                             'bg-pink-100 text-pink-700',

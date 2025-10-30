@@ -13,46 +13,6 @@ export default function CaseStudy() {
   
   const caseStudy = getCaseStudyBySlug(slug)
 
-  // Handle private projects
-  if (slug === 'polishpad') {
-    return (
-      <div className="min-h-screen bg-transparent text-zinc-900">
-        <Navigation />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16">
-          <div className="text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-8">
-              <svg className="w-12 h-12 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-6">
-              Private Project
-            </h1>
-            <p className="text-xl text-zinc-600 mb-8 max-w-2xl mx-auto">
-              This case study is currently private and not available for public viewing. 
-              Please check out my other featured projects or get in touch to learn more about this work.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/work"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
-              >
-                <span className="text-white">View Other Projects</span>
-              </Link>
-              <Link
-                to="/about"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-zinc-200 text-zinc-900 font-semibold rounded-xl hover:bg-zinc-50 transition-all duration-300"
-              >
-                Learn More About Me
-              </Link>
-            </div>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    )
-  }
-
       // Scroll detection for sticky process navigation - desktop only
       useEffect(() => {
         const handleScroll = () => {
@@ -94,6 +54,48 @@ export default function CaseStudy() {
   const currentIndex = caseStudies.findIndex(study => study.slug === slug)
   const prevCaseStudy = currentIndex > 0 ? caseStudies[currentIndex - 1] : null
   const nextCaseStudy = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
+  
+  // Handle private projects
+  if (slug === 'polishpad') {
+    return (
+      <div className="min-h-screen bg-white text-zinc-900">
+        <Navigation />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-8">
+              <svg className="w-12 h-12 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-6">
+              Private Case Study
+            </h1>
+            <p className="text-xl text-zinc-600 mb-8 max-w-2xl mx-auto">
+              This case study is currently private and not available for public viewing.
+            </p>
+            <p className="text-lg text-zinc-700 mb-8 max-w-2xl mx-auto font-medium">
+              Available for discussion during interviews.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/work"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
+              >
+                <span className="text-white">View Other Projects</span>
+              </Link>
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-zinc-200 text-zinc-900 font-semibold rounded-xl hover:bg-zinc-50 transition-all duration-300"
+              >
+                Learn More About Me
+              </Link>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
   
   if (!caseStudy) {
     return (
@@ -233,7 +235,7 @@ export default function CaseStudy() {
 
 
         {/* Project metadata */}
-        <section className="w-full grid grid-cols-1 md:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 md:gap-8 py-4 xs:py-6 sm:py-8 border-t border-zinc-200">
+        <section className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 md:gap-8 py-4 xs:py-6 sm:py-8 border-t border-zinc-200">
           <div className="text-center px-2">
             <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Client</h3>
             <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.client || 'Client Name'}</p>
@@ -246,10 +248,12 @@ export default function CaseStudy() {
             <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">My Role</h3>
             <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.role || 'UX Designer'}</p>
           </div>
-          <div className="text-center px-2">
-            <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Tools</h3>
-            <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.tools || 'Design Tools'}</p>
-          </div>
+          {caseStudy.tools && (
+            <div className="text-center px-2">
+              <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Tools</h3>
+              <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.tools}</p>
+            </div>
+          )}
           <div className="text-center px-2">
             <h3 className="text-xs xs:text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1 xs:mb-2">Impact</h3>
             <p className="text-sm xs:text-base text-zinc-900 font-medium break-words">{caseStudy.impact || 'Project Impact'}</p>
