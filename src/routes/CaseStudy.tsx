@@ -121,7 +121,7 @@ export default function CaseStudy() {
                 <div className="flex items-center gap-2 text-xs text-zinc-500 mb-3">
                   <Link to="/home" className="hover:text-pink-600 transition-colors">Home</Link>
                   <span>/</span>
-                  <Link to="/projects" className="hover:text-pink-600 transition-colors">Projects</Link>
+                  <Link to="/work" className="hover:text-pink-600 transition-colors">Work</Link>
                   <span>/</span>
                   <span className="text-zinc-900 font-medium">{caseStudy.title}</span>
                   <span>/</span>
