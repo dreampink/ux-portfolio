@@ -724,13 +724,11 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
               >
                 <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
                   <button
-                    className="absolute top-2 right-2 bg-white rounded-full w-10 h-10 shadow-lg border border-zinc-200 hover:bg-zinc-50 flex items-center justify-center transition-colors z-50"
+                    className="absolute top-2 right-2 bg-white rounded-full w-10 h-10 shadow-lg border border-zinc-200 hover:bg-zinc-50 flex items-center justify-center transition-colors z-50 text-black font-bold text-xl"
                     onClick={() => setLightboxImage(null)}
                     aria-label="Close"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    ×
                   </button>
                   <img
                     src={lightboxImage.src}
