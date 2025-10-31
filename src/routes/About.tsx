@@ -69,7 +69,7 @@ const About = () => {
                         skill: 'User Research', 
                         expertise: 'Expert',
                         impact: 'Surveys, User Interviews, Usability Testing, Personas, Journey Mapping, Task Flow Analysis, Card Sorting',
-                        tools: 'Miro, Full Story, Google Analytics'
+                        tools: 'Miro, Maze, Google Analytics'
                       },
                       { 
                         skill: 'UI/UX Design', 
@@ -81,7 +81,7 @@ const About = () => {
                         skill: 'Front-End Development', 
                         expertise: 'Advanced',
                         impact: 'Building interfaces with React, TypeScript, and Tailwind CSS for scalable, accessible experiences',
-                        tools: 'React.js, TypeScript, HTML5, CSS3, Tailwind CSS, GSAP, Three.js, Framer Motion'
+                        tools: 'JavaScript, React.js, TypeScript, HTML5, CSS3, Tailwind CSS, GSAP, Three.js, Framer Motion'
                       }
                     ].map((item, index) => (
                       <div key={index} className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-pink-100">
@@ -118,9 +118,9 @@ const About = () => {
                     {[
                       // Expert Level
                       { name: "Figma", level: "Expert" },
-                      { name: "Adobe Suite", level: "Expert" },
+                      { name: "JavaScript", level: "Expert" },
+                      { name: "Adobe Suite", level: "Intermediate" },
                       // Advanced Level
-                      { name: "Full Story", level: "Advanced" },
                       { name: "Miro", level: "Advanced" },
                       { name: "Asana", level: "Advanced" },
                       { name: "Jira", level: "Advanced" },
@@ -132,7 +132,8 @@ const About = () => {
                         </span>
                         <span className={`text-xs px-2 py-1 rounded-full ${
                           skill.level === 'Expert' ? 'bg-pink-100 text-pink-700' : 
-                          skill.level === 'Advanced' ? 'bg-green-100 text-green-700' : 
+                          skill.level === 'Advanced' ? 'bg-green-100 text-green-700' :
+                          skill.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
                           'bg-zinc-100 text-zinc-600'
                         }`}>
                           {skill.level}
@@ -157,7 +158,7 @@ const About = () => {
                       { name: "Product Management", level: "Advanced" },
                       { name: "Data Analysis", level: "Advanced" },
                       { name: "Component Libraries & Design Systems", level: "Expert" },
-                      { name: "Video Editing & Motion Graphics", level: "Advanced" }
+                      { name: "Video Editing & Motion Graphics", level: "Beginner" }
                     ].map((skill, index) => (
                       <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
                         <span className="text-xs sm:text-sm font-medium text-zinc-900">
@@ -248,6 +249,8 @@ const About = () => {
                             ? 'bg-pink-100 text-pink-700'
                             : skill.level === 'Advanced'
                             ? 'bg-green-100 text-green-700'
+                            : skill.level === 'Intermediate'
+                            ? 'bg-yellow-100 text-yellow-700'
                             : 'bg-zinc-100 text-zinc-600'
                         }`}>
                           {skill.level}

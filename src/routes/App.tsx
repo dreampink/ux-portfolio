@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import ProcessDiagram from '../components/ProcessDiagram'
 import recommeHeader from '../assets/recomme/recomme.png'
+import mortgageHubHeader from '../assets/mortgage-hub/mortgage-hub.png'
 
 export default function App() {
   const [activeStage, setActiveStage] = useState<'problem' | 'research' | 'tension' | 'approach' | 'design' | 'outcome' | 'learning'>('problem')
@@ -14,6 +15,7 @@ export default function App() {
     { slug: 'cancer-research-uk', title: 'Cancer Research UK', image: '/project-2.jpg' },
     { slug: 'tesco', title: 'Tesco', image: '/project-3.jpg' },
     { slug: 'recomme', title: 'Re–up', image: recommeHeader },
+    { slug: 'mortgage-hub', title: 'Mortgage Hub', image: mortgageHubHeader },
     // { slug: 'marchcroft', title: 'Marchcroft', image: '/project-4.jpg' },
     { slug: 'polishpad', title: 'Polish Pad', image: '/project-5.jpg' },
   ]
@@ -208,6 +210,7 @@ export default function App() {
                 <span>Beauty Tech</span>
                 <span>Healthcare</span>
                 <span>Retail</span>
+                <span>Fintech</span>
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
@@ -218,7 +221,8 @@ export default function App() {
                 <span>E-commerce</span>
                 <span>Beauty Tech</span>
                 <span>Healthcare</span>
-                <span>Retail</span>       
+                <span>Retail</span> 
+                <span>Fintech</span>       
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
@@ -326,14 +330,15 @@ export default function App() {
                         {index === 1 && "Completely revamped onboarding experience with 42% increase in activation rates and 60% reduction in time-to-value."}
                         {index === 2 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
                         {index === 3 && "Proof of concept for sustainable fashion recycling, validating platform engagement and attracting multiple brands for pilot integration."}
-                        {index === 4 && "Confidential Startup Project - methodology and results shared in interview"}
+                        {index === 4 && "Connected brokers and underwriters on a unified platform, reducing mortgage processing time from over a month to under seven days."}
+                        {index === 5 && "Confidential Startup Project - methodology and results shared in interview"}
                       </p>
                     </div>
                     
                     {/* Tools/Tags */}
                     <div className="mt-auto">
                       <div className="flex flex-wrap gap-2">
-                        {index === 0 && ['App Design', 'Personalisation', 'UI Design'].map((tag, tagIndex) => {
+                        {index === 0 && ['Personalisation', 'Mobile App', 'UI Design'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-blue-100 text-blue-700',
                             'bg-purple-100 text-purple-700',
@@ -345,7 +350,7 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 1 && ['UX Design', 'Design Systems', 'Accessibility'].map((tag, tagIndex) => {
+                        {index === 1 && ['Design Systems', 'Accessibility', 'UX Design'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-cyan-100 text-cyan-700',
                             'bg-teal-100 text-teal-700',
@@ -381,7 +386,19 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 4 && ['Confidential', 'Private', 'Interview Only'].map((tag, tagIndex) => {
+                        {index === 4 && ['FinTech', 'Workflow Design', 'Collaborative UX'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-indigo-100 text-indigo-700',
+                            'bg-purple-100 text-purple-700',
+                            'bg-blue-100 text-blue-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 5 && ['Confidential', 'Private', 'Interview Only'].map((tag, tagIndex) => {
                           const tagColors = [
                             'bg-gray-100 text-gray-700',
                             'bg-slate-100 text-slate-700',
@@ -460,10 +477,11 @@ export default function App() {
                         {c.title}
                       </h3>
                       <p className="text-sm text-zinc-600 leading-relaxed">
-                        {index === 0 && "Streamlined payment flows resulting in 35% reduction in drop-off rates and 28% increase in conversion, impacting 2M+ users."}
-                        {index === 1 && "Completely revamped onboarding experience with 42% increase in activation rates and 60% reduction in time-to-value."}
-                        {index === 2 && "Redesigned mobile information architecture improving task completion rates by 48% and reducing bounce rate by 32%."}
-                        {index === 3 && "Transformed complex operational data into actionable visual insights, enabling 65% faster decision-making for technical teams."}
+                        {index === 0 && "Built a personalised app experience to drive greater customer engagement, delivering +18.86% daily average conversion rate and doubling app revenue share."}
+                        {index === 1 && "A multi-slice redesign of CRUK's website and the creation of Helix, a scalable digital design system that improved engagement and donation outcomes."}
+                        {index === 2 && "Led three workstreams to unblock Tesco's supplier onboarding product: design file refactor, usability discovery, and measurement workshops that aligned teams around shared OKRs."}
+                        {index === 3 && "Designing a scalable recycling experience for a more sustainable fashion industry."}
+                        {index === 4 && "Designed and implemented the underwriter experience, connecting brokers and underwriters on a unified platform that transformed the mortgage origination process."}
                       </p>
                     </div>
                     
@@ -506,11 +524,35 @@ export default function App() {
                             </span>
                           );
                         })}
-                        {index === 3 && ['Data Visualisation', 'UX Research', 'Dashboard Design'].map((tag, tagIndex) => {
+                        {index === 3 && ['Sustainability', 'UX Research', 'Prototyping'].map((tag, tagIndex) => {
                           const tagColors = [
-                            'bg-violet-100 text-violet-700',
-                            'bg-fuchsia-100 text-fuchsia-700',
-                            'bg-indigo-100 text-indigo-700'
+                            'bg-green-100 text-green-700',
+                            'bg-emerald-100 text-emerald-700',
+                            'bg-teal-100 text-teal-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 4 && ['FinTech', 'Workflow Design', 'Collaborative UX'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-indigo-100 text-indigo-700',
+                            'bg-purple-100 text-purple-700',
+                            'bg-blue-100 text-blue-700'
+                          ];
+                          return (
+                            <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                        {index === 5 && ['Confidential', 'Private', 'Interview Only'].map((tag, tagIndex) => {
+                          const tagColors = [
+                            'bg-gray-100 text-gray-700',
+                            'bg-slate-100 text-slate-700',
+                            'bg-zinc-100 text-zinc-700'
                           ];
                           return (
                             <span key={tag} className={`px-2 py-1 ${tagColors[tagIndex]} text-xs font-medium rounded-full`}>

@@ -9,6 +9,7 @@ import r6 from '../../assets/recomme/r-6.png'
 import r7mov from '../../assets/recomme/r-7.mov'
 
 
+
 export const recommeProject = {
   slug: 'recomme',
   title: 'Re–up',
@@ -111,16 +112,7 @@ export const recommeProject = {
           <figure className="space-y-3">
             <img src={r5} alt="Design exploration" className="w-full h-auto rounded-xl border border-zinc-200" />
           </figure>
-          <figure className="space-y-3">
-            <img src={r6} alt="End-to-end user journey wireframes" className="w-full h-auto rounded-xl border border-zinc-200" />
-            <figcaption className="text-sm text-zinc-600">End-to-end user journey wireframes showing simplified task flow.</figcaption>
-          </figure>
-          <figure className="space-y-3">
-            <video src={r7mov} autoPlay loop muted playsInline className="w-full h-auto rounded-xl border border-zinc-200">
-              Your browser does not support the video tag.
-            </video>
-            <figcaption className="text-sm text-zinc-600">Prototype walkthrough — "Recycle My Items" flow from selection to carbon offset confirmation.</figcaption>
-          </figure>
+        
         </div>
       )
     },
@@ -147,48 +139,54 @@ export const recommeProject = {
           </ol>
         </div>
       ),
+      media: (
+        <div className="space-y-4">
+          <figure className="space-y-3">
+            <img src={r6} alt="End-to-end user journey wireframes" className="w-full h-auto rounded-xl border border-zinc-200" />
+            <figcaption className="text-sm text-zinc-600">End-to-end user journey wireframes showing simplified task flow.</figcaption>
+          </figure>
+          <figure className="space-y-3">
+            <video src={r7mov} autoPlay loop muted playsInline className="w-full h-auto rounded-xl border border-zinc-200">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption className="text-sm text-zinc-600">Prototype walkthrough — "Recycle My Items" flow from selection to carbon offset confirmation.</figcaption>
+          </figure>
+        </div>
+      )
     },
     results: {
       content: (
         <div className="space-y-6">
-          <h3 className="text-lg font-semibold text-zinc-900 mt-6 mb-3">Proof of Concept with Real-World Insights</h3>
-          <p>The POC validated the core product concept across users and brands.</p>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-zinc-200">
-              <thead className="bg-zinc-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">Metric</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">Result</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-zinc-200">
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">User Completion Rate</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-700">68% (exceeded expectations for early prototype)</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">User Trust / Transparency Rating</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-700">+45% post-FAQ introduction</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">Brand Interest</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-700">Multiple fashion brands registered to pilot integration</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">Conversion (Recycle Start → Submit)</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-700">30% of users completed recycling</td>
-                </tr>
-              </tbody>
-            </table>
+          <h3 className="text-xl font-semibold text-zinc-900">Validation & Impact</h3>
+          <p className="text-zinc-700 leading-relaxed">The proof of concept successfully validated the core product concept across users and brands, demonstrating measurable impact on engagement, trust, and business viability.</p>
+          
+          <div className="grid grid-cols-2 gap-3 mt-6">
+            <div className="bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl p-4 text-white">
+              <div className="text-2xl font-bold mb-1">68%</div>
+              <div className="text-xs font-medium opacity-90">Completion Rate</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-4 text-white">
+              <div className="text-2xl font-bold mb-1">+45%</div>
+              <div className="text-xs font-medium opacity-90">Trust Increase</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl p-4 text-white">
+              <div className="text-2xl font-bold mb-1">30%</div>
+              <div className="text-xs font-medium opacity-90">Conversion Rate</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl p-4 text-white">
+              <div className="text-2xl font-bold mb-1">✓</div>
+              <div className="text-xs font-medium opacity-90">Brand Interest</div>
+            </div>
           </div>
-          <p>Brands praised the <strong>ease of integration</strong> and <strong>low technical overhead</strong>, while users highlighted the <strong>sense of contribution</strong> and <strong>reward clarity</strong>.</p>
+
+          <div className="mt-6 p-4 bg-zinc-50 rounded-xl border border-zinc-200">
+            <p className="text-sm text-zinc-700 italic">"Brands praised the ease of integration and low technical overhead, while users highlighted the sense of contribution and reward clarity."</p>
+          </div>
         </div>
       ),
-      media: (
-        <figure className="space-y-3">
-          <figcaption className="text-sm text-zinc-600">Final app screens — clean, intuitive, and purpose-driven interface.</figcaption>
-        </figure>
-      )
     },
     learning: {
       content: (
