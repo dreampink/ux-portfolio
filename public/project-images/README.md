@@ -19,5 +19,5 @@ If images are not provided, the system will automatically show a gradient backgr
 ## Recommended Images:
 1. **Sports Direct**: Payment flow screenshots, checkout interface, or payment success screens
 2. **Cancer Research UK**: Onboarding screens, user journey flows, or welcome screens
-3. **Insights Dashboard**: Dashboard screenshots, analytics views, or data visualization
+3. **Insights Dashboard**: Dashboard screenshots, analytics views, or data visualisation
 4. **Tesco**: Mobile app screens, navigation examples, or user interface mockups

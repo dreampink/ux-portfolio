@@ -238,10 +238,10 @@ function StagePanelContent({ stage }: { stage: StageKey }) {
               <p className="text-sm text-zinc-700">This is a sample insight that demonstrates the scroll functionality. You can add multiple insights here to test the scrolling behavior.</p>
             </div>
             <div className="p-4 bg-zinc-50 rounded-lg">
-              <p className="text-sm text-zinc-700">Another insight that shows how content flows in the scrollable area. This helps visualize the layout when you have more content.</p>
+              <p className="text-sm text-zinc-700">Another insight that shows how content flows in the scrollable area. This helps visualise the layout when you have more content.</p>
             </div>
             <div className="p-4 bg-zinc-50 rounded-lg">
-              <p className="text-sm text-zinc-700">A third insight to further demonstrate the scrolling capability and content organization within the stage panels.</p>
+              <p className="text-sm text-zinc-700">A third insight to further demonstrate the scrolling capability and content organisation within the stage panels.</p>
             </div>
           </div>
         </div>

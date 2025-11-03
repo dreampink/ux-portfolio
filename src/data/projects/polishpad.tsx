@@ -46,7 +46,7 @@ export const polishpadProject = {
             <ul className="text-blue-700 space-y-2">
               <li>• User interviews with 20 dashboard users</li>
               <li>• Task-based usability testing</li>
-              <li>• Analytics analysis of user behavior</li>
+              <li>• Analytics analysis of user behaviour</li>
               <li>• Card sorting for information architecture</li>
             </ul>
           </div>
@@ -54,7 +54,7 @@ export const polishpadProject = {
           <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6">
             <h4 className="font-semibold text-purple-800 mb-3">Key Insights</h4>
             <ul className="text-purple-700 space-y-2">
-              <li>• Users wanted personalized dashboards</li>
+              <li>• Users wanted personalised dashboards</li>
               <li>• Visual hierarchy was crucial for scanning</li>
               <li>• Contextual help reduced confusion</li>
               <li>• Mobile access was increasingly important</li>
@@ -71,7 +71,7 @@ export const polishpadProject = {
             <h4 className="font-semibold text-gray-800 mb-3">Root Causes</h4>
             <ul className="text-gray-700 space-y-2">
               <li>• Information overload with too many metrics</li>
-              <li>• No personalization or customization</li>
+              <li>• No personalisation or customisation</li>
               <li>• Poor visual hierarchy and scanning</li>
               <li>• Complex navigation structure</li>
               <li>• No contextual explanations</li>
@@ -95,7 +95,7 @@ export const polishpadProject = {
           <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
             <h4 className="font-semibold text-green-800 mb-3">Design Solutions</h4>
             <ul className="text-green-700 space-y-2">
-              <li>• Personalized dashboard with role-based widgets</li>
+              <li>• Personalised dashboard with role-based widgets</li>
               <li>• Clear visual hierarchy with progressive disclosure</li>
               <li>• Smart insights with automated recommendations</li>
               <li>• Mobile-responsive design</li>
@@ -112,7 +112,7 @@ export const polishpadProject = {
           <div className="bg-teal-50 border border-teal-200 rounded-2xl p-6">
             <h4 className="font-semibold text-teal-800 mb-3">Key Features</h4>
             <ul className="text-teal-700 space-y-2">
-              <li>• Customizable widget layout</li>
+              <li>• Customisable widget layout</li>
               <li>• AI-powered insight recommendations</li>
               <li>• Interactive data visualisations</li>
               <li>• One-click report generation</li>
@@ -241,7 +241,7 @@ export const polishpadProject = {
               Mobile-first design is essential for analytics dashboards as users increasingly access data on-the-go.
             </li>
             <li>
-              Personalization significantly increases user engagement — allowing users to customize their dashboard layout drove adoption.
+              Personalisation significantly increases user engagement, allowing users to customise their dashboard layout drove adoption.
             </li>
             <li>
               Visual hierarchy and progressive disclosure help users navigate complex data without feeling overwhelmed.

@@ -13,6 +13,12 @@ export default function CaseStudy() {
   
   const caseStudy = getCaseStudyBySlug(slug)
 
+  // Reset to 'problem' stage when slug changes and scroll to top
+  useEffect(() => {
+    setActiveStage('problem')
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [slug])
+
       // Scroll detection for sticky process navigation - desktop only
       useEffect(() => {
         const handleScroll = () => {

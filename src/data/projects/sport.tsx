@@ -10,7 +10,7 @@ export const sportProject = {
   slug: 'sport-direct',
   title: 'Sports Direct App Redesign',
   client: 'Frasers Group (Sports Direct)',
-  date: '2022-2023',
+  date: '2021 - 2022',
   role: 'Lead UX/UI Designer',
   impact: '+18.86% conversion increase; 6% → 12% revenue share from app',
   headerImage: '/project-1.jpg',
@@ -59,7 +59,7 @@ export const sportProject = {
             market positioning.
           </p>
           <div className="space-y-3">
-            <h4 className="font-semibold">Key findings:</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Key findings:</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>The homepage was overwhelming and visually dense, increasing cognitive load.</li>
               <li>Touchpoints were too small, failing accessibility standards.</li>
@@ -109,7 +109,7 @@ export const sportProject = {
           <p>Each design lead owned a major part of the redesign. My focus: the homepage experience.</p>
           <div className="space-y-4">
             <div className="space-y-3">
-              <h4 className="font-semibold">Phase 1: Fix the fundamentals</h4>
+              <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Phase 1: Fix the fundamentals</h4>
               <ul className="list-disc pl-6 space-y-2 text-zinc-700">
                 <li>Reduce visual clutter and improve hierarchy.</li>
                 <li>Improve accessibility and touch target sizing.</li>
@@ -118,7 +118,7 @@ export const sportProject = {
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold">Phase 2: Introducing personalisation</h4>
+              <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Phase 2: Introducing personalisation</h4>
               <p>
                 We introduced a data-driven recommendation layer using Optimizely and Amplience integrations, enabling dynamic
                 product recommendations, tailored content blocks, and flexible CMS control.
@@ -157,7 +157,7 @@ export const sportProject = {
       content: (
         <div className="space-y-8">
           <div className="space-y-4">
-            <h4 className="font-semibold">A cleaner, bolder look</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">A cleaner, bolder look</h4>
             <p>
               Leveraging Sports Direct's brand identity, I redesigned the homepage to be visually bold, tactile, and simplified.
               We emphasised large, clear imagery and concise CTAs.
@@ -171,10 +171,10 @@ export const sportProject = {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold">Experiment: Control through customisation</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Experiment: Control through customisation</h4>
             <p>
               We designed a customisable Quick Links feature where users could add or reorder shortcuts. Preferences set during
-              onboarding appeared instantly on the homepage, combining business-specified and user-specified links.
+              onboarding appeared instantly on the homepage, combining business‑specified and user‑specified links.
             </p>
             <p>I collaborated closely with developers to ensure technical feasibility and seamless integration.</p>
           </div>

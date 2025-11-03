@@ -211,9 +211,12 @@ export default function App() {
                 <span>Healthcare</span>
                 <span>Retail</span>
                 <span>Fintech</span>
+                <span>Mobile App Design</span>
+                <span>Web Design</span>
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
+                <span>Service Design</span>
                 <span>Behavioural Design</span>
                 <span>User Research</span>
                 <span>Data Visualisation</span>
@@ -221,11 +224,14 @@ export default function App() {
                 <span>E-commerce</span>
                 <span>Beauty Tech</span>
                 <span>Healthcare</span>
-                <span>Retail</span> 
-                <span>Fintech</span>       
+                <span>Retail</span>
+                <span>Fintech</span>
+                <span>Mobile App Design</span>
+                <span>Web Design</span>
                 <span>•</span>
                 <span>Accessibility</span>
                 <span>Design Systems</span>
+                <span>Service Design</span>
                 <span>Behavioural Design</span>
                 <span>User Research</span>
                 <span>Data Visualisation</span>

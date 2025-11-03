@@ -46,9 +46,9 @@ const About = () => {
                   <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed">
                     I'm a Product Designer blending psychology, design thinking, and technical fluency to create intuitive, human-centered experiences. With 5 years across finance, e-commerce, and beauty tech, I translate behavioural insights into inclusive, scalable designs that balance empathy with business goals.
                     <br /><br />
-                    My foundation in front-end engineering helps me design solutions that are not just beautiful, but buildable, accessible, and impactful.
+                    My foundation in front-end engineering helps me design solutions that are not just beautiful, but buildable, accessible, and impactful. I understand that exceptional design isn't just about aesthetics, it's about <strong>driving measurable business outcomes</strong> through increased conversion, engagement, and user satisfaction.
                     <br /><br />
-                    My approach combines analytical thinking with creative intuition, always grounded in user research and psychological principles. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave.
+                    My approach combines analytical thinking with creative intuition, always grounded in user research, service design principles, and psychological insights. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave, considering not just individual screens, but entire service ecosystems.
                   </p>
                 </div>
               </div>
@@ -68,13 +68,13 @@ const About = () => {
                       { 
                         skill: 'User Research', 
                         expertise: 'Expert',
-                        impact: 'Surveys, User Interviews, Usability Testing, Personas, Journey Mapping, Task Flow Analysis, Card Sorting',
-                        tools: 'Miro, Maze, Google Analytics'
+                        impact: 'Surveys, User Interviews, Usability Testing, Personas, Journey Mapping, Service Journey Mapping, Task Flow Analysis, Card Sorting',
+                        tools: 'Miro, Google Analytics'
                       },
                       { 
                         skill: 'UI/UX Design', 
                         expertise: 'Expert',
-                        impact: 'Sketching, Storyboarding, Information Architecture, Wireframing, Prototyping, Design Systems, UI Design, Interaction Design, Accessibility (WCAG 2.1 AA)',
+                        impact: 'Sketching, Storyboarding, Information Architecture, Wireframing, Prototyping, Design Systems, UI Design, Interaction Design, Accessibility (WCAG 2.1 AA). Focus on driving conversion, engagement, and business outcomes.',
                         tools: 'Figma, Adobe Suite, Notion'
                       },
                       { 
@@ -118,13 +118,14 @@ const About = () => {
                     {[
                       // Expert Level
                       { name: "Figma", level: "Expert" },
-                      { name: "JavaScript", level: "Expert" },
                       { name: "Adobe Suite", level: "Intermediate" },
                       // Advanced Level
                       { name: "Miro", level: "Advanced" },
                       { name: "Asana", level: "Advanced" },
                       { name: "Jira", level: "Advanced" },
-                      { name: "Notion", level: "Advanced" }
+                      { name: "Notion", level: "Advanced" },
+                      { name: "Google Analytics", level: "Advanced" },
+                      { name: "Contentsquare", level: "Advanced" }
                     ].map((skill, index) => (
                       <div key={index} className="flex items-center justify-between p-2 md:p-3 bg-white rounded-lg border border-zinc-200">
                         <span className="text-xs sm:text-sm font-medium text-zinc-900">
@@ -228,6 +229,7 @@ const About = () => {
                       // Expert Level
                       { name: "HTML5", level: "Expert", icon: "🌐" },
                       { name: "CSS3", level: "Expert", icon: "🎨" },
+                      { name: "JavaScript", level: "Expert", icon: "⚡" },
                       // Advanced Level
                       { name: "React.js", level: "Advanced", icon: "⚛️" },
                       { name: "TypeScript", level: "Advanced", icon: "📘" },
@@ -317,6 +319,20 @@ const About = () => {
                           <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Seamless Handoffs</h5>
                           <p className="text-xs text-zinc-600 leading-relaxed">
                             Deliver pixel-perfect designs with detailed technical specifications, reducing back-and-forth between teams.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">📈</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Business-Aligned Design</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            Every design decision balances user needs with business objectives, from conversion optimisation to reducing support costs, ensuring measurable impact on your bottom line.
                           </p>
                         </div>
                       </div>
@@ -454,7 +470,7 @@ const About = () => {
                   },
                   {
                     title: "Define",
-                    description: "Synthesizing research insights to define the core problem and create a clear problem statement.",
+                    description: "Synthesising research insights to define the core problem and create a clear problem statement.",
                     icon: "🎯",
                     color: "from-blue-50 to-indigo-50",
                     borderColor: "border-blue-200"
@@ -475,7 +491,7 @@ const About = () => {
                   },
                   {
                     title: "Test",
-                    description: "Validating solutions through user testing, gathering feedback, and iterating based on real user behavior.",
+                    description: "Validating solutions through user testing, gathering feedback, and iterating based on real user behaviour.",
                     icon: "🧪",
                     color: "from-green-50 to-emerald-50",
                     borderColor: "border-green-200"
@@ -492,16 +508,16 @@ const About = () => {
               </div>
             </div>
 
-            {/* Understanding Human Behavior - Full Width */}
+            {/* Understanding Human Behaviour - Full Width */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">Understanding Human Behavior</h3>
+              <h3 className="text-2xl font-bold tracking-tight mb-6 text-zinc-900">Understanding Human Behaviour</h3>
               <div className="p-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-indigo-200">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
                       🧠 Psychology-Driven Design
                     </div>
                     <p className="text-base sm:text-lg text-zinc-600 max-w-4xl mx-auto leading-relaxed">
-                      My passion for psychology drives every design decision. I study cognitive science, behavioral economics,
+                      My passion for psychology drives every design decision. I study cognitive science, behavioural economics,
                       and human-computer interaction to create interfaces that work with human psychology, not against it.
                     </p>
                   </div>
@@ -513,7 +529,7 @@ const About = () => {
                       { concept: "Gestalt Principles", description: "Visual perception and grouping", icon: "👁️", color: "from-purple-400 to-purple-600" },
                       { concept: "Behavioral Economics", description: "Decision-making patterns", icon: "💰", color: "from-green-400 to-green-600" },
                       { concept: "Emotional Design", description: "Creating meaningful connections", icon: "❤️", color: "from-pink-400 to-pink-600" },
-                      { concept: "Social Psychology", description: "Group behavior and influence", icon: "👥", color: "from-orange-400 to-orange-600" },
+                      { concept: "Social Psychology", description: "Group behaviour and influence", icon: "👥", color: "from-orange-400 to-orange-600" },
                       { concept: "Information Architecture", description: "Organizing content for clarity", icon: "🗂️", color: "from-teal-400 to-teal-600" }
                     ].map((concept, index) => (
                       <div key={index} className="group p-4 border border-purple-200 rounded-xl bg-white">
@@ -592,7 +608,7 @@ const About = () => {
                       <h5 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-4">How Psychology Shapes My Design Process</h5>
                       <p className="text-base sm:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
                           Every design decision is informed by psychological principles. From reducing cognitive load
-                          through clear information hierarchy to leveraging behavioral economics for better user flows,
+                          through clear information hierarchy to leveraging behavioural economics for better user flows,
                           I create interfaces that feel intuitive because they align with how humans naturally think and behave.
                         </p>
                     </div>
@@ -617,7 +633,7 @@ const About = () => {
                           </div>
                           <div>
                             <h6 className="font-semibold text-zinc-900 text-sm mb-1">Behavioral Economics</h6>
-                            <p className="text-xs text-zinc-600">Conversion optimization through decision patterns</p>
+                            <p className="text-xs text-zinc-600">Conversion optimisation through decision patterns</p>
                           </div>
                         </div>
                       </div>
@@ -629,7 +645,7 @@ const About = () => {
                           </div>
                           <div>
                             <h6 className="font-semibold text-zinc-900 text-sm mb-1">Social Psychology</h6>
-                            <p className="text-xs text-zinc-600">Collaborative features that leverage group behavior</p>
+                            <p className="text-xs text-zinc-600">Collaborative features that leverage group behaviour</p>
                           </div>
                         </div>
                       </div>

@@ -106,7 +106,7 @@ export const cancerResearchUKProject = {
       content: (
         <div className="space-y-8">
           <div className="space-y-4">
-            <h4 className="font-semibold">Design</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Design</h4>
             <p>
               Translated the new brand into a cohesive digital system. Built responsive, accessible components and
               stress-tested with real content in shared Figma playgrounds.
@@ -114,7 +114,7 @@ export const cancerResearchUKProject = {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">User testing</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">User testing</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>Prototype testing with donors to measure comprehension, trust, and completion.</li>
               <li>Accessibility testing on live pages with assistive tech users; resolved focus traps and blockers.</li>
@@ -122,7 +122,7 @@ export const cancerResearchUKProject = {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">Design system — Helix</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Design system — Helix</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>Figma UI toolkit with core components and templates.</li>
               <li>Zeroheight docs covering principles, usage, and a11y specs.</li>

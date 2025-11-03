@@ -644,7 +644,7 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
           </div>
         </div>
         
-        <p className="text-base sm:text-lg text-zinc-700 leading-relaxed max-w-4xl">
+        <p className="text-base sm:text-lg text-zinc-700 leading-relaxed max-w-4xl font-semibold">
           {summary}
         </p>
       </div>
@@ -665,7 +665,7 @@ function StagePanelContent({ stage, caseStudyData, isCaseStudy = false }: { stag
           </div>
         </div>
         
-        <p className="text-sm text-zinc-700 leading-relaxed">
+        <p className="text-sm text-zinc-700 leading-relaxed font-semibold">
           {summary}
         </p>
       </div>

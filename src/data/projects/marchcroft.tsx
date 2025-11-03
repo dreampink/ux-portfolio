@@ -1,7 +1,7 @@
 export const marchcroftProject = {
   slug: 'marchcroft',
   title: 'Marchcroft',
-  description: 'Redesigned financial dashboards and data visualization tools for a leading financial services firm, enabling faster decision-making and improved user confidence.',
+  description: 'Redesigned financial dashboards and data visualisation tools for a leading financial services firm, enabling faster decision-making and improved user confidence.',
   client: 'Marchcroft Financial Services',
   date: '2024',
   role: 'UX Designer',
@@ -92,7 +92,7 @@ export const marchcroftProject = {
           <div>
             <h3 className="text-xl font-semibold text-zinc-900 mb-3">Core Tensions</h3>
             <p className="text-zinc-600 leading-relaxed">
-              The research revealed several critical tensions that were preventing effective data utilization and decision-making.
+              The research revealed several critical tensions that were preventing effective data utilisation and decision-making.
             </p>
           </div>
           
@@ -134,7 +134,7 @@ export const marchcroftProject = {
           <div>
             <h3 className="text-xl font-semibold text-zinc-900 mb-3">Design Strategy</h3>
             <p className="text-zinc-600 leading-relaxed">
-              I developed a comprehensive approach focused on creating intuitive data visualization tools that would transform how teams interact with operational data.
+              I developed a comprehensive approach focused on creating intuitive data visualisation tools that would transform how teams interact with operational data.
             </p>
           </div>
           
@@ -142,7 +142,7 @@ export const marchcroftProject = {
             <div>
               <h4 className="text-lg font-medium text-zinc-900 mb-3">Information Architecture</h4>
               <ul className="space-y-2 text-zinc-600">
-                <li>• Hierarchical data organization</li>
+                <li>• Hierarchical data organisation</li>
                 <li>• Progressive disclosure patterns</li>
                 <li>• Contextual navigation</li>
                 <li>• Search and filtering systems</li>
@@ -165,11 +165,11 @@ export const marchcroftProject = {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-pink-50 rounded-lg p-4">
                 <h5 className="font-medium text-pink-900 mb-2">Clarity First</h5>
-                <p className="text-pink-700 text-sm">Every visualization should immediately communicate its purpose and key insights.</p>
+                <p className="text-pink-700 text-sm">Every visualisation should immediately communicate its purpose and key insights.</p>
               </div>
               <div className="bg-blue-50 rounded-lg p-4">
                 <h5 className="font-medium text-blue-900 mb-2">Speed to Insight</h5>
-                <p className="text-blue-700 text-sm">Minimize cognitive load and enable rapid pattern recognition.</p>
+                <p className="text-blue-700 text-sm">Minimise cognitive load and enable rapid pattern recognition.</p>
               </div>
               <div className="bg-green-50 rounded-lg p-4">
                 <h5 className="font-medium text-green-900 mb-2">Scalable Execution</h5>
@@ -198,10 +198,10 @@ export const marchcroftProject = {
             <div>
               <h4 className="text-lg font-medium text-zinc-900 mb-3">Interactive Dashboard System</h4>
               <p className="text-zinc-600 mb-3">
-                Created a flexible dashboard framework that allows teams to customize their data views while maintaining consistency and usability.
+                Created a flexible dashboard framework that allows teams to customise their data views while maintaining consistency and usability.
               </p>
               <ul className="space-y-1 text-zinc-600">
-                <li>• Drag-and-drop widget system for personalized layouts</li>
+                <li>• Drag-and-drop widget system for personalised layouts</li>
                 <li>• Real-time data updates with visual indicators</li>
                 <li>• Cross-widget interactions and drill-down capabilities</li>
                 <li>• Mobile-responsive design for on-the-go access</li>
@@ -209,9 +209,9 @@ export const marchcroftProject = {
             </div>
             
             <div>
-              <h4 className="text-lg font-medium text-zinc-900 mb-3">Advanced Visualization Components</h4>
+              <h4 className="text-lg font-medium text-zinc-900 mb-3">Advanced Visualisation Components</h4>
               <p className="text-zinc-600 mb-3">
-                Developed a library of specialized chart types optimized for operational data analysis and decision-making.
+                Developed a library of specialised chart types optimised for operational data analysis and decision-making.
               </p>
               <ul className="space-y-1 text-zinc-600">
                 <li>• Time-series analysis with trend detection</li>
@@ -228,7 +228,7 @@ export const marchcroftProject = {
               </p>
               <ul className="space-y-1 text-zinc-600">
                 <li>• Shared annotations and insights</li>
-                <li>• Team workspace organization</li>
+                <li>• Team workspace organisation</li>
                 <li>• Export and sharing capabilities</li>
                 <li>• Notification system for data alerts</li>
               </ul>

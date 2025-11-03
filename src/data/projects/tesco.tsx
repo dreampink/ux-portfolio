@@ -63,7 +63,7 @@ export const tescoProject = {
       content: (
         <div className="space-y-6">
           <div className="space-y-3">
-            <h4 className="font-semibold">Support Ticket Analysis</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Support Ticket Analysis</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>Reviewed 60+ Zendesk tickets from suppliers and Tesco staff.</li>
               <li>Categorised issues by frequency, impact, and affected user type.</li>
@@ -74,7 +74,17 @@ export const tescoProject = {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">Heuristic Evaluation</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Service Journey Mapping</h4>
+            <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+              <li>Mapped end-to-end user journeys across all touchpoints (digital product, email, phone support, Zendesk).</li>
+              <li>Identified pain points and friction points at handoffs between different channels and teams.</li>
+              <li>Visualised where users were dropping off or contacting support due to service gaps.</li>
+            </ul>
+            <p>This service-level view revealed that many issues weren't product bugs, they were breakdowns in the overall service delivery.</p>
+          </div>
+
+          <div className="space-y-3">
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Heuristic Evaluation</h4>
             <p>
               Conducted a heuristic evaluation using Jakob Nielsen's 10 usability heuristics. Identified and prioritised 100+ issues
               and validated many findings from the Zendesk analysis.
@@ -82,7 +92,7 @@ export const tescoProject = {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">Comprehension Testing</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Comprehension Testing</h4>
             <p>
               Developed a plan for moderated comprehension testing sessions to evaluate end-to-end onboarding experience,
               including participant and discussion guides, and onboarded an in-house designer to lead the research after departure.
@@ -132,15 +142,16 @@ export const tescoProject = {
           <p>Three core tensions were blocking progress:</p>
           <ul className="list-disc pl-6 space-y-2 text-zinc-700">
             <li>
-              Reactive vs strategic: Teams were firefighting support requests instead of addressing root causes of issues.
+              <strong>Reactive vs strategic:</strong> Teams were firefighting support requests instead of addressing root causes of issues.
             </li>
             <li>
-              Product vs service: Teams were focused on product features rather than the end-to-end service experience.
+              <strong>Product vs service:</strong> Teams were focused on product features rather than the end-to-end service experience. This is a classic service design challenge, the product was just one touchpoint in a complex ecosystem spanning digital, email, phone support, and in-person interactions.
             </li>
             <li>
-              Individual vs shared: Teams lacked shared success metrics, causing confusion and friction.
+              <strong>Individual vs shared:</strong> Teams lacked shared success metrics, causing confusion and friction when different stakeholders measured different outcomes.
             </li>
           </ul>
+          <p>The third tension (product vs service) required the most fundamental shift: thinking beyond screens to understand how users actually experience the complete journey.</p>
         </div>
       )
     },
@@ -149,7 +160,7 @@ export const tescoProject = {
       content: (
         <div className="space-y-6">
           <div className="space-y-3">
-            <h4 className="font-semibold">Design File Refactor</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Design File Refactor</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>Completely overhauled the Figma file to create a single source of truth.</li>
               <li>Visualised full end-to-end user journeys with clear user roles and handoffs.</li>
@@ -159,15 +170,17 @@ export const tescoProject = {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">Measurement Workshops</h4>
-            <p>Designed and facilitated Miro-based measurement workshops to:</p>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Service Design Measurement Workshops</h4>
+            <p>Designed and facilitated Miro-based workshops applying service design principles to:</p>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
+              <li><strong>Map the service ecosystem:</strong> Visualise all touchpoints across digital, in-person, and support channels.</li>
               <li>Align product and service teams on a unified vision and measurable OKRs.</li>
               <li>Define what success looks like for both digital and service touchpoints.</li>
               <li>Map blockers, dependencies, and data sources to track progress.</li>
+              <li><strong>Identify gaps and handoffs:</strong> Surface breakpoints between teams that were causing user friction.</li>
             </ul>
             <p>Through these workshops, teams aligned around common objectives and began reframing from a product mindset to a
-              service mindset.</p>
+              service mindset, understanding that user experience extends beyond the digital interface.</p>
           </div>
         </div>
       ),
@@ -202,7 +215,7 @@ export const tescoProject = {
         <div className="space-y-6">
           <p>Following research synthesis and team alignment, we explored solutions to the most pressing usability challenges.</p>
           <div className="space-y-3">
-            <h4 className="font-semibold">Key focus areas:</h4>
+            <h4 className="text-base font-semibold text-zinc-900 mt-4 mb-2">Key focus areas:</h4>
             <ul className="list-disc pl-6 space-y-2 text-zinc-700">
               <li>Improving data input and validation to reduce manual error.</li>
               <li>Introducing progressive disclosure to simplify form-heavy screens.</li>
