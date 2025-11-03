@@ -153,7 +153,7 @@ export default function App() {
                     <div className="text-xs sm:text-sm text-zinc-600 font-medium">Clients Served</div>
                   </div>
                   <div className="text-center lg:text-left">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">4+</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-1 sm:mb-2">5+</div>
                     <div className="text-xs sm:text-sm text-zinc-600 font-medium">Years Experience</div>
                   </div>
                   <div className="text-center lg:text-left">

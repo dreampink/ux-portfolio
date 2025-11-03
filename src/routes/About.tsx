@@ -48,7 +48,7 @@ const About = () => {
                     <br /><br />
                     My foundation in front-end engineering helps me design solutions that are not just beautiful, but buildable, accessible, and impactful. I understand that exceptional design isn't just about aesthetics, it's about <strong>driving measurable business outcomes</strong> through increased conversion, engagement, and user satisfaction.
                     <br /><br />
-                    My approach combines analytical thinking with creative intuition, always grounded in user research, service design principles, and psychological insights. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave, considering not just individual screens, but entire service ecosystems.
+                    My approach combines analytical thinking with creative intuition, always grounded in user research, service design principles, and psychological insights. I also embrace AI-powered design tools to enhance productivity and generate ideas, while maintaining human-centred design at the core. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave, considering not just individual screens, but entire service ecosystems.
                   </p>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const About = () => {
                       { 
                         skill: 'UI/UX Design', 
                         expertise: 'Expert',
-                        impact: 'Sketching, Storyboarding, Information Architecture, Wireframing, Prototyping, Design Systems, UI Design, Interaction Design, Accessibility (WCAG 2.1 AA). Focus on driving conversion, engagement, and business outcomes.',
+                        impact: 'Sketching, Storyboarding, Information Architecture, Wireframing, Prototyping, Design Systems, UI Design, Interaction Design, Accessibility (WCAG 2.1 AA), AI-Powered Design. Focus on driving conversion, engagement, and business outcomes.',
                         tools: 'Figma, Adobe Suite, Notion'
                       },
                       { 
