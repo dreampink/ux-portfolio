@@ -49,6 +49,8 @@ const About = () => {
                     My foundation in front-end engineering helps me design solutions that are not just beautiful, but buildable, accessible, and impactful. I understand that exceptional design isn't just about aesthetics, it's about <strong>driving measurable business outcomes</strong> through increased conversion, engagement, and user satisfaction.
                     <br /><br />
                     My approach combines analytical thinking with creative intuition, always grounded in user research, service design principles, and psychological insights. I also embrace AI-powered design tools to enhance productivity and generate ideas, while maintaining human-centred design at the core. Every design decision I make is backed by data, empathy, and a deep understanding of how people actually think and behave, considering not just individual screens, but entire service ecosystems.
+                    <br /><br />
+                    I'm a collaborative team player who thrives on feedback, iteration, and continuous improvement. I love taking ownership of projects and working closely with cross-functional teams to deliver exceptional outcomes that balance user needs with business goals.
                   </p>
                 </div>
               </div>
@@ -333,6 +335,20 @@ const About = () => {
                           <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Business-Aligned Design</h5>
                           <p className="text-xs text-zinc-600 leading-relaxed">
                             Every design decision balances user needs with business objectives, from conversion optimisation to reducing support costs, ensuring measurable impact on your bottom line.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-violet-50 to-purple-50 rounded-xl p-4 border border-violet-200">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm">🤝</span>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Collaborative Ownership</h5>
+                          <p className="text-xs text-zinc-600 leading-relaxed">
+                            A team player who thrives on feedback, iteration, and continuous improvement. I take ownership of projects and work closely with cross-functional teams to deliver exceptional outcomes through collaborative problem-solving.
                           </p>
                         </div>
                       </div>
