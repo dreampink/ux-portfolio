@@ -385,15 +385,15 @@ const About = () => {
                       title: 'Senior UX/UI Designer',
                       company: 'Marchcroft',
                       period: 'Aug 2024 - Oct 2024',
-                      description: 'Designed and developed responsive, accessible user interfaces for a next-generation financial platform.',
+                      description: 'Designed and developed responsive, accessible user interfaces for a wealth management dashboard.',
                       achievements: [
-                        "Translated complex financial data and Figma prototypes into intuitive, emotionally clear interfaces",
-                        "Applied behavioural heuristics to simplify information density and build user confidence in critical flows",
-                        "Created cohesive design systems ensuring visual consistency and trust-driven design (WCAG 2.1 AA)",
-                        "Partnered with engineering teams to align UX with AWS infrastructure, maintaining both usability and performance",
-                        "Integrated AI-powered UX features like personalised recommendations and automated workflows to improve engagement",
-                        "Delivered interfaces that balanced regulatory complexity with clarity and ease",
-                        "Strengthened user trust through visual transparency and predictable interactions"
+                        "Translated complex portfolio data and investment metrics into intuitive, emotionally clear dashboard visualisations",
+                        "Applied behavioural heuristics to simplify information density and build user confidence in critical wealth management flows",
+                        "Created cohesive design systems ensuring visual consistency and trust-driven design for financial data presentation (WCAG 2.1 AA)",
+                        "Partnered with engineering teams to align UX with AWS infrastructure, maintaining both usability and performance for real-time portfolio updates",
+                        "Integrated AI-powered UX features like personalised investment recommendations and automated portfolio rebalancing workflows to improve engagement",
+                        "Delivered dashboard interfaces that balanced regulatory complexity with clarity and ease for wealth management users",
+                        "Strengthened user trust through visual transparency and predictable interactions in portfolio tracking and financial planning tools"
                       ]
                     },
                     {
