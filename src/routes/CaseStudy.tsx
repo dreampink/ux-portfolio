@@ -154,13 +154,13 @@ export default function CaseStudy() {
                 {/* Horizontal Navigation */}
                 <div className="grid grid-cols-7 gap-1">
                   {[
-                    { key: 'problem', label: 'Problem', icon: '🔍' },
-                    { key: 'research', label: 'Research', icon: '🧪' },
-                    { key: 'tension', label: 'Tension', icon: '⚡' },
-                    { key: 'approach', label: 'Approach', icon: '💡' },
-                    { key: 'design', label: 'Design', icon: '🎨' },
-                    { key: 'outcome', label: 'Outcome', icon: '🚀' },
-                    { key: 'learning', label: 'Learning', icon: '📚' }
+                    { key: 'problem', label: 'Problem', phase: 'Discover', icon: '🔍' },
+                    { key: 'research', label: 'Research', phase: 'Discover', icon: '🧪' },
+                    { key: 'tension', label: 'Tension', phase: 'Define', icon: '⚡' },
+                    { key: 'approach', label: 'Approach', phase: 'Define', icon: '💡' },
+                    { key: 'design', label: 'Design', phase: 'Develop', icon: '🎨' },
+                    { key: 'outcome', label: 'Outcome', phase: 'Deliver', icon: '🚀' },
+                    { key: 'learning', label: 'Learning', phase: 'Grow', icon: '📚' }
                   ].map((stage) => {
                     const isActive = activeStage === stage.key;
                     return (
@@ -196,6 +196,7 @@ export default function CaseStudy() {
                       >
                         <div className="flex flex-col items-center gap-0.5">
                           <span className="text-sm">{stage.icon}</span>
+                          <span className={`text-[10px] font-semibold leading-tight ${isActive ? 'text-pink-100' : 'text-pink-600'}`}>{stage.phase}</span>
                           <span className="text-xs font-medium leading-tight">{stage.label}</span>
                         </div>
                       </button>

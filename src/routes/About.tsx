@@ -300,20 +300,6 @@ const About = () => {
                     
                     <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
                       <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-sm">💰</span>
-                        </div>
-                        <div className="flex-1">
-                          <h5 className="font-semibold text-zinc-900 mb-1 text-sm">Cost Efficiency</h5>
-                          <p className="text-xs text-zinc-600 leading-relaxed">
-                            Reduce project costs by eliminating the need for separate design and development handoffs, and catch technical issues early.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200">
-                      <div className="flex items-start space-x-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-sm">🔄</span>
                         </div>

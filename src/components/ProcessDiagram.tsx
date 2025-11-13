@@ -285,8 +285,11 @@ export default function ProcessDiagram({ active, onStageChange, caseStudyData, v
                                 >
                                   <div className="flex items-center gap-1.5">
                                     <stage.icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-zinc-500'}`} />
-          <div>
+          <div className="flex-1">
                                       <div className="font-medium text-xs">{stage.label}</div>
+                                      <div className={`text-[10px] font-semibold ${isActive ? 'text-pink-100' : 'text-zinc-400'}`}>
+                                        {PHASES[STAGE_PHASE[stage.key]].name}
+                                      </div>
                                       <div className={`text-xs ${isActive ? 'text-pink-100' : 'text-zinc-500'}`}>
                                         {stage.key === 'problem' && 'Understanding the core challenges'}
                                         {stage.key === 'research' && 'Gathering insights and data'}
@@ -525,8 +528,13 @@ function IndexNav({ active, setActive }: { active: StageKey; setActive: (k: Stag
         >
           <span className="inline-flex items-center gap-3.5">
             <s.icon className="h-5 w-5" />
-            <span className="font-medium text-sm md:text-base leading-relaxed">
-              {i + 1}. {s.label}
+            <span className="flex flex-col">
+              <span className="font-medium text-sm md:text-base leading-relaxed">
+                {i + 1}. {s.label}
+              </span>
+              <span className={`text-xs font-semibold ${active === s.key ? 'text-pink-100' : 'text-zinc-500'}`}>
+                {PHASES[STAGE_PHASE[s.key]].name}
+              </span>
             </span>
           </span>
         </motion.button>
