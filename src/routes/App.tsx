@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import ProcessDiagram from '../components/ProcessDiagram'
+import Chatbot from '../components/Chatbot'
 import recommeHeader from '../assets/recomme/recomme.png'
 import mortgageHubHeader from '../assets/mortgage-hub/mortgage-hub.png'
 
@@ -725,6 +726,7 @@ export default function App() {
       </div>
 
       <Footer />
+      <Chatbot />
     </div>
   )
 }
