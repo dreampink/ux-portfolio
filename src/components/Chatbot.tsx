@@ -441,7 +441,7 @@ Guidelines:
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:top-auto z-50 w-full sm:w-96 h-full sm:h-[600px] sm:max-h-[600px] bg-white sm:rounded-lg shadow-2xl flex flex-col border-0 sm:border border-zinc-200 overflow-hidden pb-safe">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:top-auto z-50 w-full sm:w-96 h-[100dvh] sm:h-[600px] sm:max-h-[600px] bg-white sm:rounded-lg shadow-2xl flex flex-col border-0 sm:border border-zinc-200 overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-br from-pink-500 to-rose-500 text-white p-3 sm:p-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
@@ -463,33 +463,40 @@ Guidelines:
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-zinc-50 overscroll-contain">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
+          <div className="flex-1 min-h-0 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-zinc-50 overscroll-contain">
+            {messages.map((message) => {
+              // Check if this is an error/overload message
+              const isErrorMessage = message.text.includes('⚠️') || message.text.includes('overloaded') || message.text.includes('rate limit')
+              
+              return (
                 <div
-                  className={`max-w-[85%] sm:max-w-[80%] rounded-lg px-3 py-2 sm:px-4 sm:py-2 ${
-                    message.sender === 'user'
-                      ? 'bg-gradient-to-br from-pink-500 to-rose-500 text-white'
-                      : 'bg-white text-zinc-900 border border-zinc-200'
-                  }`}
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <p className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words">{message.text}</p>
-                  <p
-                    className={`text-[10px] sm:text-xs mt-1 ${
-                      message.sender === 'user' ? 'text-white/70' : 'text-zinc-500'
+                  <div
+                    className={`max-w-[85%] sm:max-w-[80%] px-3 py-2 sm:px-4 sm:py-2 ${
+                      isErrorMessage
+                        ? 'bg-pink-100 text-pink-900 border-l-4 border-pink-500'
+                        : message.sender === 'user'
+                        ? 'rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 text-white'
+                        : 'rounded-lg bg-white text-zinc-900 border border-zinc-200'
                     }`}
                   >
-                    {message.timestamp.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </p>
+                    <p className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words">{message.text}</p>
+                    <p
+                      className={`text-[10px] sm:text-xs mt-1 ${
+                        message.sender === 'user' ? 'text-white/70' : isErrorMessage ? 'text-pink-700' : 'text-zinc-500'
+                      }`}
+                    >
+                      {message.timestamp.toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white text-zinc-900 border border-zinc-200 rounded-lg px-3 py-2 sm:px-4 sm:py-2">
@@ -502,7 +509,7 @@ Guidelines:
 
           {/* Input */}
           <div className="border-t border-zinc-200 p-2.5 sm:p-4 bg-white flex-shrink-0 safe-area-inset-bottom">
-            <div className="flex space-x-2 items-stretch">
+            <div className="flex gap-2 items-stretch">
               <input
                 ref={inputRef}
                 type="text"
@@ -513,18 +520,26 @@ Guidelines:
                   // Allow all key presses through
                   e.stopPropagation()
                 }}
+                onFocus={(e) => {
+                  // Prevent zoom on iOS by ensuring font size is at least 16px
+                  e.target.style.fontSize = '16px'
+                }}
+                onBlur={(e) => {
+                  // Reset font size after blur
+                  e.target.style.fontSize = ''
+                }}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck="false"
                 placeholder="Type your message..."
-                className="flex-1 px-3 py-3 sm:px-4 sm:py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm touch-manipulation"
+                className="flex-1 min-w-0 px-3 py-3 sm:px-4 sm:py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base sm:text-sm touch-manipulation"
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="bg-gradient-to-br from-pink-500 to-rose-500 text-white rounded-lg px-4 py-3 sm:px-4 sm:py-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity flex items-center justify-center flex-shrink-0 touch-manipulation min-w-[50px] min-h-[44px] sm:min-w-0 sm:min-h-0"
+                className="bg-gradient-to-br from-pink-500 to-rose-500 text-white rounded-lg px-3 py-3 sm:px-4 sm:py-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity flex items-center justify-center flex-shrink-0 touch-manipulation min-w-[50px] min-h-[44px] sm:min-w-0 sm:min-h-0"
                 aria-label="Send message"
               >
                 {isLoading ? (

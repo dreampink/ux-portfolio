@@ -515,4 +515,11 @@ button:focus-visible {
 .safe-area-inset-bottom {
   padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 }
+
+/* Prevent layout shift on mobile when keyboard appears */
+@supports (height: 100dvh) {
+  .mobile-viewport-fix {
+    height: 100dvh;
+  }
+}
 /* Trigger redeploy */
