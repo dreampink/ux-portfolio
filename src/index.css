@@ -506,4 +506,13 @@ button:focus-visible {
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
 }
+
+/* Safe area support for mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
 /* Trigger redeploy */

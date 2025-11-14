@@ -441,7 +441,7 @@ Guidelines:
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:top-auto z-50 w-full sm:w-96 h-full sm:h-[600px] sm:max-h-[600px] bg-white sm:rounded-lg shadow-2xl flex flex-col border-0 sm:border border-zinc-200 overflow-hidden">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:top-auto z-50 w-full sm:w-96 h-full sm:h-[600px] sm:max-h-[600px] bg-white sm:rounded-lg shadow-2xl flex flex-col border-0 sm:border border-zinc-200 overflow-hidden pb-safe">
           {/* Header */}
           <div className="bg-gradient-to-br from-pink-500 to-rose-500 text-white p-3 sm:p-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
@@ -501,8 +501,8 @@ Guidelines:
           </div>
 
           {/* Input */}
-          <div className="border-t border-zinc-200 p-3 sm:p-4 bg-white flex-shrink-0">
-            <div className="flex space-x-2">
+          <div className="border-t border-zinc-200 p-2.5 sm:p-4 bg-white flex-shrink-0 safe-area-inset-bottom">
+            <div className="flex space-x-2 items-stretch">
               <input
                 ref={inputRef}
                 type="text"
@@ -518,19 +518,19 @@ Guidelines:
                 autoCapitalize="off"
                 spellCheck="false"
                 placeholder="Type your message..."
-                className="flex-1 px-3 py-2.5 sm:px-4 sm:py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm touch-manipulation"
+                className="flex-1 px-3 py-3 sm:px-4 sm:py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm touch-manipulation"
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="bg-gradient-to-br from-pink-500 to-rose-500 text-white rounded-lg px-3 py-2.5 sm:px-4 sm:py-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity flex items-center justify-center flex-shrink-0 touch-manipulation min-w-[44px] min-h-[44px]"
+                className="bg-gradient-to-br from-pink-500 to-rose-500 text-white rounded-lg px-4 py-3 sm:px-4 sm:py-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity flex items-center justify-center flex-shrink-0 touch-manipulation min-w-[50px] min-h-[44px] sm:min-w-0 sm:min-h-0"
                 aria-label="Send message"
               >
                 {isLoading ? (
-                  <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                  <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
-                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Send className="w-5 h-5" />
                 )}
               </button>
             </div>
