@@ -16,7 +16,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm an AI-assisted assistant here to help answer questions about Ebe's portfolio and UX work. I can tell you about her projects, case studies, and design process. What would you like to know?",
+      text: "Hi! I'm an AI-assisted assistant here to help answer questions about Ebe's portfolio and UX/UI work. I can tell you about her projects, case studies, and design process. What would you like to know?",
       sender: 'bot',
       timestamp: new Date(),
     },
